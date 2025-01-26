@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PropertyController } from "src/controller/feature1/property/property.controller";
+import { PropertyController } from "../controller/feature1/property/property.controller";
 
 export class PropertyRouter {
   private propertyController: PropertyController;

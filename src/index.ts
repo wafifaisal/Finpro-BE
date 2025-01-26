@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { AuthRouter } from "./router/userAuth.router";
