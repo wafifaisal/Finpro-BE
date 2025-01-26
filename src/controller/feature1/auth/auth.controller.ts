@@ -8,8 +8,10 @@ import { findTenant } from "../../../services/tenant.service";
 import handlebars from "handlebars";
 import { transporter } from "../../../services/mailer";
 import { findUser } from "../../../services/user.service";
+import { OAuth2Client } from "google-auth-library";
 
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 export class AuthController {
   async loginUser(req: Request, res: Response) {
@@ -42,10 +44,17 @@ export class AuthController {
 
   async registerUser(req: Request, res: Response) {
     try {
-      const { username, email } = req.body;
+      const { email } = req.body;
 
       if (!email) {
         throw new Error("Email is required");
+      }
+
+      const user = await prisma.user.findUnique({
+        where: { email },
+      });
+      if (user) {
+        throw { message: "Email has already been used" };
       }
 
       const newUserData: any = {
@@ -88,15 +97,53 @@ export class AuthController {
   async verifyUser(req: Request, res: Response) {
     try {
       const { token } = req.params;
-      const verifiedUser: any = verify(token, process.env.JWT_KEY!);
-      await prisma.user.update({
-        data: { isVerify: true },
-        where: { id: verifiedUser.id },
+      const { username, password, confirmPassword, no_handphone } = req.body;
+
+      // Validasi password
+      if (!password || !confirmPassword || password !== confirmPassword) {
+        throw { message: "Passwords do not match!" };
+      }
+
+      // Verifikasi token JWT
+      const decoded = verify(token, process.env.JWT_KEY!) as { id: string };
+
+      if (!decoded || !decoded.id) {
+        throw { message: "Invalid or expired token!" };
+      }
+
+      const userId = decoded.id;
+
+      // Cek apakah user sudah diverifikasi
+      const existingUser = await prisma.user.findUnique({
+        where: { id: userId },
       });
-      res.status(200).send({ message: "Verify Successfully" });
-    } catch (err) {
-      console.log(err);
-      res.status(400).send(err);
+
+      if (!existingUser) {
+        throw { message: "User not found!" };
+      }
+
+      if (existingUser.isVerify) {
+        throw { message: "User already verified!" };
+      }
+
+      // Hash password
+      const salt = await genSalt(10);
+      const hashedPassword = await hash(password, salt);
+
+      // Update user data
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          username,
+          password: hashedPassword,
+          isVerify: true,
+        },
+      });
+
+      res.status(200).send({ message: "Verification successful!" });
+    } catch (err: any) {
+      console.error(err);
+      res.status(400).send({ message: err.message || "Internal server error" });
     }
   }
 
@@ -290,7 +337,7 @@ export class AuthController {
           type: "user",
           username: user.username,
           email: user.email,
-          avatar: user.avatar,
+          image: user.avatar,
         });
       } else {
         res.status(403).json({ message: "Forbidden: Unknown token type" });
@@ -300,6 +347,69 @@ export class AuthController {
       res
         .status(401)
         .send({ message: "Unauthorized: Invalid or expired token" });
+    }
+  }
+
+  async socialLogin(req: Request, res: Response) {
+    try {
+      const { tokenId } = req.body;
+
+      if (!tokenId) {
+        throw { message: "Token ID is required" };
+      }
+
+      let email: string | undefined;
+      let name: string | undefined;
+      let externalId: string | undefined;
+
+      const googleTicket = await googleClient.verifyIdToken({
+        idToken: tokenId,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+
+      const googlePayload = googleTicket.getPayload();
+      if (!googlePayload) throw { message: "Invalid Google token" };
+
+      email = googlePayload.email;
+      name = googlePayload.name;
+      externalId = googlePayload.sub;
+
+      if (!email) {
+        throw { message: "Unable to retrieve email from Google token" };
+      }
+
+      // Cek apakah user sudah ada
+      let user = await prisma.user.findUnique({ where: { email } });
+
+      let message: string;
+
+      if (!user) {
+        user = await prisma.user.create({
+          data: {
+            username: name || "",
+            no_handphone: "",
+            email,
+            googleId: externalId,
+            isVerify: true,
+          },
+        });
+        message = "User successfully registered and logged in";
+      } else {
+        message = "User already registered and logged in";
+      }
+
+      // Buat token JWT
+      const jwtPayload = { id: user.id, type: "user" };
+      const token = sign(jwtPayload, process.env.JWT_KEY!, { expiresIn: "1d" });
+
+      res.status(200).send({
+        message,
+        token,
+        user: { id: user.id, email: user.email, username: user.username },
+      });
+    } catch (err: any) {
+      console.error(err);
+      res.status(400).send({ message: err.message || "Login failed" });
     }
   }
 }

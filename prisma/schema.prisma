@@ -9,9 +9,9 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(uuid())
+  id           String    @id @default(cuid())
   email        String    @unique
-  username     String
+  username     String?
   password     String?
   avatar       String?
   no_handphone String    @unique
@@ -19,17 +19,93 @@ model User {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   deletedAt    DateTime?
+  googleId     String?   @unique
 }
 
 model Tenant {
-  id           String    @id @default(uuid())
+  id           String     @id @default(uuid())
   name         String
   password     String?
-  no_handphone String?   @unique @db.VarChar(255)
+  no_handphone String?    @unique @db.VarChar(255)
   email        String
   avatar       String?
-  isVerify     Boolean   @default(false)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  isVerify     Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
   deletedAt    DateTime?
+  Property     Property[]
+}
+
+model Location {
+  id        Int        @id @default(autoincrement())
+  address   String
+  country   String
+  city      String
+  deletedAt DateTime?
+  longitude String
+  latitude  String
+  Property  Property[]
+}
+
+model Property {
+  id              Int              @id @default(autoincrement())
+  name            String
+  desc            String
+  image           String
+  location        Location         @relation(fields: [location_id], references: [id])
+  category        String
+  terms_condition String
+  room_available  Int
+  click_rate      Int
+  location_id     Int
+  PropertyImages  PropertyImages[]
+  tenant          Tenant           @relation(fields: [tenantId], references: [id])
+  tenantId        String
+  RoomTypes       RoomTypes[]
+}
+
+model PropertyImages {
+  id          Int       @id @default(autoincrement())
+  image_url   String
+  property_id Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  property    Property  @relation(fields: [property_id], references: [id])
+}
+
+model RoomTypes {
+  id              Int          @id @default(autoincrement())
+  name            String
+  stock           Int
+  capacity        Int
+  bed_details     String
+  price           Int
+  has_breakfast   Boolean      @default(false)
+  breakfast_price Int
+  avg_rating      Int
+  property        Property     @relation(fields: [property_id], references: [id])
+  property_id     Int
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  deletedAt       DateTime?
+  RoomImages      RoomImages[]
+}
+
+model RoomImages {
+  id            Int       @id @default(autoincrement())
+  image_url     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  room_types    RoomTypes @relation(fields: [room_types_id], references: [id])
+  room_types_id Int
+}
+
+model Unavailable {
+  id         Int      @id @default(autoincrement())
+  start_date DateTime @db.Timestamp()
+  end_date   DateTime @db.Timestamp()
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
