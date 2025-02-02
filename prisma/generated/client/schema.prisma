@@ -1,0 +1,179 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PaymentMethod {
+  Manual
+  Midtrans
+}
+
+enum BookingStatus {
+  new
+  completed
+  canceled
+  waiting_payment
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  username     String?
+  password     String?
+  avatar       String?
+  no_handphone String    @unique
+  isVerify     Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+  googleId     String?   @unique
+  Booking      Booking[]
+  Review       Review[]
+}
+
+model Tenant {
+  id            String          @id @default(uuid())
+  name          String
+  password      String?
+  no_handphone  String?         @unique @db.VarChar(255)
+  email         String
+  avatar        String?
+  isVerify      Boolean         @default(false)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?
+  Property      Property[]
+  ReviewReplies ReviewReplies[]
+}
+
+model Location {
+  id        Int        @id @default(autoincrement())
+  address   String
+  country   String
+  city      String
+  deletedAt DateTime?
+  longitude String?
+  latitude  String?
+  Property  Property[]
+}
+
+model Property {
+  id              Int              @id @default(autoincrement())
+  name            String
+  desc            String?
+  location        Location         @relation(fields: [location_id], references: [id])
+  category        String
+  terms_condition String?
+  room_available  Int
+  click_rate      Int?
+  location_id     Int
+  PropertyImages  PropertyImages[]
+  tenant          Tenant           @relation(fields: [tenantId], references: [id])
+  tenantId        String
+  isAvailable     Boolean          @default(true) // Indicates whether the property is available
+  RoomTypes       RoomTypes[]
+}
+
+model PropertyImages {
+  id          Int       @id @default(autoincrement())
+  image_url   String
+  property_id Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  property    Property  @relation(fields: [property_id], references: [id])
+}
+
+model RoomTypes {
+  id              Int           @id @default(autoincrement())
+  name            String
+  stock           Int
+  capacity        Int
+  bed_details     String?
+  price           Int
+  has_breakfast   Boolean       @default(false)
+  breakfast_price Int
+  avg_rating      Int?
+  property        Property      @relation(fields: [property_id], references: [id])
+  property_id     Int
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  deletedAt       DateTime?
+  RoomImages      RoomImages[]
+  Booking         Booking[]
+  Review          Review[]
+  Unavailable     Unavailable[]
+}
+
+model RoomImages {
+  id            Int       @id @default(autoincrement())
+  image_url     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  room_types    RoomTypes @relation(fields: [room_types_id], references: [id])
+  room_types_id Int
+}
+
+model Unavailable {
+  id            Int       @id @default(autoincrement())
+  start_date    DateTime  @db.Timestamp()
+  end_date      DateTime  @db.Timestamp()
+  room_types    RoomTypes @relation(fields: [room_types_id], references: [id])
+  room_types_id Int
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Booking {
+  id             String         @id @default(uuid())
+  num_of_guests  Int
+  total_price    Int
+  details        Json?
+  start_date     DateTime
+  end_date       DateTime
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+  payment_proof  String?
+  payment_method PaymentMethod?
+  status         BookingStatus  @default(new)
+  user_id        String
+  room_types_id  Int
+
+  user       User      @relation(fields: [user_id], references: [id])
+  room_types RoomTypes @relation(fields: [room_types_id], references: [id])
+  Review     Review[]
+}
+
+model Review {
+  id            Int       @id @default(autoincrement())
+  rating        Int
+  review        String    @db.Text
+  user_id       String
+  room_types_id Int
+  booking_id    String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  deleted_at    DateTime?
+
+  user          User            @relation(fields: [user_id], references: [id])
+  room_types    RoomTypes       @relation(fields: [room_types_id], references: [id])
+  booking       Booking         @relation(fields: [booking_id], references: [id])
+  ReviewReplies ReviewReplies[]
+}
+
+model ReviewReplies {
+  id        Int    @id @default(autoincrement())
+  tenant_id String
+  review_id Int
+  reply     String @db.Text
+
+  tenant Tenant @relation(fields: [tenant_id], references: [id])
+  review Review @relation(fields: [review_id], references: [id])
+}

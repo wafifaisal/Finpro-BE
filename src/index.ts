@@ -1,11 +1,13 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import multer from "multer";
 import cookieParser from "cookie-parser";
 import { AuthRouter } from "./router/userAuth.router";
 import { PropertyRouter } from "./router/property.router";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
+export const upload = multer({ storage: multer.memoryStorage() });
 
 const app = express();
 app.use(express.json());

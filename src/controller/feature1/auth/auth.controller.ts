@@ -9,6 +9,8 @@ import handlebars from "handlebars";
 import { transporter } from "../../../services/mailer";
 import { findUser } from "../../../services/user.service";
 import { OAuth2Client } from "google-auth-library";
+import { google } from "googleapis";
+import { cloudinaryUpload } from "../../../services/cloudinary";
 
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -104,6 +106,13 @@ export class AuthController {
         throw { message: "Passwords do not match!" };
       }
 
+      const phoneExists = await prisma.user.findUnique({
+        where: { no_handphone },
+      });
+      if (phoneExists) {
+        throw { message: "Phone number has already been used!" };
+      }
+
       // Verifikasi token JWT
       const decoded = verify(token, process.env.JWT_KEY!) as { id: string };
 
@@ -137,6 +146,7 @@ export class AuthController {
           username,
           password: hashedPassword,
           isVerify: true,
+          no_handphone,
         },
       });
 
@@ -337,7 +347,7 @@ export class AuthController {
           type: "user",
           username: user.username,
           email: user.email,
-          image: user.avatar,
+          avatar: user.avatar,
         });
       } else {
         res.status(403).json({ message: "Forbidden: Unknown token type" });
@@ -350,6 +360,20 @@ export class AuthController {
     }
   }
 
+  async getPhoneNumber(accessToken: string): Promise<string | null> {
+    try {
+      const people = google.people({ version: "v1", auth: accessToken });
+      const response = await people.people.get({
+        resourceName: "people/me",
+        personFields: "phoneNumbers",
+      });
+      return response.data.phoneNumbers?.[0]?.value || null;
+    } catch (error) {
+      console.error("Failed to get phone number:", error);
+      return null;
+    }
+  }
+
   async socialLogin(req: Request, res: Response) {
     try {
       const { tokenId } = req.body;
@@ -357,10 +381,6 @@ export class AuthController {
       if (!tokenId) {
         throw { message: "Token ID is required" };
       }
-
-      let email: string | undefined;
-      let name: string | undefined;
-      let externalId: string | undefined;
 
       const googleTicket = await googleClient.verifyIdToken({
         idToken: tokenId,
@@ -370,17 +390,16 @@ export class AuthController {
       const googlePayload = googleTicket.getPayload();
       if (!googlePayload) throw { message: "Invalid Google token" };
 
-      email = googlePayload.email;
-      name = googlePayload.name;
-      externalId = googlePayload.sub;
+      const email = googlePayload.email;
+      const name = googlePayload.name;
+      const externalId = googlePayload.sub;
+      const avatar = googlePayload.picture;
 
       if (!email) {
         throw { message: "Unable to retrieve email from Google token" };
       }
 
-      // Cek apakah user sudah ada
       let user = await prisma.user.findUnique({ where: { email } });
-
       let message: string;
 
       if (!user) {
@@ -390,6 +409,7 @@ export class AuthController {
             no_handphone: "",
             email,
             googleId: externalId,
+            avatar,
             isVerify: true,
           },
         });
@@ -398,14 +418,19 @@ export class AuthController {
         message = "User already registered and logged in";
       }
 
-      // Buat token JWT
       const jwtPayload = { id: user.id, type: "user" };
       const token = sign(jwtPayload, process.env.JWT_KEY!, { expiresIn: "1d" });
 
       res.status(200).send({
         message,
         token,
-        user: { id: user.id, email: user.email, username: user.username },
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          avatar: user.avatar,
+          no_telp: user.no_handphone,
+        },
       });
     } catch (err: any) {
       console.error(err);

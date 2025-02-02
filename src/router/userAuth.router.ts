@@ -14,9 +14,8 @@ export class AuthRouter {
   private initializeRoutes() {
     this.router.post("/login", this.authController.loginUser);
     this.router.post("/register", this.authController.registerUser);
-    this.router.patch("/verifyuser/:token", this.authController.verifyUser);
-
     this.router.post("/social-login", this.authController.socialLogin);
+    this.router.get("/session", this.authController.getSession);
 
     this.router.post("/promotorRegister", this.authController.registerTenant);
     this.router.post("/promotorLogin", this.authController.loginTenant);
@@ -28,6 +27,9 @@ export class AuthRouter {
       "/verifypromotor/:token",
       this.authController.verifyTenant
     );
+
+    this.router.patch("/verifyuser/:token", this.authController.verifyUser);
+    this.router.post("/verifyuser/:token", this.authController.verifyUser);
   }
 
   public getRouter(): Router {
