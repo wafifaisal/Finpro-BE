@@ -15,6 +15,12 @@ export class AuthRouter {
     this.router.post("/login", this.authController.loginUser);
     this.router.post("/register", this.authController.registerUser);
     this.router.post("/social-login", this.authController.socialLogin);
+    this.router.post("/forgotPassword", this.authController.forgotPasswordUser);
+    this.router.post(
+      "/resetPassword/:token",
+      this.authController.resetPasswordUser
+    );
+
     this.router.get("/session", this.authController.getSession);
 
     this.router.post("/promotorRegister", this.authController.registerTenant);
