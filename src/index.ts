@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { AuthRouter } from "./router/userAuth.router";
 import { PropertyRouter } from "./router/property.router";
 import { UserRouter } from "./router/user.router";
+import { CreateRouter } from "./router/create.router";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
@@ -23,11 +24,13 @@ app.use(
 const authRouter = new AuthRouter();
 const userRouter = new UserRouter();
 const propertyRouter = new PropertyRouter();
+const createRouter = new CreateRouter();
 
 //register routers
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
 app.use("/api/property", propertyRouter.getRouter());
+app.use("/api/create", createRouter.getRouter());
 
 //base router
 app.get("/api", (req: Request, res: Response) => {

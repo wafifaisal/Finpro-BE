@@ -20,22 +20,30 @@ export class AuthRouter {
       "/resetPassword/:token",
       this.authController.resetPasswordUser
     );
+    this.router.patch("/verifyuser/:token", this.authController.verifyUser);
 
     this.router.get("/session", this.authController.getSession);
 
-    this.router.post("/promotorRegister", this.authController.registerTenant);
-    this.router.post("/promotorLogin", this.authController.loginTenant);
+    this.router.post("/tenant-register", this.authController.registerTenant);
+    this.router.post("/tenant-login", this.authController.loginTenant);
     this.router.post(
-      "/verifypromotor/:token",
-      this.authController.verifyTenant
+      "/social-login-tenant",
+      this.authController.socialLoginTenant
     );
+
     this.router.patch(
-      "/verifypromotor/:token",
+      "/verify-tenant/:token",
       this.authController.verifyTenant
     );
 
-    this.router.patch("/verifyuser/:token", this.authController.verifyUser);
-    this.router.post("/verifyuser/:token", this.authController.verifyUser);
+    this.router.post(
+      "/tenant/forgot-password",
+      this.authController.forgotPasswordTenant
+    );
+    this.router.post(
+      "/tenant/reset-password/:token",
+      this.authController.resetPasswordTenant
+    );
   }
 
   public getRouter(): Router {
