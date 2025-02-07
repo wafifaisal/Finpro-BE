@@ -8,7 +8,6 @@ import fs from "fs";
 import handlebars from "handlebars";
 import { transporter } from "../../../services/mailer";
 import bcrypt from "bcrypt";
-import { verifyTokenUser } from "../../../middleware/verify.user"; // Middleware autentikasi
 
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
 
@@ -65,6 +64,7 @@ export class UserController {
           createdAt: true,
           updatedAt: true,
           isVerify: true,
+          googleId: true,
         },
       });
 
@@ -117,28 +117,26 @@ export class UserController {
       // Ambil data pengguna saat ini
       const currentUser = await prisma.user.findUnique({
         where: { id: userId },
-        select: { email: true, isVerify: true }, // Hanya ambil email
+        select: { email: true },
       });
 
       if (!currentUser) {
-        throw { message: "User not found" };
+        res.status(404).json({ message: "User not found" });
+        return;
       }
 
-      // Cek apakah email baru sama dengan email lama
+      // Cek apakah email baru sama dengan email saat ini
       if (currentUser.email === email) {
-        throw { message: "New email cannot be the same as the current email" };
+        res.status(400).json({
+          message: "New email cannot be the same as the current email",
+        });
+        return;
       }
 
-      // Update email dan set isVerify menjadi false
-      const updatedUser = await prisma.user.update({
-        where: { id: userId },
-        data: { email, isVerify: false },
-      });
-
-      // Buat token baru untuk verifikasi email
-      const payload = { id: userId };
+      // Buat token dengan payload yang menyimpan id user dan email baru
+      const payload = { id: userId, newEmail: email };
       const token = sign(payload, process.env.JWT_KEY!, { expiresIn: "1d" });
-      const linkUser = `${base_url_fe}/user/profile/${token}`;
+      const linkUser = `${base_url_fe}/profile/${token}`;
 
       // Load dan compile template email menggunakan Handlebars
       const templatePath = path.join(
@@ -150,7 +148,7 @@ export class UserController {
       const compiledTemplate = handlebars.compile(templateSource);
       const html = compiledTemplate({ linkUser });
 
-      // Kirim email verifikasi ke pengguna
+      // Kirim email verifikasi ke email baru
       await transporter.sendMail({
         from: "wafifaisal19@gmail.com",
         to: email,
@@ -159,7 +157,8 @@ export class UserController {
       });
 
       res.status(200).json({
-        message: "Email updated successfully. Please verify your new email.",
+        message:
+          "Verification email sent successfully. Please check your inbox to verify your new email.",
       });
     } catch (err) {
       console.error("Error updating email:", err);
@@ -171,16 +170,21 @@ export class UserController {
     try {
       const { token } = req.params;
 
-      // Verifikasi token
-      const decoded = verify(token, process.env.JWT_KEY!) as { id: string };
+      // Verifikasi token dan ekstrak payload
+      const decoded = verify(token, process.env.JWT_KEY!) as {
+        id: string;
+        newEmail: string;
+      };
 
-      // Update isVerify menjadi true setelah pengguna mengklik link
+      // Update data email di database dengan email baru dari token
       await prisma.user.update({
         where: { id: decoded.id },
-        data: { isVerify: true },
+        data: { email: decoded.newEmail },
       });
 
-      res.status(200).json({ message: "Email verified successfully!" });
+      res
+        .status(200)
+        .json({ message: "Email verified and updated successfully!" });
     } catch (err) {
       console.error("Error verifying email:", err);
       res.status(500).json({ message: "Invalid or expired token" });

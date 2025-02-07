@@ -11,12 +11,6 @@ export class PropertyController {
       const sortOrder = (req.query.sortOrder as string) || "asc";
       const nameFilter = req.query.name as string;
       const categoryFilter = req.query.category as string;
-      const isAvailableFilter =
-        req.query.isAvailable === "true"
-          ? true
-          : req.query.isAvailable === "false"
-          ? false
-          : undefined;
 
       const filter: any = {};
 
@@ -43,9 +37,6 @@ export class PropertyController {
         };
       }
 
-      if (isAvailableFilter !== undefined) {
-        filter.isAvailable = isAvailableFilter;
-      }
       const totalProperties = await prisma.property.count({
         where: filter,
       });
@@ -63,13 +54,14 @@ export class PropertyController {
           desc: true,
           category: true,
           terms_condition: true,
-          room_available: true,
           click_rate: true,
           location: {
             select: {
               address: true,
               city: true,
               country: true,
+              latitude: true,
+              longitude: true,
             },
           },
           PropertyImages: {

@@ -3,67 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to NGINEPIN</title>
+    <title>Verifikasi Akun - NGINEPIN</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #fce4ec;
             margin: 0;
             padding: 0;
         }
         .email-container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 30px auto;
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .header {
-            font-size: 24px;
-            color: #333333;
+            font-size: 26px;
+            font-weight: bold;
+            color: #d81b60;
         }
-        .ref-code {
-            color: #ff9900;
-            text-align: center;
-            font-size: 36px;
+        .verification-text {
+            font-size: 16px;
+            color: #555;
             margin: 20px 0;
         }
-        .button-container {
-            text-align: center;
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #e91e63;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
             margin-top: 20px;
         }
-        .cta-button {
-            text-decoration: none;
-            background-color: #ff9900;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-size: 18px;
-            display: inline-block;
+        .cta-button:hover {
+            background-color: #c2185b;
         }
         .footer {
-            margin-top: 20px;
             font-size: 14px;
-            color: #666666;
-            text-align: center;
+            color: #777;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
     <div class="email-container">
-        <h1 class="header">Halo, {{username}} 👋</h1>
-        <p>Selamat datang di <strong>NGINEPIN</strong>! Email Anda telah berhasil diverifikasi. 🎉</p>
-       
-        <!-- Verification Button -->
-        <div class="button-container">
-            <a href={{linkPromotor}} class="cta-button">
-                Klik di sini untuk Verifikasi Akun Anda
-            </a>
-        </div>
-        <p>Selamat bersenang-senang,<br><strong>Tim NGINEPIN</strong></p>
+        <h1 class="header">Selamat Datang di NGINEPIN!</h1>
+        <p class="verification-text">
+            Terima kasih telah bergabung sebagai Tenant di <strong>NGINEPIN</strong>!  
+            Untuk mengaktifkan akun Anda dan mulai berjualan, silakan verifikasi email Anda dengan mengklik tombol di bawah ini:
+        </p>
+        <a href="{{linkTenant}}" class="cta-button">Verifikasi Akun</a>
+        <p class="verification-text">Jika Anda tidak mendaftar di NGINEPIN, abaikan email ini.</p>
         <div class="footer">
-            <p>&copy; 2024 NGINEPIN. All rights reserved.</p>
+            <p>&copy; 2024 NGINEPIN. Semua hak dilindungi.</p>
         </div>
     </div>
 </body>

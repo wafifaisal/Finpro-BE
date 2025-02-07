@@ -26,7 +26,7 @@ model User {
   email        String    @unique
   username     String?
   password     String?
-  avatar       String?
+  avatar       String?   @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
   no_handphone String    @unique
   isVerify     Boolean   @default(false)
   createdAt    DateTime  @default(now())
@@ -39,11 +39,12 @@ model User {
 
 model Tenant {
   id            String          @id @default(uuid())
+  googleId      String?         @unique
   name          String
   password      String?
-  no_handphone  String?         @unique @db.VarChar(255)
-  email         String
-  avatar        String?
+  no_handphone  String?         @unique
+  email         String          @unique
+  avatar        String?         @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
   isVerify      Boolean         @default(false)
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
@@ -58,8 +59,8 @@ model Location {
   country   String
   city      String
   deletedAt DateTime?
-  longitude String?
-  latitude  String?
+  longitude Float?
+  latitude  Float?
   Property  Property[]
 }
 
@@ -70,7 +71,6 @@ model Property {
   location        Location         @relation(fields: [location_id], references: [id])
   category        String
   terms_condition String?
-  room_available  Int
   click_rate      Int?
   location_id     Int
   PropertyImages  PropertyImages[]
@@ -145,23 +145,21 @@ model Booking {
   status         BookingStatus  @default(new)
   user_id        String
   room_types_id  Int
-
-  user       User      @relation(fields: [user_id], references: [id])
-  room_types RoomTypes @relation(fields: [room_types_id], references: [id])
-  Review     Review[]
+  user           User           @relation(fields: [user_id], references: [id])
+  room_types     RoomTypes      @relation(fields: [room_types_id], references: [id])
+  Review         Review[]
 }
 
 model Review {
-  id            Int       @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   rating        Int
-  review        String    @db.Text
+  review        String          @db.Text
   user_id       String
   room_types_id Int
   booking_id    String
-  created_at    DateTime  @default(now())
-  updated_at    DateTime  @updatedAt
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
   deleted_at    DateTime?
-
   user          User            @relation(fields: [user_id], references: [id])
   room_types    RoomTypes       @relation(fields: [room_types_id], references: [id])
   booking       Booking         @relation(fields: [booking_id], references: [id])
