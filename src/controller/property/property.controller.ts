@@ -5,14 +5,13 @@ export class PropertyController {
   async getProperty(req: Request, res: Response) {
     try {
       // Default query parameters
-      const limit = parseInt(req.query.limit as string) || 10;
+      const limit = parseInt(req.query.limit as string) || 8;
       const page = parseInt(req.query.page as string) || 1;
       const sortBy = (req.query.sortBy as string) || "name";
       const sortOrder = (req.query.sortOrder as string) || "asc";
-      const nameFilter = req.query.name as string; // Filter by property name
-      const categoryFilter = req.query.category as string; // Filter by category
+      const nameFilter = req.query.name as string;
+      const categoryFilter = req.query.category as string;
 
-      // Building the Prisma filter
       const filter: any = {};
 
       if (nameFilter) {
@@ -29,14 +28,19 @@ export class PropertyController {
         };
       }
 
-      // Calculate total properties for pagination
+      if (req.query.location) {
+        filter.location = {
+          city: {
+            contains: req.query.location,
+            mode: "insensitive",
+          },
+        };
+      }
+
       const totalProperties = await prisma.property.count({
         where: filter,
       });
-
       const totalPages = Math.ceil(totalProperties / limit);
-
-      // Fetch properties with pagination, filters, and sorting
       const properties = await prisma.property.findMany({
         where: filter,
         take: limit,
@@ -50,13 +54,14 @@ export class PropertyController {
           desc: true,
           category: true,
           terms_condition: true,
-          room_available: true,
           click_rate: true,
           location: {
             select: {
               address: true,
               city: true,
               country: true,
+              latitude: true,
+              longitude: true,
             },
           },
           PropertyImages: {
@@ -70,6 +75,13 @@ export class PropertyController {
               name: true,
               price: true,
               avg_rating: true,
+              Unavailable: {
+                // Include the unavailable dates
+                select: {
+                  start_date: true,
+                  end_date: true,
+                },
+              },
             },
           },
           tenant: {
@@ -78,6 +90,7 @@ export class PropertyController {
               email: true,
             },
           },
+          isAvailable: true, // Include the availability status
         },
       });
 

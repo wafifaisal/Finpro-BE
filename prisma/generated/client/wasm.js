@@ -133,6 +133,10 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.TenantScalarFieldEnum = {
   id: 'id',
+<<<<<<< HEAD
+=======
+  googleId: 'googleId',
+>>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   name: 'name',
   password: 'password',
   no_handphone: 'no_handphone',
@@ -160,7 +164,10 @@ exports.Prisma.PropertyScalarFieldEnum = {
   desc: 'desc',
   category: 'category',
   terms_condition: 'terms_condition',
+<<<<<<< HEAD
   room_available: 'room_available',
+=======
+>>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   click_rate: 'click_rate',
   location_id: 'location_id',
   tenantId: 'tenantId',

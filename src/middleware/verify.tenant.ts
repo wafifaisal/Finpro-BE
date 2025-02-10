@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import { TenantPayload } from "../custom";
 
-export const verifyTokenPromotor = (
+export const verifyTokenTenant = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -25,8 +25,8 @@ export const verifyTokenPromotor = (
     }
 
     try {
-      const verifiedPromotor = verify(token, process.env.JWT_KEY!);
-      req.tenant = verifiedPromotor as TenantPayload;
+      const verifiedTenant = verify(token, process.env.JWT_KEY!);
+      req.tenant = verifiedTenant as TenantPayload;
       next();
     } catch (verifyError) {
       res.status(401).json({ message: "Invalid token" });

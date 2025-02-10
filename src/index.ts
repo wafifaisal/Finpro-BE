@@ -1,14 +1,18 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import multer from "multer";
 import cookieParser from "cookie-parser";
 import { AuthRouter } from "./router/userAuth.router";
 import { PropertyRouter } from "./router/property.router";
-import { UserBookingRouter } from "./router/userBooking.router";
+import { UserRouter } from "./router/user.router";
+import { CreateRouter } from "./router/create.router";
 import { ReviewRouter } from "./router/review.router";
 import { ReviewReplyRouter } from "./router/reviewReply.router";
+import { UserBookingRouter } from "./router/userBooking.router";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
+export const upload = multer({ storage: multer.memoryStorage() });
 
 const app = express();
 app.use(express.json());
@@ -19,20 +23,23 @@ app.use(
     credentials: true,
   })
 );
-// Initialize routers
 
 const authRouter = new AuthRouter();
+const userRouter = new UserRouter();
 const propertyRouter = new PropertyRouter();
 const userBookingRouter = new UserBookingRouter();
 const reviewRouter = new ReviewRouter();
 const reviewReplyRouter = new ReviewReplyRouter();
+const createRouter = new CreateRouter();
 
 //register routers
 app.use("/api/auth", authRouter.getRouter());
+app.use("/api/users", userRouter.getRouter());
 app.use("/api/property", propertyRouter.getRouter());
 app.use("/api/user-bookings", userBookingRouter.getRouter());
 app.use("/api/reviews", reviewRouter.getRouter());
 app.use("/api/review-reply", reviewReplyRouter.getRouter());
+app.use("/api/create", createRouter.getRouter());
 
 //base router
 app.get("/api", (req: Request, res: Response) => {
