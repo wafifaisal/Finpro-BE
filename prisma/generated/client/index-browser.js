@@ -164,7 +164,8 @@ exports.Prisma.PropertyScalarFieldEnum = {
   click_rate: 'click_rate',
   location_id: 'location_id',
   tenantId: 'tenantId',
-  isAvailable: 'isAvailable'
+  isAvailable: 'isAvailable',
+  facilities: 'facilities'
 };
 
 exports.Prisma.PropertyImagesScalarFieldEnum = {
@@ -189,7 +190,8 @@ exports.Prisma.RoomTypesScalarFieldEnum = {
   property_id: 'property_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  facilities: 'facilities'
 };
 
 exports.Prisma.RoomImagesScalarFieldEnum = {
@@ -208,6 +210,16 @@ exports.Prisma.UnavailableScalarFieldEnum = {
   room_types_id: 'room_types_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Seasonal_pricesScalarFieldEnum = {
+  id: 'id',
+  price: 'price',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  room_typesId: 'room_typesId',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.BookingScalarFieldEnum = {
@@ -270,6 +282,49 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.PropertyFacility = exports.$Enums.PropertyFacility = {
+  PEMANDANGAN_KOTA: 'PEMANDANGAN_KOTA',
+  PEMANDANGAN_ALAM: 'PEMANDANGAN_ALAM',
+  AKSES_PANTAI: 'AKSES_PANTAI',
+  TAMAN: 'TAMAN',
+  RAMAH_HEWAN_PELIHARAAN: 'RAMAH_HEWAN_PELIHARAAN',
+  RESTAURANT: 'RESTAURANT',
+  BAR: 'BAR',
+  CONFERENCE_ROOM: 'CONFERENCE_ROOM',
+  PARKIR_GRATIS: 'PARKIR_GRATIS',
+  KOLAM_RENANG: 'KOLAM_RENANG',
+  GYM: 'GYM',
+  SPA: 'SPA',
+  TAMAN_BERMAIN: 'TAMAN_BERMAIN',
+  DEKAT_WISATA: 'DEKAT_WISATA',
+  BUDGET: 'BUDGET',
+  MEWAH: 'MEWAH'
+};
+
+exports.RoomFacility = exports.$Enums.RoomFacility = {
+  WIFI: 'WIFI',
+  TV: 'TV',
+  AC: 'AC',
+  ROOM_SERVICES: 'ROOM_SERVICES',
+  MINI_BAR: 'MINI_BAR',
+  LAUNDRY: 'LAUNDRY',
+  SETRIKA: 'SETRIKA',
+  ALAT_PEMADAM_API: 'ALAT_PEMADAM_API',
+  MICROWAVE: 'MICROWAVE',
+  KULKAS: 'KULKAS',
+  RUANG_KERJA_KHUSUS: 'RUANG_KERJA_KHUSUS',
+  KITCHEN: 'KITCHEN',
+  HEATING: 'HEATING',
+  AIR_PURIFIER: 'AIR_PURIFIER',
+  SAFE: 'SAFE',
+  BATHROBES: 'BATHROBES',
+  TEA_COFFEE_MAKER: 'TEA_COFFEE_MAKER',
+  BALCONY: 'BALCONY',
+  BATHTUB: 'BATHTUB',
+  JACUZZI: 'JACUZZI',
+  PRIVATE_POOL: 'PRIVATE_POOL'
+};
+
 exports.PaymentMethod = exports.$Enums.PaymentMethod = {
   Manual: 'Manual',
   Midtrans: 'Midtrans'
@@ -291,6 +346,7 @@ exports.Prisma.ModelName = {
   RoomTypes: 'RoomTypes',
   RoomImages: 'RoomImages',
   Unavailable: 'Unavailable',
+  seasonal_prices: 'seasonal_prices',
   Booking: 'Booking',
   Review: 'Review',
   ReviewReplies: 'ReviewReplies'

@@ -20,6 +20,13 @@ export class CreateRouter {
       upload.array("files", 10),
       this.createController.CreateProperty
     );
+
+    this.router.post(
+      "/property/:property_id",
+      verifyTokenTenant,
+      upload.array("files", 10),
+      this.createController.CreateRoomTypes
+    );
   }
 
   public getRouter(): Router {

@@ -21,6 +21,49 @@ enum BookingStatus {
   waiting_payment
 }
 
+enum RoomFacility {
+  WIFI
+  TV
+  AC
+  ROOM_SERVICES
+  MINI_BAR
+  LAUNDRY
+  SETRIKA
+  ALAT_PEMADAM_API
+  MICROWAVE
+  KULKAS
+  RUANG_KERJA_KHUSUS
+  KITCHEN
+  HEATING
+  AIR_PURIFIER
+  SAFE
+  BATHROBES
+  TEA_COFFEE_MAKER
+  BALCONY
+  BATHTUB
+  JACUZZI
+  PRIVATE_POOL
+}
+
+enum PropertyFacility {
+  PEMANDANGAN_KOTA
+  PEMANDANGAN_ALAM
+  AKSES_PANTAI
+  TAMAN
+  RAMAH_HEWAN_PELIHARAAN
+  RESTAURANT
+  BAR
+  CONFERENCE_ROOM
+  PARKIR_GRATIS
+  KOLAM_RENANG
+  GYM
+  SPA
+  TAMAN_BERMAIN
+  DEKAT_WISATA
+  BUDGET
+  MEWAH
+}
+
 model User {
   id           String    @id @default(uuid())
   email        String    @unique
@@ -65,19 +108,20 @@ model Location {
 }
 
 model Property {
-  id              Int              @id @default(autoincrement())
+  id              Int                @id @default(autoincrement())
   name            String
   desc            String?
-  location        Location         @relation(fields: [location_id], references: [id])
+  location        Location           @relation(fields: [location_id], references: [id])
   category        String
   terms_condition String?
   click_rate      Int?
   location_id     Int
   PropertyImages  PropertyImages[]
-  tenant          Tenant           @relation(fields: [tenantId], references: [id])
+  tenant          Tenant             @relation(fields: [tenantId], references: [id])
   tenantId        String
-  isAvailable     Boolean          @default(true) // Indicates whether the property is available
+  isAvailable     Boolean            @default(true) // Menunjukkan apakah properti tersedia
   RoomTypes       RoomTypes[]
+  facilities      PropertyFacility[] @default([])
 }
 
 model PropertyImages {
@@ -91,24 +135,26 @@ model PropertyImages {
 }
 
 model RoomTypes {
-  id              Int           @id @default(autoincrement())
+  id              Int               @id @default(autoincrement())
   name            String
   stock           Int
   capacity        Int
   bed_details     String?
   price           Int
-  has_breakfast   Boolean       @default(false)
+  has_breakfast   Boolean           @default(false)
   breakfast_price Int
   avg_rating      Int?
-  property        Property      @relation(fields: [property_id], references: [id])
+  property        Property          @relation(fields: [property_id], references: [id])
   property_id     Int
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
   deletedAt       DateTime?
   RoomImages      RoomImages[]
   Booking         Booking[]
   Review          Review[]
   Unavailable     Unavailable[]
+  seasonal_prices seasonal_prices[]
+  facilities      RoomFacility[]    @default([])
 }
 
 model RoomImages {
@@ -129,6 +175,17 @@ model Unavailable {
   room_types_id Int
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+}
+
+model seasonal_prices {
+  id           Int       @id @default(autoincrement())
+  price        Decimal   @db.Decimal(11, 2)
+  start_date   DateTime
+  end_date     DateTime
+  room_type    RoomTypes @relation(fields: [room_typesId], references: [id])
+  room_typesId Int
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
 }
 
 model Booking {

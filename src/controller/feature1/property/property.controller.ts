@@ -76,10 +76,35 @@ export class PropertyController {
               price: true,
               avg_rating: true,
               Unavailable: {
-                // Include the unavailable dates
                 select: {
                   start_date: true,
                   end_date: true,
+                },
+              },
+              seasonal_prices: {
+                select: {
+                  id: true,
+                  price: true,
+                  start_date: true,
+                  end_date: true,
+                },
+              },
+              Booking: {
+                select: {
+                  id: true,
+                  start_date: true,
+                  end_date: true,
+                  total_price: true,
+                  status: true,
+                },
+              },
+              // Sertakan data review (ringkas)
+              Review: {
+                select: {
+                  id: true,
+                  rating: true,
+                  review: true,
+                  created_at: true,
                 },
               },
             },
@@ -90,7 +115,7 @@ export class PropertyController {
               email: true,
             },
           },
-          isAvailable: true, // Include the availability status
+          isAvailable: true,
         },
       });
 
@@ -106,6 +131,47 @@ export class PropertyController {
       res.status(500).send({
         message: "Error retrieving properties",
       });
+    }
+  }
+
+  async GetPropertyById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const propertyId = parseInt(id, 10);
+
+      if (isNaN(propertyId)) {
+        res
+          .status(400)
+          .json({ message: "Property ID harus berupa angka yang valid" });
+        return;
+      }
+
+      const property = await prisma.property.findUnique({
+        where: { id: propertyId },
+        include: {
+          location: true,
+          tenant: true,
+          PropertyImages: true,
+          RoomTypes: {
+            include: {
+              RoomImages: true,
+              Unavailable: true,
+              seasonal_prices: true,
+              Booking: true,
+              Review: true,
+            },
+          },
+        },
+      });
+
+      if (!property) {
+        res.status(404).json({ message: "Property tidak ditemukan" });
+        return;
+      }
+      res.status(200).json(property);
+    } catch (error) {
+      console.error("Error fetching property by ID:", error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
   }
 }
