@@ -13,6 +13,7 @@ export class PropertyRouter {
 
   private initializeRoutes() {
     this.router.get("/", this.propertyController.getProperty);
+    this.router.get("/:id", this.propertyController.GetPropertyById);
   }
   public getRouter(): Router {
     return this.router;
