@@ -3253,10 +3253,7 @@ export namespace Prisma {
 
   export type TenantMinAggregateOutputType = {
     id: string | null
-<<<<<<< HEAD
-=======
     googleId: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string | null
     password: string | null
     no_handphone: string | null
@@ -3270,10 +3267,7 @@ export namespace Prisma {
 
   export type TenantMaxAggregateOutputType = {
     id: string | null
-<<<<<<< HEAD
-=======
     googleId: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string | null
     password: string | null
     no_handphone: string | null
@@ -3287,10 +3281,7 @@ export namespace Prisma {
 
   export type TenantCountAggregateOutputType = {
     id: number
-<<<<<<< HEAD
-=======
     googleId: number
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: number
     password: number
     no_handphone: number
@@ -3306,10 +3297,7 @@ export namespace Prisma {
 
   export type TenantMinAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-=======
     googleId?: true
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: true
     password?: true
     no_handphone?: true
@@ -3323,10 +3311,7 @@ export namespace Prisma {
 
   export type TenantMaxAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-=======
     googleId?: true
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: true
     password?: true
     no_handphone?: true
@@ -3340,10 +3325,7 @@ export namespace Prisma {
 
   export type TenantCountAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-=======
     googleId?: true
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: true
     password?: true
     no_handphone?: true
@@ -3430,10 +3412,7 @@ export namespace Prisma {
 
   export type TenantGroupByOutputType = {
     id: string
-<<<<<<< HEAD
-=======
     googleId: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password: string | null
     no_handphone: string | null
@@ -3464,10 +3443,7 @@ export namespace Prisma {
 
   export type TenantSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-<<<<<<< HEAD
-=======
     googleId?: boolean
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: boolean
     password?: boolean
     no_handphone?: boolean
@@ -3484,10 +3460,7 @@ export namespace Prisma {
 
   export type TenantSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-<<<<<<< HEAD
-=======
     googleId?: boolean
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: boolean
     password?: boolean
     no_handphone?: boolean
@@ -3501,10 +3474,7 @@ export namespace Prisma {
 
   export type TenantSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-<<<<<<< HEAD
-=======
     googleId?: boolean
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: boolean
     password?: boolean
     no_handphone?: boolean
@@ -3518,10 +3488,7 @@ export namespace Prisma {
 
   export type TenantSelectScalar = {
     id?: boolean
-<<<<<<< HEAD
-=======
     googleId?: boolean
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: boolean
     password?: boolean
     no_handphone?: boolean
@@ -3533,11 +3500,7 @@ export namespace Prisma {
     deletedAt?: boolean
   }
 
-<<<<<<< HEAD
-  export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "password" | "no_handphone" | "email" | "avatar" | "isVerify" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["tenant"]>
-=======
   export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "googleId" | "name" | "password" | "no_handphone" | "email" | "avatar" | "isVerify" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["tenant"]>
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type TenantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Property?: boolean | Tenant$PropertyArgs<ExtArgs>
     ReviewReplies?: boolean | Tenant$ReviewRepliesArgs<ExtArgs>
@@ -3554,10 +3517,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-<<<<<<< HEAD
-=======
       googleId: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
       name: string
       password: string | null
       no_handphone: string | null
@@ -3993,10 +3953,7 @@ export namespace Prisma {
    */ 
   interface TenantFieldRefs {
     readonly id: FieldRef<"Tenant", 'String'>
-<<<<<<< HEAD
-=======
     readonly googleId: FieldRef<"Tenant", 'String'>
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     readonly name: FieldRef<"Tenant", 'String'>
     readonly password: FieldRef<"Tenant", 'String'>
     readonly no_handphone: FieldRef<"Tenant", 'String'>
@@ -4462,20 +4419,14 @@ export namespace Prisma {
 
   export type LocationAvgAggregateOutputType = {
     id: number | null
-<<<<<<< HEAD
-=======
     longitude: number | null
     latitude: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationSumAggregateOutputType = {
     id: number | null
-<<<<<<< HEAD
-=======
     longitude: number | null
     latitude: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationMinAggregateOutputType = {
@@ -4484,13 +4435,8 @@ export namespace Prisma {
     country: string | null
     city: string | null
     deletedAt: Date | null
-<<<<<<< HEAD
-    longitude: string | null
-    latitude: string | null
-=======
     longitude: number | null
     latitude: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationMaxAggregateOutputType = {
@@ -4499,13 +4445,8 @@ export namespace Prisma {
     country: string | null
     city: string | null
     deletedAt: Date | null
-<<<<<<< HEAD
-    longitude: string | null
-    latitude: string | null
-=======
     longitude: number | null
     latitude: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationCountAggregateOutputType = {
@@ -4522,20 +4463,14 @@ export namespace Prisma {
 
   export type LocationAvgAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-=======
     longitude?: true
     latitude?: true
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationSumAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-=======
     longitude?: true
     latitude?: true
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationMinAggregateInputType = {
@@ -4661,13 +4596,8 @@ export namespace Prisma {
     country: string
     city: string
     deletedAt: Date | null
-<<<<<<< HEAD
-    longitude: string | null
-    latitude: string | null
-=======
     longitude: number | null
     latitude: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     _count: LocationCountAggregateOutputType | null
     _avg: LocationAvgAggregateOutputType | null
     _sum: LocationSumAggregateOutputType | null
@@ -4750,13 +4680,8 @@ export namespace Prisma {
       country: string
       city: string
       deletedAt: Date | null
-<<<<<<< HEAD
-      longitude: string | null
-      latitude: string | null
-=======
       longitude: number | null
       latitude: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     }, ExtArgs["result"]["location"]>
     composites: {}
   }
@@ -5186,13 +5111,8 @@ export namespace Prisma {
     readonly country: FieldRef<"Location", 'String'>
     readonly city: FieldRef<"Location", 'String'>
     readonly deletedAt: FieldRef<"Location", 'DateTime'>
-<<<<<<< HEAD
-    readonly longitude: FieldRef<"Location", 'String'>
-    readonly latitude: FieldRef<"Location", 'String'>
-=======
     readonly longitude: FieldRef<"Location", 'Float'>
     readonly latitude: FieldRef<"Location", 'Float'>
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
     
 
@@ -5625,20 +5545,12 @@ export namespace Prisma {
 
   export type PropertyAvgAggregateOutputType = {
     id: number | null
-<<<<<<< HEAD
-    room_available: number | null
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: number | null
     location_id: number | null
   }
 
   export type PropertySumAggregateOutputType = {
     id: number | null
-<<<<<<< HEAD
-    room_available: number | null
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: number | null
     location_id: number | null
   }
@@ -5649,10 +5561,6 @@ export namespace Prisma {
     desc: string | null
     category: string | null
     terms_condition: string | null
-<<<<<<< HEAD
-    room_available: number | null
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: number | null
     location_id: number | null
     tenantId: string | null
@@ -5665,10 +5573,6 @@ export namespace Prisma {
     desc: string | null
     category: string | null
     terms_condition: string | null
-<<<<<<< HEAD
-    room_available: number | null
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: number | null
     location_id: number | null
     tenantId: string | null
@@ -5681,10 +5585,6 @@ export namespace Prisma {
     desc: number
     category: number
     terms_condition: number
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: number
     location_id: number
     tenantId: number
@@ -5695,20 +5595,12 @@ export namespace Prisma {
 
   export type PropertyAvgAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-    room_available?: true
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: true
     location_id?: true
   }
 
   export type PropertySumAggregateInputType = {
     id?: true
-<<<<<<< HEAD
-    room_available?: true
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: true
     location_id?: true
   }
@@ -5719,10 +5611,6 @@ export namespace Prisma {
     desc?: true
     category?: true
     terms_condition?: true
-<<<<<<< HEAD
-    room_available?: true
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: true
     location_id?: true
     tenantId?: true
@@ -5735,10 +5623,6 @@ export namespace Prisma {
     desc?: true
     category?: true
     terms_condition?: true
-<<<<<<< HEAD
-    room_available?: true
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: true
     location_id?: true
     tenantId?: true
@@ -5751,10 +5635,6 @@ export namespace Prisma {
     desc?: true
     category?: true
     terms_condition?: true
-<<<<<<< HEAD
-    room_available?: true
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: true
     location_id?: true
     tenantId?: true
@@ -5854,10 +5734,6 @@ export namespace Prisma {
     desc: string | null
     category: string
     terms_condition: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: number | null
     location_id: number
     tenantId: string
@@ -5889,10 +5765,6 @@ export namespace Prisma {
     desc?: boolean
     category?: boolean
     terms_condition?: boolean
-<<<<<<< HEAD
-    room_available?: boolean
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: boolean
     location_id?: boolean
     tenantId?: boolean
@@ -5910,10 +5782,6 @@ export namespace Prisma {
     desc?: boolean
     category?: boolean
     terms_condition?: boolean
-<<<<<<< HEAD
-    room_available?: boolean
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: boolean
     location_id?: boolean
     tenantId?: boolean
@@ -5928,10 +5796,6 @@ export namespace Prisma {
     desc?: boolean
     category?: boolean
     terms_condition?: boolean
-<<<<<<< HEAD
-    room_available?: boolean
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: boolean
     location_id?: boolean
     tenantId?: boolean
@@ -5946,21 +5810,13 @@ export namespace Prisma {
     desc?: boolean
     category?: boolean
     terms_condition?: boolean
-<<<<<<< HEAD
-    room_available?: boolean
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: boolean
     location_id?: boolean
     tenantId?: boolean
     isAvailable?: boolean
   }
 
-<<<<<<< HEAD
-  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "desc" | "category" | "terms_condition" | "room_available" | "click_rate" | "location_id" | "tenantId" | "isAvailable", ExtArgs["result"]["property"]>
-=======
   export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "desc" | "category" | "terms_condition" | "click_rate" | "location_id" | "tenantId" | "isAvailable", ExtArgs["result"]["property"]>
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type PropertyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     PropertyImages?: boolean | Property$PropertyImagesArgs<ExtArgs>
@@ -5991,10 +5847,6 @@ export namespace Prisma {
       desc: string | null
       category: string
       terms_condition: string | null
-<<<<<<< HEAD
-      room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
       click_rate: number | null
       location_id: number
       tenantId: string
@@ -6431,10 +6283,6 @@ export namespace Prisma {
     readonly desc: FieldRef<"Property", 'String'>
     readonly category: FieldRef<"Property", 'String'>
     readonly terms_condition: FieldRef<"Property", 'String'>
-<<<<<<< HEAD
-    readonly room_available: FieldRef<"Property", 'Int'>
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     readonly click_rate: FieldRef<"Property", 'Int'>
     readonly location_id: FieldRef<"Property", 'Int'>
     readonly tenantId: FieldRef<"Property", 'String'>
@@ -15026,10 +14874,7 @@ export namespace Prisma {
 
   export const TenantScalarFieldEnum: {
     id: 'id',
-<<<<<<< HEAD
-=======
     googleId: 'googleId',
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: 'name',
     password: 'password',
     no_handphone: 'no_handphone',
@@ -15063,10 +14908,6 @@ export namespace Prisma {
     desc: 'desc',
     category: 'category',
     terms_condition: 'terms_condition',
-<<<<<<< HEAD
-    room_available: 'room_available',
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate: 'click_rate',
     location_id: 'location_id',
     tenantId: 'tenantId',
@@ -15271,8 +15112,6 @@ export namespace Prisma {
 
 
   /**
-<<<<<<< HEAD
-=======
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -15287,7 +15126,6 @@ export namespace Prisma {
 
 
   /**
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -15320,23 +15158,6 @@ export namespace Prisma {
    */
   export type ListEnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus[]'>
     
-<<<<<<< HEAD
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   /**
    * Deep Input Types
    */
@@ -15435,10 +15256,7 @@ export namespace Prisma {
     OR?: TenantWhereInput[]
     NOT?: TenantWhereInput | TenantWhereInput[]
     id?: StringFilter<"Tenant"> | string
-<<<<<<< HEAD
-=======
     googleId?: StringNullableFilter<"Tenant"> | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFilter<"Tenant"> | string
     password?: StringNullableFilter<"Tenant"> | string | null
     no_handphone?: StringNullableFilter<"Tenant"> | string | null
@@ -15454,10 +15272,7 @@ export namespace Prisma {
 
   export type TenantOrderByWithRelationInput = {
     id?: SortOrder
-<<<<<<< HEAD
-=======
     googleId?: SortOrderInput | SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: SortOrder
     password?: SortOrderInput | SortOrder
     no_handphone?: SortOrderInput | SortOrder
@@ -15473,22 +15288,14 @@ export namespace Prisma {
 
   export type TenantWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-<<<<<<< HEAD
-    no_handphone?: string
-=======
     googleId?: string
     no_handphone?: string
     email?: string
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     AND?: TenantWhereInput | TenantWhereInput[]
     OR?: TenantWhereInput[]
     NOT?: TenantWhereInput | TenantWhereInput[]
     name?: StringFilter<"Tenant"> | string
     password?: StringNullableFilter<"Tenant"> | string | null
-<<<<<<< HEAD
-    email?: StringFilter<"Tenant"> | string
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     avatar?: StringNullableFilter<"Tenant"> | string | null
     isVerify?: BoolFilter<"Tenant"> | boolean
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
@@ -15496,18 +15303,11 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"Tenant"> | Date | string | null
     Property?: PropertyListRelationFilter
     ReviewReplies?: ReviewRepliesListRelationFilter
-<<<<<<< HEAD
-  }, "id" | "no_handphone">
-
-  export type TenantOrderByWithAggregationInput = {
-    id?: SortOrder
-=======
   }, "id" | "googleId" | "no_handphone" | "email">
 
   export type TenantOrderByWithAggregationInput = {
     id?: SortOrder
     googleId?: SortOrderInput | SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: SortOrder
     password?: SortOrderInput | SortOrder
     no_handphone?: SortOrderInput | SortOrder
@@ -15527,10 +15327,7 @@ export namespace Prisma {
     OR?: TenantScalarWhereWithAggregatesInput[]
     NOT?: TenantScalarWhereWithAggregatesInput | TenantScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Tenant"> | string
-<<<<<<< HEAD
-=======
     googleId?: StringNullableWithAggregatesFilter<"Tenant"> | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringWithAggregatesFilter<"Tenant"> | string
     password?: StringNullableWithAggregatesFilter<"Tenant"> | string | null
     no_handphone?: StringNullableWithAggregatesFilter<"Tenant"> | string | null
@@ -15551,13 +15348,8 @@ export namespace Prisma {
     country?: StringFilter<"Location"> | string
     city?: StringFilter<"Location"> | string
     deletedAt?: DateTimeNullableFilter<"Location"> | Date | string | null
-<<<<<<< HEAD
-    longitude?: StringNullableFilter<"Location"> | string | null
-    latitude?: StringNullableFilter<"Location"> | string | null
-=======
     longitude?: FloatNullableFilter<"Location"> | number | null
     latitude?: FloatNullableFilter<"Location"> | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     Property?: PropertyListRelationFilter
   }
 
@@ -15581,13 +15373,8 @@ export namespace Prisma {
     country?: StringFilter<"Location"> | string
     city?: StringFilter<"Location"> | string
     deletedAt?: DateTimeNullableFilter<"Location"> | Date | string | null
-<<<<<<< HEAD
-    longitude?: StringNullableFilter<"Location"> | string | null
-    latitude?: StringNullableFilter<"Location"> | string | null
-=======
     longitude?: FloatNullableFilter<"Location"> | number | null
     latitude?: FloatNullableFilter<"Location"> | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     Property?: PropertyListRelationFilter
   }, "id">
 
@@ -15615,13 +15402,8 @@ export namespace Prisma {
     country?: StringWithAggregatesFilter<"Location"> | string
     city?: StringWithAggregatesFilter<"Location"> | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Location"> | Date | string | null
-<<<<<<< HEAD
-    longitude?: StringNullableWithAggregatesFilter<"Location"> | string | null
-    latitude?: StringNullableWithAggregatesFilter<"Location"> | string | null
-=======
     longitude?: FloatNullableWithAggregatesFilter<"Location"> | number | null
     latitude?: FloatNullableWithAggregatesFilter<"Location"> | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type PropertyWhereInput = {
@@ -15633,10 +15415,6 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Property"> | string | null
     category?: StringFilter<"Property"> | string
     terms_condition?: StringNullableFilter<"Property"> | string | null
-<<<<<<< HEAD
-    room_available?: IntFilter<"Property"> | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: IntNullableFilter<"Property"> | number | null
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
@@ -15653,10 +15431,6 @@ export namespace Prisma {
     desc?: SortOrderInput | SortOrder
     category?: SortOrder
     terms_condition?: SortOrderInput | SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrderInput | SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
@@ -15676,10 +15450,6 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Property"> | string | null
     category?: StringFilter<"Property"> | string
     terms_condition?: StringNullableFilter<"Property"> | string | null
-<<<<<<< HEAD
-    room_available?: IntFilter<"Property"> | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: IntNullableFilter<"Property"> | number | null
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
@@ -15696,10 +15466,6 @@ export namespace Prisma {
     desc?: SortOrderInput | SortOrder
     category?: SortOrder
     terms_condition?: SortOrderInput | SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrderInput | SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
@@ -15720,10 +15486,6 @@ export namespace Prisma {
     desc?: StringNullableWithAggregatesFilter<"Property"> | string | null
     category?: StringWithAggregatesFilter<"Property"> | string
     terms_condition?: StringNullableWithAggregatesFilter<"Property"> | string | null
-<<<<<<< HEAD
-    room_available?: IntWithAggregatesFilter<"Property"> | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: IntNullableWithAggregatesFilter<"Property"> | number | null
     location_id?: IntWithAggregatesFilter<"Property"> | number
     tenantId?: StringWithAggregatesFilter<"Property"> | string
@@ -16377,10 +16139,7 @@ export namespace Prisma {
 
   export type TenantCreateInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -16396,10 +16155,7 @@ export namespace Prisma {
 
   export type TenantUncheckedCreateInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -16415,10 +16171,7 @@ export namespace Prisma {
 
   export type TenantUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16434,10 +16187,7 @@ export namespace Prisma {
 
   export type TenantUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16453,10 +16203,7 @@ export namespace Prisma {
 
   export type TenantCreateManyInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -16470,10 +16217,7 @@ export namespace Prisma {
 
   export type TenantUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16487,10 +16231,7 @@ export namespace Prisma {
 
   export type TenantUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16507,13 +16248,8 @@ export namespace Prisma {
     country: string
     city: string
     deletedAt?: Date | string | null
-<<<<<<< HEAD
-    longitude?: string | null
-    latitude?: string | null
-=======
     longitude?: number | null
     latitude?: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     Property?: PropertyCreateNestedManyWithoutLocationInput
   }
 
@@ -16523,13 +16259,8 @@ export namespace Prisma {
     country: string
     city: string
     deletedAt?: Date | string | null
-<<<<<<< HEAD
-    longitude?: string | null
-    latitude?: string | null
-=======
     longitude?: number | null
     latitude?: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     Property?: PropertyUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -16538,13 +16269,8 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-    longitude?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableStringFieldUpdateOperationsInput | string | null
-=======
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     Property?: PropertyUpdateManyWithoutLocationNestedInput
   }
 
@@ -16554,13 +16280,8 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-    longitude?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableStringFieldUpdateOperationsInput | string | null
-=======
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     Property?: PropertyUncheckedUpdateManyWithoutLocationNestedInput
   }
 
@@ -16570,13 +16291,8 @@ export namespace Prisma {
     country: string
     city: string
     deletedAt?: Date | string | null
-<<<<<<< HEAD
-    longitude?: string | null
-    latitude?: string | null
-=======
     longitude?: number | null
     latitude?: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationUpdateManyMutationInput = {
@@ -16584,13 +16300,8 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-    longitude?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableStringFieldUpdateOperationsInput | string | null
-=======
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationUncheckedUpdateManyInput = {
@@ -16599,13 +16310,8 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-    longitude?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableStringFieldUpdateOperationsInput | string | null
-=======
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type PropertyCreateInput = {
@@ -16613,10 +16319,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     isAvailable?: boolean
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -16631,10 +16333,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     location_id: number
     tenantId: string
@@ -16648,10 +16346,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -16666,10 +16360,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
@@ -16684,10 +16374,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     location_id: number
     tenantId: string
@@ -16699,10 +16385,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -16713,10 +16395,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
@@ -17482,10 +17160,7 @@ export namespace Prisma {
 
   export type TenantCountOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-=======
     googleId?: SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: SortOrder
     password?: SortOrder
     no_handphone?: SortOrder
@@ -17499,10 +17174,7 @@ export namespace Prisma {
 
   export type TenantMaxOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-=======
     googleId?: SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: SortOrder
     password?: SortOrder
     no_handphone?: SortOrder
@@ -17516,10 +17188,7 @@ export namespace Prisma {
 
   export type TenantMinOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-=======
     googleId?: SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: SortOrder
     password?: SortOrder
     no_handphone?: SortOrder
@@ -17542,8 +17211,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-<<<<<<< HEAD
-=======
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -17555,7 +17222,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type LocationCountOrderByAggregateInput = {
     id?: SortOrder
     address?: SortOrder
@@ -17568,11 +17234,8 @@ export namespace Prisma {
 
   export type LocationAvgOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-=======
     longitude?: SortOrder
     latitude?: SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationMaxOrderByAggregateInput = {
@@ -17597,11 +17260,8 @@ export namespace Prisma {
 
   export type LocationSumOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-=======
     longitude?: SortOrder
     latitude?: SortOrder
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -17620,8 +17280,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-<<<<<<< HEAD
-=======
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -17638,7 +17296,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -17686,10 +17343,6 @@ export namespace Prisma {
     desc?: SortOrder
     category?: SortOrder
     terms_condition?: SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
@@ -17698,10 +17351,6 @@ export namespace Prisma {
 
   export type PropertyAvgOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrder
     location_id?: SortOrder
   }
@@ -17712,10 +17361,6 @@ export namespace Prisma {
     desc?: SortOrder
     category?: SortOrder
     terms_condition?: SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
@@ -17728,10 +17373,6 @@ export namespace Prisma {
     desc?: SortOrder
     category?: SortOrder
     terms_condition?: SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
@@ -17740,10 +17381,6 @@ export namespace Prisma {
 
   export type PropertySumOrderByAggregateInput = {
     id?: SortOrder
-<<<<<<< HEAD
-    room_available?: SortOrder
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: SortOrder
     location_id?: SortOrder
   }
@@ -18408,8 +18045,6 @@ export namespace Prisma {
     connect?: PropertyWhereUniqueInput | PropertyWhereUniqueInput[]
   }
 
-<<<<<<< HEAD
-=======
   export type NullableFloatFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -18418,7 +18053,6 @@ export namespace Prisma {
     divide?: number
   }
 
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type PropertyUpdateManyWithoutLocationNestedInput = {
     create?: XOR<PropertyCreateWithoutLocationInput, PropertyUncheckedCreateWithoutLocationInput> | PropertyCreateWithoutLocationInput[] | PropertyUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutLocationInput | PropertyCreateOrConnectWithoutLocationInput[]
@@ -19136,8 +18770,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-<<<<<<< HEAD
-=======
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -19149,7 +18781,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -19177,8 +18808,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-<<<<<<< HEAD
-=======
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -19195,7 +18824,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -19212,20 +18840,6 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-<<<<<<< HEAD
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   export type NestedEnumPaymentMethodNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentMethod | EnumPaymentMethodFieldRefInput<$PrismaModel> | null
     in?: $Enums.PaymentMethod[] | ListEnumPaymentMethodFieldRefInput<$PrismaModel> | null
@@ -19428,10 +19042,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     isAvailable?: boolean
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -19445,10 +19055,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     location_id: number
     isAvailable?: boolean
@@ -19512,10 +19118,6 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Property"> | string | null
     category?: StringFilter<"Property"> | string
     terms_condition?: StringNullableFilter<"Property"> | string | null
-<<<<<<< HEAD
-    room_available?: IntFilter<"Property"> | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: IntNullableFilter<"Property"> | number | null
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
@@ -19553,10 +19155,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     isAvailable?: boolean
     PropertyImages?: PropertyImagesCreateNestedManyWithoutPropertyInput
@@ -19570,10 +19168,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     tenantId: string
     isAvailable?: boolean
@@ -19612,13 +19206,8 @@ export namespace Prisma {
     country: string
     city: string
     deletedAt?: Date | string | null
-<<<<<<< HEAD
-    longitude?: string | null
-    latitude?: string | null
-=======
     longitude?: number | null
     latitude?: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationUncheckedCreateWithoutPropertyInput = {
@@ -19627,13 +19216,8 @@ export namespace Prisma {
     country: string
     city: string
     deletedAt?: Date | string | null
-<<<<<<< HEAD
-    longitude?: string | null
-    latitude?: string | null
-=======
     longitude?: number | null
     latitude?: number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationCreateOrConnectWithoutPropertyInput = {
@@ -19668,10 +19252,7 @@ export namespace Prisma {
 
   export type TenantCreateWithoutPropertyInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -19686,10 +19267,7 @@ export namespace Prisma {
 
   export type TenantUncheckedCreateWithoutPropertyInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -19770,13 +19348,8 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-    longitude?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableStringFieldUpdateOperationsInput | string | null
-=======
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type LocationUncheckedUpdateWithoutPropertyInput = {
@@ -19785,13 +19358,8 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-    longitude?: NullableStringFieldUpdateOperationsInput | string | null
-    latitude?: NullableStringFieldUpdateOperationsInput | string | null
-=======
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
   }
 
   export type PropertyImagesUpsertWithWhereUniqueWithoutPropertyInput = {
@@ -19835,10 +19403,7 @@ export namespace Prisma {
 
   export type TenantUpdateWithoutPropertyInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19853,10 +19418,7 @@ export namespace Prisma {
 
   export type TenantUncheckedUpdateWithoutPropertyInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19909,10 +19471,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     isAvailable?: boolean
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -19926,10 +19484,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     location_id: number
     tenantId: string
@@ -19958,10 +19512,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -19975,10 +19525,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
@@ -19991,10 +19537,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     isAvailable?: boolean
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -20008,10 +19550,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     location_id: number
     tenantId: string
@@ -20165,10 +19703,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -20182,10 +19716,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
@@ -20961,10 +20491,7 @@ export namespace Prisma {
 
   export type TenantCreateWithoutReviewRepliesInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -20979,10 +20506,7 @@ export namespace Prisma {
 
   export type TenantUncheckedCreateWithoutReviewRepliesInput = {
     id?: string
-<<<<<<< HEAD
-=======
     googleId?: string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name: string
     password?: string | null
     no_handphone?: string | null
@@ -21041,10 +20565,7 @@ export namespace Prisma {
 
   export type TenantUpdateWithoutReviewRepliesInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21059,10 +20580,7 @@ export namespace Prisma {
 
   export type TenantUncheckedUpdateWithoutReviewRepliesInput = {
     id?: StringFieldUpdateOperationsInput | string
-<<<<<<< HEAD
-=======
     googleId?: NullableStringFieldUpdateOperationsInput | string | null
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     name?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21222,10 +20740,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     location_id: number
     isAvailable?: boolean
@@ -21242,10 +20756,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -21259,10 +20769,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -21276,10 +20782,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -21308,10 +20810,6 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-<<<<<<< HEAD
-    room_available: number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: number | null
     tenantId: string
     isAvailable?: boolean
@@ -21322,10 +20820,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     PropertyImages?: PropertyImagesUpdateManyWithoutPropertyNestedInput
@@ -21339,10 +20833,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -21356,10 +20846,6 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-    room_available?: IntFieldUpdateOperationsInput | number
-=======
->>>>>>> 0fb0d18486c1fce402f6b4e671b43c42d76d605b
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
