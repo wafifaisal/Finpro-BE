@@ -54,6 +54,11 @@ export type RoomImages = $Result.DefaultSelection<Prisma.$RoomImagesPayload>
  */
 export type Unavailable = $Result.DefaultSelection<Prisma.$UnavailablePayload>
 /**
+ * Model seasonal_prices
+ * 
+ */
+export type seasonal_prices = $Result.DefaultSelection<Prisma.$seasonal_pricesPayload>
+/**
  * Model Booking
  * 
  */
@@ -90,6 +95,55 @@ export const BookingStatus: {
 
 export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
 
+
+export const RoomFacility: {
+  WIFI: 'WIFI',
+  TV: 'TV',
+  AC: 'AC',
+  ROOM_SERVICES: 'ROOM_SERVICES',
+  MINI_BAR: 'MINI_BAR',
+  LAUNDRY: 'LAUNDRY',
+  SETRIKA: 'SETRIKA',
+  ALAT_PEMADAM_API: 'ALAT_PEMADAM_API',
+  MICROWAVE: 'MICROWAVE',
+  KULKAS: 'KULKAS',
+  RUANG_KERJA_KHUSUS: 'RUANG_KERJA_KHUSUS',
+  KITCHEN: 'KITCHEN',
+  HEATING: 'HEATING',
+  AIR_PURIFIER: 'AIR_PURIFIER',
+  SAFE: 'SAFE',
+  BATHROBES: 'BATHROBES',
+  TEA_COFFEE_MAKER: 'TEA_COFFEE_MAKER',
+  BALCONY: 'BALCONY',
+  BATHTUB: 'BATHTUB',
+  JACUZZI: 'JACUZZI',
+  PRIVATE_POOL: 'PRIVATE_POOL'
+};
+
+export type RoomFacility = (typeof RoomFacility)[keyof typeof RoomFacility]
+
+
+export const PropertyFacility: {
+  PEMANDANGAN_KOTA: 'PEMANDANGAN_KOTA',
+  PEMANDANGAN_ALAM: 'PEMANDANGAN_ALAM',
+  AKSES_PANTAI: 'AKSES_PANTAI',
+  TAMAN: 'TAMAN',
+  RAMAH_HEWAN_PELIHARAAN: 'RAMAH_HEWAN_PELIHARAAN',
+  RESTAURANT: 'RESTAURANT',
+  BAR: 'BAR',
+  CONFERENCE_ROOM: 'CONFERENCE_ROOM',
+  PARKIR_GRATIS: 'PARKIR_GRATIS',
+  KOLAM_RENANG: 'KOLAM_RENANG',
+  GYM: 'GYM',
+  SPA: 'SPA',
+  TAMAN_BERMAIN: 'TAMAN_BERMAIN',
+  DEKAT_WISATA: 'DEKAT_WISATA',
+  BUDGET: 'BUDGET',
+  MEWAH: 'MEWAH'
+};
+
+export type PropertyFacility = (typeof PropertyFacility)[keyof typeof PropertyFacility]
+
 }
 
 export type PaymentMethod = $Enums.PaymentMethod
@@ -99,6 +153,14 @@ export const PaymentMethod: typeof $Enums.PaymentMethod
 export type BookingStatus = $Enums.BookingStatus
 
 export const BookingStatus: typeof $Enums.BookingStatus
+
+export type RoomFacility = $Enums.RoomFacility
+
+export const RoomFacility: typeof $Enums.RoomFacility
+
+export type PropertyFacility = $Enums.PropertyFacility
+
+export const PropertyFacility: typeof $Enums.PropertyFacility
 
 /**
  * ##  Prisma Client ʲˢ
@@ -304,6 +366,16 @@ export class PrismaClient<
     * ```
     */
   get unavailable(): Prisma.UnavailableDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.seasonal_prices`: Exposes CRUD operations for the **seasonal_prices** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Seasonal_prices
+    * const seasonal_prices = await prisma.seasonal_prices.findMany()
+    * ```
+    */
+  get seasonal_prices(): Prisma.seasonal_pricesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.booking`: Exposes CRUD operations for the **Booking** model.
@@ -782,6 +854,7 @@ export namespace Prisma {
     RoomTypes: 'RoomTypes',
     RoomImages: 'RoomImages',
     Unavailable: 'Unavailable',
+    seasonal_prices: 'seasonal_prices',
     Booking: 'Booking',
     Review: 'Review',
     ReviewReplies: 'ReviewReplies'
@@ -800,7 +873,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "tenant" | "location" | "property" | "propertyImages" | "roomTypes" | "roomImages" | "unavailable" | "booking" | "review" | "reviewReplies"
+      modelProps: "user" | "tenant" | "location" | "property" | "propertyImages" | "roomTypes" | "roomImages" | "unavailable" | "seasonal_prices" | "booking" | "review" | "reviewReplies"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1396,6 +1469,80 @@ export namespace Prisma {
           }
         }
       }
+      seasonal_prices: {
+        payload: Prisma.$seasonal_pricesPayload<ExtArgs>
+        fields: Prisma.seasonal_pricesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.seasonal_pricesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.seasonal_pricesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>
+          }
+          findFirst: {
+            args: Prisma.seasonal_pricesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.seasonal_pricesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>
+          }
+          findMany: {
+            args: Prisma.seasonal_pricesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>[]
+          }
+          create: {
+            args: Prisma.seasonal_pricesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>
+          }
+          createMany: {
+            args: Prisma.seasonal_pricesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.seasonal_pricesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>[]
+          }
+          delete: {
+            args: Prisma.seasonal_pricesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>
+          }
+          update: {
+            args: Prisma.seasonal_pricesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>
+          }
+          deleteMany: {
+            args: Prisma.seasonal_pricesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.seasonal_pricesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.seasonal_pricesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>[]
+          }
+          upsert: {
+            args: Prisma.seasonal_pricesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$seasonal_pricesPayload>
+          }
+          aggregate: {
+            args: Prisma.Seasonal_pricesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSeasonal_prices>
+          }
+          groupBy: {
+            args: Prisma.seasonal_pricesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Seasonal_pricesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.seasonal_pricesCountArgs<ExtArgs>
+            result: $Utils.Optional<Seasonal_pricesCountAggregateOutputType> | number
+          }
+        }
+      }
       Booking: {
         payload: Prisma.$BookingPayload<ExtArgs>
         fields: Prisma.BookingFieldRefs
@@ -1710,6 +1857,7 @@ export namespace Prisma {
     roomTypes?: RoomTypesOmit
     roomImages?: RoomImagesOmit
     unavailable?: UnavailableOmit
+    seasonal_prices?: seasonal_pricesOmit
     booking?: BookingOmit
     review?: ReviewOmit
     reviewReplies?: ReviewRepliesOmit
@@ -1962,6 +2110,7 @@ export namespace Prisma {
     Booking: number
     Review: number
     Unavailable: number
+    seasonal_prices: number
   }
 
   export type RoomTypesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1969,6 +2118,7 @@ export namespace Prisma {
     Booking?: boolean | RoomTypesCountOutputTypeCountBookingArgs
     Review?: boolean | RoomTypesCountOutputTypeCountReviewArgs
     Unavailable?: boolean | RoomTypesCountOutputTypeCountUnavailableArgs
+    seasonal_prices?: boolean | RoomTypesCountOutputTypeCountSeasonal_pricesArgs
   }
 
   // Custom InputTypes
@@ -2008,6 +2158,13 @@ export namespace Prisma {
    */
   export type RoomTypesCountOutputTypeCountUnavailableArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UnavailableWhereInput
+  }
+
+  /**
+   * RoomTypesCountOutputType without action
+   */
+  export type RoomTypesCountOutputTypeCountSeasonal_pricesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: seasonal_pricesWhereInput
   }
 
 
@@ -5589,6 +5746,7 @@ export namespace Prisma {
     location_id: number
     tenantId: number
     isAvailable: number
+    facilities: number
     _all: number
   }
 
@@ -5639,6 +5797,7 @@ export namespace Prisma {
     location_id?: true
     tenantId?: true
     isAvailable?: true
+    facilities?: true
     _all?: true
   }
 
@@ -5738,6 +5897,7 @@ export namespace Prisma {
     location_id: number
     tenantId: string
     isAvailable: boolean
+    facilities: $Enums.PropertyFacility[]
     _count: PropertyCountAggregateOutputType | null
     _avg: PropertyAvgAggregateOutputType | null
     _sum: PropertySumAggregateOutputType | null
@@ -5769,6 +5929,7 @@ export namespace Prisma {
     location_id?: boolean
     tenantId?: boolean
     isAvailable?: boolean
+    facilities?: boolean
     location?: boolean | LocationDefaultArgs<ExtArgs>
     PropertyImages?: boolean | Property$PropertyImagesArgs<ExtArgs>
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
@@ -5786,6 +5947,7 @@ export namespace Prisma {
     location_id?: boolean
     tenantId?: boolean
     isAvailable?: boolean
+    facilities?: boolean
     location?: boolean | LocationDefaultArgs<ExtArgs>
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["property"]>
@@ -5800,6 +5962,7 @@ export namespace Prisma {
     location_id?: boolean
     tenantId?: boolean
     isAvailable?: boolean
+    facilities?: boolean
     location?: boolean | LocationDefaultArgs<ExtArgs>
     tenant?: boolean | TenantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["property"]>
@@ -5814,9 +5977,10 @@ export namespace Prisma {
     location_id?: boolean
     tenantId?: boolean
     isAvailable?: boolean
+    facilities?: boolean
   }
 
-  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "desc" | "category" | "terms_condition" | "click_rate" | "location_id" | "tenantId" | "isAvailable", ExtArgs["result"]["property"]>
+  export type PropertyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "desc" | "category" | "terms_condition" | "click_rate" | "location_id" | "tenantId" | "isAvailable" | "facilities", ExtArgs["result"]["property"]>
   export type PropertyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     PropertyImages?: boolean | Property$PropertyImagesArgs<ExtArgs>
@@ -5851,6 +6015,7 @@ export namespace Prisma {
       location_id: number
       tenantId: string
       isAvailable: boolean
+      facilities: $Enums.PropertyFacility[]
     }, ExtArgs["result"]["property"]>
     composites: {}
   }
@@ -6287,6 +6452,7 @@ export namespace Prisma {
     readonly location_id: FieldRef<"Property", 'Int'>
     readonly tenantId: FieldRef<"Property", 'String'>
     readonly isAvailable: FieldRef<"Property", 'Boolean'>
+    readonly facilities: FieldRef<"Property", 'PropertyFacility[]'>
   }
     
 
@@ -7912,6 +8078,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     deletedAt: number
+    facilities: number
     _all: number
   }
 
@@ -7982,6 +8149,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    facilities?: true
     _all?: true
   }
 
@@ -8085,6 +8253,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    facilities: $Enums.RoomFacility[]
     _count: RoomTypesCountAggregateOutputType | null
     _avg: RoomTypesAvgAggregateOutputType | null
     _sum: RoomTypesSumAggregateOutputType | null
@@ -8120,11 +8289,13 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    facilities?: boolean
     property?: boolean | PropertyDefaultArgs<ExtArgs>
     RoomImages?: boolean | RoomTypes$RoomImagesArgs<ExtArgs>
     Booking?: boolean | RoomTypes$BookingArgs<ExtArgs>
     Review?: boolean | RoomTypes$ReviewArgs<ExtArgs>
     Unavailable?: boolean | RoomTypes$UnavailableArgs<ExtArgs>
+    seasonal_prices?: boolean | RoomTypes$seasonal_pricesArgs<ExtArgs>
     _count?: boolean | RoomTypesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roomTypes"]>
 
@@ -8142,6 +8313,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    facilities?: boolean
     property?: boolean | PropertyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roomTypes"]>
 
@@ -8159,6 +8331,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    facilities?: boolean
     property?: boolean | PropertyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roomTypes"]>
 
@@ -8176,15 +8349,17 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    facilities?: boolean
   }
 
-  export type RoomTypesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "stock" | "capacity" | "bed_details" | "price" | "has_breakfast" | "breakfast_price" | "avg_rating" | "property_id" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["roomTypes"]>
+  export type RoomTypesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "stock" | "capacity" | "bed_details" | "price" | "has_breakfast" | "breakfast_price" | "avg_rating" | "property_id" | "createdAt" | "updatedAt" | "deletedAt" | "facilities", ExtArgs["result"]["roomTypes"]>
   export type RoomTypesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     property?: boolean | PropertyDefaultArgs<ExtArgs>
     RoomImages?: boolean | RoomTypes$RoomImagesArgs<ExtArgs>
     Booking?: boolean | RoomTypes$BookingArgs<ExtArgs>
     Review?: boolean | RoomTypes$ReviewArgs<ExtArgs>
     Unavailable?: boolean | RoomTypes$UnavailableArgs<ExtArgs>
+    seasonal_prices?: boolean | RoomTypes$seasonal_pricesArgs<ExtArgs>
     _count?: boolean | RoomTypesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RoomTypesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8202,6 +8377,7 @@ export namespace Prisma {
       Booking: Prisma.$BookingPayload<ExtArgs>[]
       Review: Prisma.$ReviewPayload<ExtArgs>[]
       Unavailable: Prisma.$UnavailablePayload<ExtArgs>[]
+      seasonal_prices: Prisma.$seasonal_pricesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8217,6 +8393,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       deletedAt: Date | null
+      facilities: $Enums.RoomFacility[]
     }, ExtArgs["result"]["roomTypes"]>
     composites: {}
   }
@@ -8616,6 +8793,7 @@ export namespace Prisma {
     Booking<T extends RoomTypes$BookingArgs<ExtArgs> = {}>(args?: Subset<T, RoomTypes$BookingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     Review<T extends RoomTypes$ReviewArgs<ExtArgs> = {}>(args?: Subset<T, RoomTypes$ReviewArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     Unavailable<T extends RoomTypes$UnavailableArgs<ExtArgs> = {}>(args?: Subset<T, RoomTypes$UnavailableArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnavailablePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    seasonal_prices<T extends RoomTypes$seasonal_pricesArgs<ExtArgs> = {}>(args?: Subset<T, RoomTypes$seasonal_pricesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8658,6 +8836,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"RoomTypes", 'DateTime'>
     readonly updatedAt: FieldRef<"RoomTypes", 'DateTime'>
     readonly deletedAt: FieldRef<"RoomTypes", 'DateTime'>
+    readonly facilities: FieldRef<"RoomTypes", 'RoomFacility[]'>
   }
     
 
@@ -9135,6 +9314,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UnavailableScalarFieldEnum | UnavailableScalarFieldEnum[]
+  }
+
+  /**
+   * RoomTypes.seasonal_prices
+   */
+  export type RoomTypes$seasonal_pricesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    where?: seasonal_pricesWhereInput
+    orderBy?: seasonal_pricesOrderByWithRelationInput | seasonal_pricesOrderByWithRelationInput[]
+    cursor?: seasonal_pricesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Seasonal_pricesScalarFieldEnum | Seasonal_pricesScalarFieldEnum[]
   }
 
   /**
@@ -11347,6 +11550,1120 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UnavailableInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model seasonal_prices
+   */
+
+  export type AggregateSeasonal_prices = {
+    _count: Seasonal_pricesCountAggregateOutputType | null
+    _avg: Seasonal_pricesAvgAggregateOutputType | null
+    _sum: Seasonal_pricesSumAggregateOutputType | null
+    _min: Seasonal_pricesMinAggregateOutputType | null
+    _max: Seasonal_pricesMaxAggregateOutputType | null
+  }
+
+  export type Seasonal_pricesAvgAggregateOutputType = {
+    id: number | null
+    price: Decimal | null
+    room_typesId: number | null
+  }
+
+  export type Seasonal_pricesSumAggregateOutputType = {
+    id: number | null
+    price: Decimal | null
+    room_typesId: number | null
+  }
+
+  export type Seasonal_pricesMinAggregateOutputType = {
+    id: number | null
+    price: Decimal | null
+    start_date: Date | null
+    end_date: Date | null
+    room_typesId: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type Seasonal_pricesMaxAggregateOutputType = {
+    id: number | null
+    price: Decimal | null
+    start_date: Date | null
+    end_date: Date | null
+    room_typesId: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type Seasonal_pricesCountAggregateOutputType = {
+    id: number
+    price: number
+    start_date: number
+    end_date: number
+    room_typesId: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type Seasonal_pricesAvgAggregateInputType = {
+    id?: true
+    price?: true
+    room_typesId?: true
+  }
+
+  export type Seasonal_pricesSumAggregateInputType = {
+    id?: true
+    price?: true
+    room_typesId?: true
+  }
+
+  export type Seasonal_pricesMinAggregateInputType = {
+    id?: true
+    price?: true
+    start_date?: true
+    end_date?: true
+    room_typesId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type Seasonal_pricesMaxAggregateInputType = {
+    id?: true
+    price?: true
+    start_date?: true
+    end_date?: true
+    room_typesId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type Seasonal_pricesCountAggregateInputType = {
+    id?: true
+    price?: true
+    start_date?: true
+    end_date?: true
+    room_typesId?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type Seasonal_pricesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which seasonal_prices to aggregate.
+     */
+    where?: seasonal_pricesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of seasonal_prices to fetch.
+     */
+    orderBy?: seasonal_pricesOrderByWithRelationInput | seasonal_pricesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: seasonal_pricesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` seasonal_prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` seasonal_prices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned seasonal_prices
+    **/
+    _count?: true | Seasonal_pricesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Seasonal_pricesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Seasonal_pricesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Seasonal_pricesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Seasonal_pricesMaxAggregateInputType
+  }
+
+  export type GetSeasonal_pricesAggregateType<T extends Seasonal_pricesAggregateArgs> = {
+        [P in keyof T & keyof AggregateSeasonal_prices]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSeasonal_prices[P]>
+      : GetScalarType<T[P], AggregateSeasonal_prices[P]>
+  }
+
+
+
+
+  export type seasonal_pricesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: seasonal_pricesWhereInput
+    orderBy?: seasonal_pricesOrderByWithAggregationInput | seasonal_pricesOrderByWithAggregationInput[]
+    by: Seasonal_pricesScalarFieldEnum[] | Seasonal_pricesScalarFieldEnum
+    having?: seasonal_pricesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Seasonal_pricesCountAggregateInputType | true
+    _avg?: Seasonal_pricesAvgAggregateInputType
+    _sum?: Seasonal_pricesSumAggregateInputType
+    _min?: Seasonal_pricesMinAggregateInputType
+    _max?: Seasonal_pricesMaxAggregateInputType
+  }
+
+  export type Seasonal_pricesGroupByOutputType = {
+    id: number
+    price: Decimal
+    start_date: Date
+    end_date: Date
+    room_typesId: number
+    created_at: Date
+    updated_at: Date
+    _count: Seasonal_pricesCountAggregateOutputType | null
+    _avg: Seasonal_pricesAvgAggregateOutputType | null
+    _sum: Seasonal_pricesSumAggregateOutputType | null
+    _min: Seasonal_pricesMinAggregateOutputType | null
+    _max: Seasonal_pricesMaxAggregateOutputType | null
+  }
+
+  type GetSeasonal_pricesGroupByPayload<T extends seasonal_pricesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Seasonal_pricesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Seasonal_pricesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Seasonal_pricesGroupByOutputType[P]>
+            : GetScalarType<T[P], Seasonal_pricesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type seasonal_pricesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    price?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    room_typesId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["seasonal_prices"]>
+
+  export type seasonal_pricesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    price?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    room_typesId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["seasonal_prices"]>
+
+  export type seasonal_pricesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    price?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    room_typesId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["seasonal_prices"]>
+
+  export type seasonal_pricesSelectScalar = {
+    id?: boolean
+    price?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    room_typesId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type seasonal_pricesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "start_date" | "end_date" | "room_typesId" | "created_at" | "updated_at", ExtArgs["result"]["seasonal_prices"]>
+  export type seasonal_pricesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
+  }
+  export type seasonal_pricesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
+  }
+  export type seasonal_pricesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
+  }
+
+  export type $seasonal_pricesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "seasonal_prices"
+    objects: {
+      room_type: Prisma.$RoomTypesPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      price: Prisma.Decimal
+      start_date: Date
+      end_date: Date
+      room_typesId: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["seasonal_prices"]>
+    composites: {}
+  }
+
+  type seasonal_pricesGetPayload<S extends boolean | null | undefined | seasonal_pricesDefaultArgs> = $Result.GetResult<Prisma.$seasonal_pricesPayload, S>
+
+  type seasonal_pricesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<seasonal_pricesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Seasonal_pricesCountAggregateInputType | true
+    }
+
+  export interface seasonal_pricesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['seasonal_prices'], meta: { name: 'seasonal_prices' } }
+    /**
+     * Find zero or one Seasonal_prices that matches the filter.
+     * @param {seasonal_pricesFindUniqueArgs} args - Arguments to find a Seasonal_prices
+     * @example
+     * // Get one Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends seasonal_pricesFindUniqueArgs>(args: SelectSubset<T, seasonal_pricesFindUniqueArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Seasonal_prices that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {seasonal_pricesFindUniqueOrThrowArgs} args - Arguments to find a Seasonal_prices
+     * @example
+     * // Get one Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends seasonal_pricesFindUniqueOrThrowArgs>(args: SelectSubset<T, seasonal_pricesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Seasonal_prices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {seasonal_pricesFindFirstArgs} args - Arguments to find a Seasonal_prices
+     * @example
+     * // Get one Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends seasonal_pricesFindFirstArgs>(args?: SelectSubset<T, seasonal_pricesFindFirstArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Seasonal_prices that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {seasonal_pricesFindFirstOrThrowArgs} args - Arguments to find a Seasonal_prices
+     * @example
+     * // Get one Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends seasonal_pricesFindFirstOrThrowArgs>(args?: SelectSubset<T, seasonal_pricesFindFirstOrThrowArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Seasonal_prices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {seasonal_pricesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.findMany()
+     * 
+     * // Get first 10 Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const seasonal_pricesWithIdOnly = await prisma.seasonal_prices.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends seasonal_pricesFindManyArgs>(args?: SelectSubset<T, seasonal_pricesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Seasonal_prices.
+     * @param {seasonal_pricesCreateArgs} args - Arguments to create a Seasonal_prices.
+     * @example
+     * // Create one Seasonal_prices
+     * const Seasonal_prices = await prisma.seasonal_prices.create({
+     *   data: {
+     *     // ... data to create a Seasonal_prices
+     *   }
+     * })
+     * 
+     */
+    create<T extends seasonal_pricesCreateArgs>(args: SelectSubset<T, seasonal_pricesCreateArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Seasonal_prices.
+     * @param {seasonal_pricesCreateManyArgs} args - Arguments to create many Seasonal_prices.
+     * @example
+     * // Create many Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends seasonal_pricesCreateManyArgs>(args?: SelectSubset<T, seasonal_pricesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Seasonal_prices and returns the data saved in the database.
+     * @param {seasonal_pricesCreateManyAndReturnArgs} args - Arguments to create many Seasonal_prices.
+     * @example
+     * // Create many Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Seasonal_prices and only return the `id`
+     * const seasonal_pricesWithIdOnly = await prisma.seasonal_prices.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends seasonal_pricesCreateManyAndReturnArgs>(args?: SelectSubset<T, seasonal_pricesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Seasonal_prices.
+     * @param {seasonal_pricesDeleteArgs} args - Arguments to delete one Seasonal_prices.
+     * @example
+     * // Delete one Seasonal_prices
+     * const Seasonal_prices = await prisma.seasonal_prices.delete({
+     *   where: {
+     *     // ... filter to delete one Seasonal_prices
+     *   }
+     * })
+     * 
+     */
+    delete<T extends seasonal_pricesDeleteArgs>(args: SelectSubset<T, seasonal_pricesDeleteArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Seasonal_prices.
+     * @param {seasonal_pricesUpdateArgs} args - Arguments to update one Seasonal_prices.
+     * @example
+     * // Update one Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends seasonal_pricesUpdateArgs>(args: SelectSubset<T, seasonal_pricesUpdateArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Seasonal_prices.
+     * @param {seasonal_pricesDeleteManyArgs} args - Arguments to filter Seasonal_prices to delete.
+     * @example
+     * // Delete a few Seasonal_prices
+     * const { count } = await prisma.seasonal_prices.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends seasonal_pricesDeleteManyArgs>(args?: SelectSubset<T, seasonal_pricesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Seasonal_prices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {seasonal_pricesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends seasonal_pricesUpdateManyArgs>(args: SelectSubset<T, seasonal_pricesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Seasonal_prices and returns the data updated in the database.
+     * @param {seasonal_pricesUpdateManyAndReturnArgs} args - Arguments to update many Seasonal_prices.
+     * @example
+     * // Update many Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Seasonal_prices and only return the `id`
+     * const seasonal_pricesWithIdOnly = await prisma.seasonal_prices.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends seasonal_pricesUpdateManyAndReturnArgs>(args: SelectSubset<T, seasonal_pricesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Seasonal_prices.
+     * @param {seasonal_pricesUpsertArgs} args - Arguments to update or create a Seasonal_prices.
+     * @example
+     * // Update or create a Seasonal_prices
+     * const seasonal_prices = await prisma.seasonal_prices.upsert({
+     *   create: {
+     *     // ... data to create a Seasonal_prices
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Seasonal_prices we want to update
+     *   }
+     * })
+     */
+    upsert<T extends seasonal_pricesUpsertArgs>(args: SelectSubset<T, seasonal_pricesUpsertArgs<ExtArgs>>): Prisma__seasonal_pricesClient<$Result.GetResult<Prisma.$seasonal_pricesPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Seasonal_prices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {seasonal_pricesCountArgs} args - Arguments to filter Seasonal_prices to count.
+     * @example
+     * // Count the number of Seasonal_prices
+     * const count = await prisma.seasonal_prices.count({
+     *   where: {
+     *     // ... the filter for the Seasonal_prices we want to count
+     *   }
+     * })
+    **/
+    count<T extends seasonal_pricesCountArgs>(
+      args?: Subset<T, seasonal_pricesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Seasonal_pricesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Seasonal_prices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Seasonal_pricesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Seasonal_pricesAggregateArgs>(args: Subset<T, Seasonal_pricesAggregateArgs>): Prisma.PrismaPromise<GetSeasonal_pricesAggregateType<T>>
+
+    /**
+     * Group by Seasonal_prices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {seasonal_pricesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends seasonal_pricesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: seasonal_pricesGroupByArgs['orderBy'] }
+        : { orderBy?: seasonal_pricesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, seasonal_pricesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSeasonal_pricesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the seasonal_prices model
+   */
+  readonly fields: seasonal_pricesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for seasonal_prices.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__seasonal_pricesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    room_type<T extends RoomTypesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomTypesDefaultArgs<ExtArgs>>): Prisma__RoomTypesClient<$Result.GetResult<Prisma.$RoomTypesPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the seasonal_prices model
+   */ 
+  interface seasonal_pricesFieldRefs {
+    readonly id: FieldRef<"seasonal_prices", 'Int'>
+    readonly price: FieldRef<"seasonal_prices", 'Decimal'>
+    readonly start_date: FieldRef<"seasonal_prices", 'DateTime'>
+    readonly end_date: FieldRef<"seasonal_prices", 'DateTime'>
+    readonly room_typesId: FieldRef<"seasonal_prices", 'Int'>
+    readonly created_at: FieldRef<"seasonal_prices", 'DateTime'>
+    readonly updated_at: FieldRef<"seasonal_prices", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * seasonal_prices findUnique
+   */
+  export type seasonal_pricesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * Filter, which seasonal_prices to fetch.
+     */
+    where: seasonal_pricesWhereUniqueInput
+  }
+
+  /**
+   * seasonal_prices findUniqueOrThrow
+   */
+  export type seasonal_pricesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * Filter, which seasonal_prices to fetch.
+     */
+    where: seasonal_pricesWhereUniqueInput
+  }
+
+  /**
+   * seasonal_prices findFirst
+   */
+  export type seasonal_pricesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * Filter, which seasonal_prices to fetch.
+     */
+    where?: seasonal_pricesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of seasonal_prices to fetch.
+     */
+    orderBy?: seasonal_pricesOrderByWithRelationInput | seasonal_pricesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for seasonal_prices.
+     */
+    cursor?: seasonal_pricesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` seasonal_prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` seasonal_prices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of seasonal_prices.
+     */
+    distinct?: Seasonal_pricesScalarFieldEnum | Seasonal_pricesScalarFieldEnum[]
+  }
+
+  /**
+   * seasonal_prices findFirstOrThrow
+   */
+  export type seasonal_pricesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * Filter, which seasonal_prices to fetch.
+     */
+    where?: seasonal_pricesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of seasonal_prices to fetch.
+     */
+    orderBy?: seasonal_pricesOrderByWithRelationInput | seasonal_pricesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for seasonal_prices.
+     */
+    cursor?: seasonal_pricesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` seasonal_prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` seasonal_prices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of seasonal_prices.
+     */
+    distinct?: Seasonal_pricesScalarFieldEnum | Seasonal_pricesScalarFieldEnum[]
+  }
+
+  /**
+   * seasonal_prices findMany
+   */
+  export type seasonal_pricesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * Filter, which seasonal_prices to fetch.
+     */
+    where?: seasonal_pricesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of seasonal_prices to fetch.
+     */
+    orderBy?: seasonal_pricesOrderByWithRelationInput | seasonal_pricesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing seasonal_prices.
+     */
+    cursor?: seasonal_pricesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` seasonal_prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` seasonal_prices.
+     */
+    skip?: number
+    distinct?: Seasonal_pricesScalarFieldEnum | Seasonal_pricesScalarFieldEnum[]
+  }
+
+  /**
+   * seasonal_prices create
+   */
+  export type seasonal_pricesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a seasonal_prices.
+     */
+    data: XOR<seasonal_pricesCreateInput, seasonal_pricesUncheckedCreateInput>
+  }
+
+  /**
+   * seasonal_prices createMany
+   */
+  export type seasonal_pricesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many seasonal_prices.
+     */
+    data: seasonal_pricesCreateManyInput | seasonal_pricesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * seasonal_prices createManyAndReturn
+   */
+  export type seasonal_pricesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * The data used to create many seasonal_prices.
+     */
+    data: seasonal_pricesCreateManyInput | seasonal_pricesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * seasonal_prices update
+   */
+  export type seasonal_pricesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a seasonal_prices.
+     */
+    data: XOR<seasonal_pricesUpdateInput, seasonal_pricesUncheckedUpdateInput>
+    /**
+     * Choose, which seasonal_prices to update.
+     */
+    where: seasonal_pricesWhereUniqueInput
+  }
+
+  /**
+   * seasonal_prices updateMany
+   */
+  export type seasonal_pricesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update seasonal_prices.
+     */
+    data: XOR<seasonal_pricesUpdateManyMutationInput, seasonal_pricesUncheckedUpdateManyInput>
+    /**
+     * Filter which seasonal_prices to update
+     */
+    where?: seasonal_pricesWhereInput
+  }
+
+  /**
+   * seasonal_prices updateManyAndReturn
+   */
+  export type seasonal_pricesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * The data used to update seasonal_prices.
+     */
+    data: XOR<seasonal_pricesUpdateManyMutationInput, seasonal_pricesUncheckedUpdateManyInput>
+    /**
+     * Filter which seasonal_prices to update
+     */
+    where?: seasonal_pricesWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * seasonal_prices upsert
+   */
+  export type seasonal_pricesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the seasonal_prices to update in case it exists.
+     */
+    where: seasonal_pricesWhereUniqueInput
+    /**
+     * In case the seasonal_prices found by the `where` argument doesn't exist, create a new seasonal_prices with this data.
+     */
+    create: XOR<seasonal_pricesCreateInput, seasonal_pricesUncheckedCreateInput>
+    /**
+     * In case the seasonal_prices was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<seasonal_pricesUpdateInput, seasonal_pricesUncheckedUpdateInput>
+  }
+
+  /**
+   * seasonal_prices delete
+   */
+  export type seasonal_pricesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
+    /**
+     * Filter which seasonal_prices to delete.
+     */
+    where: seasonal_pricesWhereUniqueInput
+  }
+
+  /**
+   * seasonal_prices deleteMany
+   */
+  export type seasonal_pricesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which seasonal_prices to delete
+     */
+    where?: seasonal_pricesWhereInput
+  }
+
+  /**
+   * seasonal_prices without action
+   */
+  export type seasonal_pricesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the seasonal_prices
+     */
+    select?: seasonal_pricesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the seasonal_prices
+     */
+    omit?: seasonal_pricesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: seasonal_pricesInclude<ExtArgs> | null
   }
 
 
@@ -14911,7 +16228,8 @@ export namespace Prisma {
     click_rate: 'click_rate',
     location_id: 'location_id',
     tenantId: 'tenantId',
-    isAvailable: 'isAvailable'
+    isAvailable: 'isAvailable',
+    facilities: 'facilities'
   };
 
   export type PropertyScalarFieldEnum = (typeof PropertyScalarFieldEnum)[keyof typeof PropertyScalarFieldEnum]
@@ -14942,7 +16260,8 @@ export namespace Prisma {
     property_id: 'property_id',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt'
+    deletedAt: 'deletedAt',
+    facilities: 'facilities'
   };
 
   export type RoomTypesScalarFieldEnum = (typeof RoomTypesScalarFieldEnum)[keyof typeof RoomTypesScalarFieldEnum]
@@ -14970,6 +16289,19 @@ export namespace Prisma {
   };
 
   export type UnavailableScalarFieldEnum = (typeof UnavailableScalarFieldEnum)[keyof typeof UnavailableScalarFieldEnum]
+
+
+  export const Seasonal_pricesScalarFieldEnum: {
+    id: 'id',
+    price: 'price',
+    start_date: 'start_date',
+    end_date: 'end_date',
+    room_typesId: 'room_typesId',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type Seasonal_pricesScalarFieldEnum = (typeof Seasonal_pricesScalarFieldEnum)[keyof typeof Seasonal_pricesScalarFieldEnum]
 
 
   export const BookingScalarFieldEnum: {
@@ -15122,6 +16454,48 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PropertyFacility[]'
+   */
+  export type ListEnumPropertyFacilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PropertyFacility[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PropertyFacility'
+   */
+  export type EnumPropertyFacilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PropertyFacility'>
+    
+
+
+  /**
+   * Reference to a field of type 'RoomFacility[]'
+   */
+  export type ListEnumRoomFacilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RoomFacility[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RoomFacility'
+   */
+  export type EnumRoomFacilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RoomFacility'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -15419,6 +16793,7 @@ export namespace Prisma {
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
     isAvailable?: BoolFilter<"Property"> | boolean
+    facilities?: EnumPropertyFacilityNullableListFilter<"Property">
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     PropertyImages?: PropertyImagesListRelationFilter
     tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
@@ -15435,6 +16810,7 @@ export namespace Prisma {
     location_id?: SortOrder
     tenantId?: SortOrder
     isAvailable?: SortOrder
+    facilities?: SortOrder
     location?: LocationOrderByWithRelationInput
     PropertyImages?: PropertyImagesOrderByRelationAggregateInput
     tenant?: TenantOrderByWithRelationInput
@@ -15454,6 +16830,7 @@ export namespace Prisma {
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
     isAvailable?: BoolFilter<"Property"> | boolean
+    facilities?: EnumPropertyFacilityNullableListFilter<"Property">
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     PropertyImages?: PropertyImagesListRelationFilter
     tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
@@ -15470,6 +16847,7 @@ export namespace Prisma {
     location_id?: SortOrder
     tenantId?: SortOrder
     isAvailable?: SortOrder
+    facilities?: SortOrder
     _count?: PropertyCountOrderByAggregateInput
     _avg?: PropertyAvgOrderByAggregateInput
     _max?: PropertyMaxOrderByAggregateInput
@@ -15490,6 +16868,7 @@ export namespace Prisma {
     location_id?: IntWithAggregatesFilter<"Property"> | number
     tenantId?: StringWithAggregatesFilter<"Property"> | string
     isAvailable?: BoolWithAggregatesFilter<"Property"> | boolean
+    facilities?: EnumPropertyFacilityNullableListFilter<"Property">
   }
 
   export type PropertyImagesWhereInput = {
@@ -15571,11 +16950,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RoomTypes"> | Date | string
     updatedAt?: DateTimeFilter<"RoomTypes"> | Date | string
     deletedAt?: DateTimeNullableFilter<"RoomTypes"> | Date | string | null
+    facilities?: EnumRoomFacilityNullableListFilter<"RoomTypes">
     property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>
     RoomImages?: RoomImagesListRelationFilter
     Booking?: BookingListRelationFilter
     Review?: ReviewListRelationFilter
     Unavailable?: UnavailableListRelationFilter
+    seasonal_prices?: Seasonal_pricesListRelationFilter
   }
 
   export type RoomTypesOrderByWithRelationInput = {
@@ -15592,11 +16973,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    facilities?: SortOrder
     property?: PropertyOrderByWithRelationInput
     RoomImages?: RoomImagesOrderByRelationAggregateInput
     Booking?: BookingOrderByRelationAggregateInput
     Review?: ReviewOrderByRelationAggregateInput
     Unavailable?: UnavailableOrderByRelationAggregateInput
+    seasonal_prices?: seasonal_pricesOrderByRelationAggregateInput
   }
 
   export type RoomTypesWhereUniqueInput = Prisma.AtLeast<{
@@ -15616,11 +16999,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RoomTypes"> | Date | string
     updatedAt?: DateTimeFilter<"RoomTypes"> | Date | string
     deletedAt?: DateTimeNullableFilter<"RoomTypes"> | Date | string | null
+    facilities?: EnumRoomFacilityNullableListFilter<"RoomTypes">
     property?: XOR<PropertyScalarRelationFilter, PropertyWhereInput>
     RoomImages?: RoomImagesListRelationFilter
     Booking?: BookingListRelationFilter
     Review?: ReviewListRelationFilter
     Unavailable?: UnavailableListRelationFilter
+    seasonal_prices?: Seasonal_pricesListRelationFilter
   }, "id">
 
   export type RoomTypesOrderByWithAggregationInput = {
@@ -15637,6 +17022,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    facilities?: SortOrder
     _count?: RoomTypesCountOrderByAggregateInput
     _avg?: RoomTypesAvgOrderByAggregateInput
     _max?: RoomTypesMaxOrderByAggregateInput
@@ -15661,6 +17047,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"RoomTypes"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"RoomTypes"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"RoomTypes"> | Date | string | null
+    facilities?: EnumRoomFacilityNullableListFilter<"RoomTypes">
   }
 
   export type RoomImagesWhereInput = {
@@ -15785,6 +17172,73 @@ export namespace Prisma {
     room_types_id?: IntWithAggregatesFilter<"Unavailable"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Unavailable"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Unavailable"> | Date | string
+  }
+
+  export type seasonal_pricesWhereInput = {
+    AND?: seasonal_pricesWhereInput | seasonal_pricesWhereInput[]
+    OR?: seasonal_pricesWhereInput[]
+    NOT?: seasonal_pricesWhereInput | seasonal_pricesWhereInput[]
+    id?: IntFilter<"seasonal_prices"> | number
+    price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    room_typesId?: IntFilter<"seasonal_prices"> | number
+    created_at?: DateTimeFilter<"seasonal_prices"> | Date | string
+    updated_at?: DateTimeFilter<"seasonal_prices"> | Date | string
+    room_type?: XOR<RoomTypesScalarRelationFilter, RoomTypesWhereInput>
+  }
+
+  export type seasonal_pricesOrderByWithRelationInput = {
+    id?: SortOrder
+    price?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    room_typesId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    room_type?: RoomTypesOrderByWithRelationInput
+  }
+
+  export type seasonal_pricesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: seasonal_pricesWhereInput | seasonal_pricesWhereInput[]
+    OR?: seasonal_pricesWhereInput[]
+    NOT?: seasonal_pricesWhereInput | seasonal_pricesWhereInput[]
+    price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    room_typesId?: IntFilter<"seasonal_prices"> | number
+    created_at?: DateTimeFilter<"seasonal_prices"> | Date | string
+    updated_at?: DateTimeFilter<"seasonal_prices"> | Date | string
+    room_type?: XOR<RoomTypesScalarRelationFilter, RoomTypesWhereInput>
+  }, "id">
+
+  export type seasonal_pricesOrderByWithAggregationInput = {
+    id?: SortOrder
+    price?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    room_typesId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: seasonal_pricesCountOrderByAggregateInput
+    _avg?: seasonal_pricesAvgOrderByAggregateInput
+    _max?: seasonal_pricesMaxOrderByAggregateInput
+    _min?: seasonal_pricesMinOrderByAggregateInput
+    _sum?: seasonal_pricesSumOrderByAggregateInput
+  }
+
+  export type seasonal_pricesScalarWhereWithAggregatesInput = {
+    AND?: seasonal_pricesScalarWhereWithAggregatesInput | seasonal_pricesScalarWhereWithAggregatesInput[]
+    OR?: seasonal_pricesScalarWhereWithAggregatesInput[]
+    NOT?: seasonal_pricesScalarWhereWithAggregatesInput | seasonal_pricesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"seasonal_prices"> | number
+    price?: DecimalWithAggregatesFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
+    end_date?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
+    room_typesId?: IntWithAggregatesFilter<"seasonal_prices"> | number
+    created_at?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
   }
 
   export type BookingWhereInput = {
@@ -16321,6 +17775,7 @@ export namespace Prisma {
     terms_condition?: string | null
     click_rate?: number | null
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
     PropertyImages?: PropertyImagesCreateNestedManyWithoutPropertyInput
     tenant: TenantCreateNestedOneWithoutPropertyInput
@@ -16337,6 +17792,7 @@ export namespace Prisma {
     location_id: number
     tenantId: string
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedCreateNestedManyWithoutPropertyInput
     RoomTypes?: RoomTypesUncheckedCreateNestedManyWithoutPropertyInput
   }
@@ -16348,6 +17804,7 @@ export namespace Prisma {
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
     PropertyImages?: PropertyImagesUpdateManyWithoutPropertyNestedInput
     tenant?: TenantUpdateOneRequiredWithoutPropertyNestedInput
@@ -16364,6 +17821,7 @@ export namespace Prisma {
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedUpdateManyWithoutPropertyNestedInput
     RoomTypes?: RoomTypesUncheckedUpdateManyWithoutPropertyNestedInput
   }
@@ -16378,6 +17836,7 @@ export namespace Prisma {
     location_id: number
     tenantId: string
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type PropertyUpdateManyMutationInput = {
@@ -16387,6 +17846,7 @@ export namespace Prisma {
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type PropertyUncheckedUpdateManyInput = {
@@ -16399,6 +17859,7 @@ export namespace Prisma {
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type PropertyImagesCreateInput = {
@@ -16472,11 +17933,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     property: PropertyCreateNestedOneWithoutRoomTypesInput
     RoomImages?: RoomImagesCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUncheckedCreateInput = {
@@ -16493,10 +17956,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingUncheckedCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewUncheckedCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableUncheckedCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUpdateInput = {
@@ -16511,11 +17976,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     property?: PropertyUpdateOneRequiredWithoutRoomTypesNestedInput
     RoomImages?: RoomImagesUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateInput = {
@@ -16532,10 +17999,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUncheckedUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUncheckedUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUncheckedUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesCreateManyInput = {
@@ -16552,6 +18021,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
   }
 
   export type RoomTypesUpdateManyMutationInput = {
@@ -16566,6 +18036,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
   }
 
   export type RoomTypesUncheckedUpdateManyInput = {
@@ -16582,6 +18053,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
   }
 
   export type RoomImagesCreateInput = {
@@ -16700,6 +18172,72 @@ export namespace Prisma {
     room_types_id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type seasonal_pricesCreateInput = {
+    price: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+    room_type: RoomTypesCreateNestedOneWithoutSeasonal_pricesInput
+  }
+
+  export type seasonal_pricesUncheckedCreateInput = {
+    id?: number
+    price: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date: Date | string
+    room_typesId: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type seasonal_pricesUpdateInput = {
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    room_type?: RoomTypesUpdateOneRequiredWithoutSeasonal_pricesNestedInput
+  }
+
+  export type seasonal_pricesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    room_typesId?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type seasonal_pricesCreateManyInput = {
+    id?: number
+    price: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date: Date | string
+    room_typesId: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type seasonal_pricesUpdateManyMutationInput = {
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type seasonal_pricesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    room_typesId?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookingCreateInput = {
@@ -17307,6 +18845,14 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type EnumPropertyFacilityNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.PropertyFacility[] | ListEnumPropertyFacilityFieldRefInput<$PrismaModel> | null
+    has?: $Enums.PropertyFacility | EnumPropertyFacilityFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.PropertyFacility[] | ListEnumPropertyFacilityFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.PropertyFacility[] | ListEnumPropertyFacilityFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type LocationScalarRelationFilter = {
     is?: LocationWhereInput
     isNot?: LocationWhereInput
@@ -17347,6 +18893,7 @@ export namespace Prisma {
     location_id?: SortOrder
     tenantId?: SortOrder
     isAvailable?: SortOrder
+    facilities?: SortOrder
   }
 
   export type PropertyAvgOrderByAggregateInput = {
@@ -17443,6 +18990,14 @@ export namespace Prisma {
     property_id?: SortOrder
   }
 
+  export type EnumRoomFacilityNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.RoomFacility[] | ListEnumRoomFacilityFieldRefInput<$PrismaModel> | null
+    has?: $Enums.RoomFacility | EnumRoomFacilityFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.RoomFacility[] | ListEnumRoomFacilityFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.RoomFacility[] | ListEnumRoomFacilityFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type RoomImagesListRelationFilter = {
     every?: RoomImagesWhereInput
     some?: RoomImagesWhereInput
@@ -17455,11 +19010,21 @@ export namespace Prisma {
     none?: UnavailableWhereInput
   }
 
+  export type Seasonal_pricesListRelationFilter = {
+    every?: seasonal_pricesWhereInput
+    some?: seasonal_pricesWhereInput
+    none?: seasonal_pricesWhereInput
+  }
+
   export type RoomImagesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type UnavailableOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type seasonal_pricesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17477,6 +19042,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    facilities?: SortOrder
   }
 
   export type RoomTypesAvgOrderByAggregateInput = {
@@ -17608,6 +19174,75 @@ export namespace Prisma {
   export type UnavailableSumOrderByAggregateInput = {
     id?: SortOrder
     room_types_id?: SortOrder
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type seasonal_pricesCountOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    room_typesId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type seasonal_pricesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    room_typesId?: SortOrder
+  }
+
+  export type seasonal_pricesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    room_typesId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type seasonal_pricesMinOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    room_typesId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type seasonal_pricesSumOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    room_typesId?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
   export type JsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -18089,6 +19724,10 @@ export namespace Prisma {
     deleteMany?: PropertyScalarWhereInput | PropertyScalarWhereInput[]
   }
 
+  export type PropertyCreatefacilitiesInput = {
+    set: $Enums.PropertyFacility[]
+  }
+
   export type LocationCreateNestedOneWithoutPropertyInput = {
     create?: XOR<LocationCreateWithoutPropertyInput, LocationUncheckedCreateWithoutPropertyInput>
     connectOrCreate?: LocationCreateOrConnectWithoutPropertyInput
@@ -18135,6 +19774,11 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type PropertyUpdatefacilitiesInput = {
+    set?: $Enums.PropertyFacility[]
+    push?: $Enums.PropertyFacility | $Enums.PropertyFacility[]
   }
 
   export type LocationUpdateOneRequiredWithoutPropertyNestedInput = {
@@ -18223,6 +19867,10 @@ export namespace Prisma {
     update?: XOR<XOR<PropertyUpdateToOneWithWhereWithoutPropertyImagesInput, PropertyUpdateWithoutPropertyImagesInput>, PropertyUncheckedUpdateWithoutPropertyImagesInput>
   }
 
+  export type RoomTypesCreatefacilitiesInput = {
+    set: $Enums.RoomFacility[]
+  }
+
   export type PropertyCreateNestedOneWithoutRoomTypesInput = {
     create?: XOR<PropertyCreateWithoutRoomTypesInput, PropertyUncheckedCreateWithoutRoomTypesInput>
     connectOrCreate?: PropertyCreateOrConnectWithoutRoomTypesInput
@@ -18257,6 +19905,13 @@ export namespace Prisma {
     connect?: UnavailableWhereUniqueInput | UnavailableWhereUniqueInput[]
   }
 
+  export type seasonal_pricesCreateNestedManyWithoutRoom_typeInput = {
+    create?: XOR<seasonal_pricesCreateWithoutRoom_typeInput, seasonal_pricesUncheckedCreateWithoutRoom_typeInput> | seasonal_pricesCreateWithoutRoom_typeInput[] | seasonal_pricesUncheckedCreateWithoutRoom_typeInput[]
+    connectOrCreate?: seasonal_pricesCreateOrConnectWithoutRoom_typeInput | seasonal_pricesCreateOrConnectWithoutRoom_typeInput[]
+    createMany?: seasonal_pricesCreateManyRoom_typeInputEnvelope
+    connect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+  }
+
   export type RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput = {
     create?: XOR<RoomImagesCreateWithoutRoom_typesInput, RoomImagesUncheckedCreateWithoutRoom_typesInput> | RoomImagesCreateWithoutRoom_typesInput[] | RoomImagesUncheckedCreateWithoutRoom_typesInput[]
     connectOrCreate?: RoomImagesCreateOrConnectWithoutRoom_typesInput | RoomImagesCreateOrConnectWithoutRoom_typesInput[]
@@ -18283,6 +19938,18 @@ export namespace Prisma {
     connectOrCreate?: UnavailableCreateOrConnectWithoutRoom_typesInput | UnavailableCreateOrConnectWithoutRoom_typesInput[]
     createMany?: UnavailableCreateManyRoom_typesInputEnvelope
     connect?: UnavailableWhereUniqueInput | UnavailableWhereUniqueInput[]
+  }
+
+  export type seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput = {
+    create?: XOR<seasonal_pricesCreateWithoutRoom_typeInput, seasonal_pricesUncheckedCreateWithoutRoom_typeInput> | seasonal_pricesCreateWithoutRoom_typeInput[] | seasonal_pricesUncheckedCreateWithoutRoom_typeInput[]
+    connectOrCreate?: seasonal_pricesCreateOrConnectWithoutRoom_typeInput | seasonal_pricesCreateOrConnectWithoutRoom_typeInput[]
+    createMany?: seasonal_pricesCreateManyRoom_typeInputEnvelope
+    connect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+  }
+
+  export type RoomTypesUpdatefacilitiesInput = {
+    set?: $Enums.RoomFacility[]
+    push?: $Enums.RoomFacility | $Enums.RoomFacility[]
   }
 
   export type PropertyUpdateOneRequiredWithoutRoomTypesNestedInput = {
@@ -18349,6 +20016,20 @@ export namespace Prisma {
     deleteMany?: UnavailableScalarWhereInput | UnavailableScalarWhereInput[]
   }
 
+  export type seasonal_pricesUpdateManyWithoutRoom_typeNestedInput = {
+    create?: XOR<seasonal_pricesCreateWithoutRoom_typeInput, seasonal_pricesUncheckedCreateWithoutRoom_typeInput> | seasonal_pricesCreateWithoutRoom_typeInput[] | seasonal_pricesUncheckedCreateWithoutRoom_typeInput[]
+    connectOrCreate?: seasonal_pricesCreateOrConnectWithoutRoom_typeInput | seasonal_pricesCreateOrConnectWithoutRoom_typeInput[]
+    upsert?: seasonal_pricesUpsertWithWhereUniqueWithoutRoom_typeInput | seasonal_pricesUpsertWithWhereUniqueWithoutRoom_typeInput[]
+    createMany?: seasonal_pricesCreateManyRoom_typeInputEnvelope
+    set?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    disconnect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    delete?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    connect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    update?: seasonal_pricesUpdateWithWhereUniqueWithoutRoom_typeInput | seasonal_pricesUpdateWithWhereUniqueWithoutRoom_typeInput[]
+    updateMany?: seasonal_pricesUpdateManyWithWhereWithoutRoom_typeInput | seasonal_pricesUpdateManyWithWhereWithoutRoom_typeInput[]
+    deleteMany?: seasonal_pricesScalarWhereInput | seasonal_pricesScalarWhereInput[]
+  }
+
   export type RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput = {
     create?: XOR<RoomImagesCreateWithoutRoom_typesInput, RoomImagesUncheckedCreateWithoutRoom_typesInput> | RoomImagesCreateWithoutRoom_typesInput[] | RoomImagesUncheckedCreateWithoutRoom_typesInput[]
     connectOrCreate?: RoomImagesCreateOrConnectWithoutRoom_typesInput | RoomImagesCreateOrConnectWithoutRoom_typesInput[]
@@ -18405,6 +20086,20 @@ export namespace Prisma {
     deleteMany?: UnavailableScalarWhereInput | UnavailableScalarWhereInput[]
   }
 
+  export type seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput = {
+    create?: XOR<seasonal_pricesCreateWithoutRoom_typeInput, seasonal_pricesUncheckedCreateWithoutRoom_typeInput> | seasonal_pricesCreateWithoutRoom_typeInput[] | seasonal_pricesUncheckedCreateWithoutRoom_typeInput[]
+    connectOrCreate?: seasonal_pricesCreateOrConnectWithoutRoom_typeInput | seasonal_pricesCreateOrConnectWithoutRoom_typeInput[]
+    upsert?: seasonal_pricesUpsertWithWhereUniqueWithoutRoom_typeInput | seasonal_pricesUpsertWithWhereUniqueWithoutRoom_typeInput[]
+    createMany?: seasonal_pricesCreateManyRoom_typeInputEnvelope
+    set?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    disconnect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    delete?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    connect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+    update?: seasonal_pricesUpdateWithWhereUniqueWithoutRoom_typeInput | seasonal_pricesUpdateWithWhereUniqueWithoutRoom_typeInput[]
+    updateMany?: seasonal_pricesUpdateManyWithWhereWithoutRoom_typeInput | seasonal_pricesUpdateManyWithWhereWithoutRoom_typeInput[]
+    deleteMany?: seasonal_pricesScalarWhereInput | seasonal_pricesScalarWhereInput[]
+  }
+
   export type RoomTypesCreateNestedOneWithoutRoomImagesInput = {
     create?: XOR<RoomTypesCreateWithoutRoomImagesInput, RoomTypesUncheckedCreateWithoutRoomImagesInput>
     connectOrCreate?: RoomTypesCreateOrConnectWithoutRoomImagesInput
@@ -18431,6 +20126,28 @@ export namespace Prisma {
     upsert?: RoomTypesUpsertWithoutUnavailableInput
     connect?: RoomTypesWhereUniqueInput
     update?: XOR<XOR<RoomTypesUpdateToOneWithWhereWithoutUnavailableInput, RoomTypesUpdateWithoutUnavailableInput>, RoomTypesUncheckedUpdateWithoutUnavailableInput>
+  }
+
+  export type RoomTypesCreateNestedOneWithoutSeasonal_pricesInput = {
+    create?: XOR<RoomTypesCreateWithoutSeasonal_pricesInput, RoomTypesUncheckedCreateWithoutSeasonal_pricesInput>
+    connectOrCreate?: RoomTypesCreateOrConnectWithoutSeasonal_pricesInput
+    connect?: RoomTypesWhereUniqueInput
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type RoomTypesUpdateOneRequiredWithoutSeasonal_pricesNestedInput = {
+    create?: XOR<RoomTypesCreateWithoutSeasonal_pricesInput, RoomTypesUncheckedCreateWithoutSeasonal_pricesInput>
+    connectOrCreate?: RoomTypesCreateOrConnectWithoutSeasonal_pricesInput
+    upsert?: RoomTypesUpsertWithoutSeasonal_pricesInput
+    connect?: RoomTypesWhereUniqueInput
+    update?: XOR<XOR<RoomTypesUpdateToOneWithWhereWithoutSeasonal_pricesInput, RoomTypesUpdateWithoutSeasonal_pricesInput>, RoomTypesUncheckedUpdateWithoutSeasonal_pricesInput>
   }
 
   export type UserCreateNestedOneWithoutBookingInput = {
@@ -18840,6 +20557,33 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type NestedEnumPaymentMethodNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentMethod | EnumPaymentMethodFieldRefInput<$PrismaModel> | null
     in?: $Enums.PaymentMethod[] | ListEnumPaymentMethodFieldRefInput<$PrismaModel> | null
@@ -19044,6 +20788,7 @@ export namespace Prisma {
     terms_condition?: string | null
     click_rate?: number | null
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
     PropertyImages?: PropertyImagesCreateNestedManyWithoutPropertyInput
     RoomTypes?: RoomTypesCreateNestedManyWithoutPropertyInput
@@ -19058,6 +20803,7 @@ export namespace Prisma {
     click_rate?: number | null
     location_id: number
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedCreateNestedManyWithoutPropertyInput
     RoomTypes?: RoomTypesUncheckedCreateNestedManyWithoutPropertyInput
   }
@@ -19122,6 +20868,7 @@ export namespace Prisma {
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
     isAvailable?: BoolFilter<"Property"> | boolean
+    facilities?: EnumPropertyFacilityNullableListFilter<"Property">
   }
 
   export type ReviewRepliesUpsertWithWhereUniqueWithoutTenantInput = {
@@ -19157,6 +20904,7 @@ export namespace Prisma {
     terms_condition?: string | null
     click_rate?: number | null
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesCreateNestedManyWithoutPropertyInput
     tenant: TenantCreateNestedOneWithoutPropertyInput
     RoomTypes?: RoomTypesCreateNestedManyWithoutPropertyInput
@@ -19171,6 +20919,7 @@ export namespace Prisma {
     click_rate?: number | null
     tenantId: string
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedCreateNestedManyWithoutPropertyInput
     RoomTypes?: RoomTypesUncheckedCreateNestedManyWithoutPropertyInput
   }
@@ -19297,10 +21046,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUncheckedCreateWithoutPropertyInput = {
@@ -19316,10 +21067,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingUncheckedCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewUncheckedCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableUncheckedCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesCreateOrConnectWithoutPropertyInput = {
@@ -19464,6 +21217,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RoomTypes"> | Date | string
     updatedAt?: DateTimeFilter<"RoomTypes"> | Date | string
     deletedAt?: DateTimeNullableFilter<"RoomTypes"> | Date | string | null
+    facilities?: EnumRoomFacilityNullableListFilter<"RoomTypes">
   }
 
   export type PropertyCreateWithoutPropertyImagesInput = {
@@ -19473,6 +21227,7 @@ export namespace Prisma {
     terms_condition?: string | null
     click_rate?: number | null
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
     tenant: TenantCreateNestedOneWithoutPropertyInput
     RoomTypes?: RoomTypesCreateNestedManyWithoutPropertyInput
@@ -19488,6 +21243,7 @@ export namespace Prisma {
     location_id: number
     tenantId: string
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     RoomTypes?: RoomTypesUncheckedCreateNestedManyWithoutPropertyInput
   }
 
@@ -19514,6 +21270,7 @@ export namespace Prisma {
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
     tenant?: TenantUpdateOneRequiredWithoutPropertyNestedInput
     RoomTypes?: RoomTypesUpdateManyWithoutPropertyNestedInput
@@ -19529,6 +21286,7 @@ export namespace Prisma {
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     RoomTypes?: RoomTypesUncheckedUpdateManyWithoutPropertyNestedInput
   }
 
@@ -19539,6 +21297,7 @@ export namespace Prisma {
     terms_condition?: string | null
     click_rate?: number | null
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
     PropertyImages?: PropertyImagesCreateNestedManyWithoutPropertyInput
     tenant: TenantCreateNestedOneWithoutPropertyInput
@@ -19554,6 +21313,7 @@ export namespace Prisma {
     location_id: number
     tenantId: string
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedCreateNestedManyWithoutPropertyInput
   }
 
@@ -19687,6 +21447,33 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type seasonal_pricesCreateWithoutRoom_typeInput = {
+    price: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type seasonal_pricesUncheckedCreateWithoutRoom_typeInput = {
+    id?: number
+    price: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type seasonal_pricesCreateOrConnectWithoutRoom_typeInput = {
+    where: seasonal_pricesWhereUniqueInput
+    create: XOR<seasonal_pricesCreateWithoutRoom_typeInput, seasonal_pricesUncheckedCreateWithoutRoom_typeInput>
+  }
+
+  export type seasonal_pricesCreateManyRoom_typeInputEnvelope = {
+    data: seasonal_pricesCreateManyRoom_typeInput | seasonal_pricesCreateManyRoom_typeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PropertyUpsertWithoutRoomTypesInput = {
     update: XOR<PropertyUpdateWithoutRoomTypesInput, PropertyUncheckedUpdateWithoutRoomTypesInput>
     create: XOR<PropertyCreateWithoutRoomTypesInput, PropertyUncheckedCreateWithoutRoomTypesInput>
@@ -19705,6 +21492,7 @@ export namespace Prisma {
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
     PropertyImages?: PropertyImagesUpdateManyWithoutPropertyNestedInput
     tenant?: TenantUpdateOneRequiredWithoutPropertyNestedInput
@@ -19720,6 +21508,7 @@ export namespace Prisma {
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedUpdateManyWithoutPropertyNestedInput
   }
 
@@ -19811,6 +21600,35 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Unavailable"> | Date | string
   }
 
+  export type seasonal_pricesUpsertWithWhereUniqueWithoutRoom_typeInput = {
+    where: seasonal_pricesWhereUniqueInput
+    update: XOR<seasonal_pricesUpdateWithoutRoom_typeInput, seasonal_pricesUncheckedUpdateWithoutRoom_typeInput>
+    create: XOR<seasonal_pricesCreateWithoutRoom_typeInput, seasonal_pricesUncheckedCreateWithoutRoom_typeInput>
+  }
+
+  export type seasonal_pricesUpdateWithWhereUniqueWithoutRoom_typeInput = {
+    where: seasonal_pricesWhereUniqueInput
+    data: XOR<seasonal_pricesUpdateWithoutRoom_typeInput, seasonal_pricesUncheckedUpdateWithoutRoom_typeInput>
+  }
+
+  export type seasonal_pricesUpdateManyWithWhereWithoutRoom_typeInput = {
+    where: seasonal_pricesScalarWhereInput
+    data: XOR<seasonal_pricesUpdateManyMutationInput, seasonal_pricesUncheckedUpdateManyWithoutRoom_typeInput>
+  }
+
+  export type seasonal_pricesScalarWhereInput = {
+    AND?: seasonal_pricesScalarWhereInput | seasonal_pricesScalarWhereInput[]
+    OR?: seasonal_pricesScalarWhereInput[]
+    NOT?: seasonal_pricesScalarWhereInput | seasonal_pricesScalarWhereInput[]
+    id?: IntFilter<"seasonal_prices"> | number
+    price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    room_typesId?: IntFilter<"seasonal_prices"> | number
+    created_at?: DateTimeFilter<"seasonal_prices"> | Date | string
+    updated_at?: DateTimeFilter<"seasonal_prices"> | Date | string
+  }
+
   export type RoomTypesCreateWithoutRoomImagesInput = {
     name: string
     stock: number
@@ -19823,10 +21641,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     property: PropertyCreateNestedOneWithoutRoomTypesInput
     Booking?: BookingCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUncheckedCreateWithoutRoomImagesInput = {
@@ -19843,9 +21663,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     Booking?: BookingUncheckedCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewUncheckedCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableUncheckedCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesCreateOrConnectWithoutRoomImagesInput = {
@@ -19876,10 +21698,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     property?: PropertyUpdateOneRequiredWithoutRoomTypesNestedInput
     Booking?: BookingUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateWithoutRoomImagesInput = {
@@ -19896,9 +21720,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     Booking?: BookingUncheckedUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUncheckedUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUncheckedUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesCreateWithoutUnavailableInput = {
@@ -19913,10 +21739,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     property: PropertyCreateNestedOneWithoutRoomTypesInput
     RoomImages?: RoomImagesCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUncheckedCreateWithoutUnavailableInput = {
@@ -19933,9 +21761,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingUncheckedCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewUncheckedCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesCreateOrConnectWithoutUnavailableInput = {
@@ -19966,10 +21796,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     property?: PropertyUpdateOneRequiredWithoutRoomTypesNestedInput
     RoomImages?: RoomImagesUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateWithoutUnavailableInput = {
@@ -19986,9 +21818,109 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUncheckedUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUncheckedUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput
+  }
+
+  export type RoomTypesCreateWithoutSeasonal_pricesInput = {
+    name: string
+    stock: number
+    capacity: number
+    bed_details?: string | null
+    price: number
+    has_breakfast?: boolean
+    breakfast_price: number
+    avg_rating?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
+    property: PropertyCreateNestedOneWithoutRoomTypesInput
+    RoomImages?: RoomImagesCreateNestedManyWithoutRoom_typesInput
+    Booking?: BookingCreateNestedManyWithoutRoom_typesInput
+    Review?: ReviewCreateNestedManyWithoutRoom_typesInput
+    Unavailable?: UnavailableCreateNestedManyWithoutRoom_typesInput
+  }
+
+  export type RoomTypesUncheckedCreateWithoutSeasonal_pricesInput = {
+    id?: number
+    name: string
+    stock: number
+    capacity: number
+    bed_details?: string | null
+    price: number
+    has_breakfast?: boolean
+    breakfast_price: number
+    avg_rating?: number | null
+    property_id: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
+    RoomImages?: RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput
+    Booking?: BookingUncheckedCreateNestedManyWithoutRoom_typesInput
+    Review?: ReviewUncheckedCreateNestedManyWithoutRoom_typesInput
+    Unavailable?: UnavailableUncheckedCreateNestedManyWithoutRoom_typesInput
+  }
+
+  export type RoomTypesCreateOrConnectWithoutSeasonal_pricesInput = {
+    where: RoomTypesWhereUniqueInput
+    create: XOR<RoomTypesCreateWithoutSeasonal_pricesInput, RoomTypesUncheckedCreateWithoutSeasonal_pricesInput>
+  }
+
+  export type RoomTypesUpsertWithoutSeasonal_pricesInput = {
+    update: XOR<RoomTypesUpdateWithoutSeasonal_pricesInput, RoomTypesUncheckedUpdateWithoutSeasonal_pricesInput>
+    create: XOR<RoomTypesCreateWithoutSeasonal_pricesInput, RoomTypesUncheckedCreateWithoutSeasonal_pricesInput>
+    where?: RoomTypesWhereInput
+  }
+
+  export type RoomTypesUpdateToOneWithWhereWithoutSeasonal_pricesInput = {
+    where?: RoomTypesWhereInput
+    data: XOR<RoomTypesUpdateWithoutSeasonal_pricesInput, RoomTypesUncheckedUpdateWithoutSeasonal_pricesInput>
+  }
+
+  export type RoomTypesUpdateWithoutSeasonal_pricesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    bed_details?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: IntFieldUpdateOperationsInput | number
+    has_breakfast?: BoolFieldUpdateOperationsInput | boolean
+    breakfast_price?: IntFieldUpdateOperationsInput | number
+    avg_rating?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
+    property?: PropertyUpdateOneRequiredWithoutRoomTypesNestedInput
+    RoomImages?: RoomImagesUpdateManyWithoutRoom_typesNestedInput
+    Booking?: BookingUpdateManyWithoutRoom_typesNestedInput
+    Review?: ReviewUpdateManyWithoutRoom_typesNestedInput
+    Unavailable?: UnavailableUpdateManyWithoutRoom_typesNestedInput
+  }
+
+  export type RoomTypesUncheckedUpdateWithoutSeasonal_pricesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    bed_details?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: IntFieldUpdateOperationsInput | number
+    has_breakfast?: BoolFieldUpdateOperationsInput | boolean
+    breakfast_price?: IntFieldUpdateOperationsInput | number
+    avg_rating?: NullableIntFieldUpdateOperationsInput | number | null
+    property_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
+    RoomImages?: RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput
+    Booking?: BookingUncheckedUpdateManyWithoutRoom_typesNestedInput
+    Review?: ReviewUncheckedUpdateManyWithoutRoom_typesNestedInput
+    Unavailable?: UnavailableUncheckedUpdateManyWithoutRoom_typesNestedInput
   }
 
   export type UserCreateWithoutBookingInput = {
@@ -20038,10 +21970,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     property: PropertyCreateNestedOneWithoutRoomTypesInput
     RoomImages?: RoomImagesCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUncheckedCreateWithoutBookingInput = {
@@ -20058,9 +21992,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput
     Review?: ReviewUncheckedCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableUncheckedCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesCreateOrConnectWithoutBookingInput = {
@@ -20165,10 +22101,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     property?: PropertyUpdateOneRequiredWithoutRoomTypesNestedInput
     RoomImages?: RoomImagesUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateWithoutBookingInput = {
@@ -20185,9 +22123,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUncheckedUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUncheckedUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutBookingInput = {
@@ -20253,10 +22193,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     property: PropertyCreateNestedOneWithoutRoomTypesInput
     RoomImages?: RoomImagesCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesUncheckedCreateWithoutReviewInput = {
@@ -20273,9 +22215,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedCreateNestedManyWithoutRoom_typesInput
     Booking?: BookingUncheckedCreateNestedManyWithoutRoom_typesInput
     Unavailable?: UnavailableUncheckedCreateNestedManyWithoutRoom_typesInput
+    seasonal_prices?: seasonal_pricesUncheckedCreateNestedManyWithoutRoom_typeInput
   }
 
   export type RoomTypesCreateOrConnectWithoutReviewInput = {
@@ -20405,10 +22349,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     property?: PropertyUpdateOneRequiredWithoutRoomTypesNestedInput
     RoomImages?: RoomImagesUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateWithoutReviewInput = {
@@ -20425,9 +22371,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUncheckedUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUncheckedUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type BookingUpsertWithoutReviewInput = {
@@ -20743,6 +22691,7 @@ export namespace Prisma {
     click_rate?: number | null
     location_id: number
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type ReviewRepliesCreateManyTenantInput = {
@@ -20758,6 +22707,7 @@ export namespace Prisma {
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
     PropertyImages?: PropertyImagesUpdateManyWithoutPropertyNestedInput
     RoomTypes?: RoomTypesUpdateManyWithoutPropertyNestedInput
@@ -20772,6 +22722,7 @@ export namespace Prisma {
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedUpdateManyWithoutPropertyNestedInput
     RoomTypes?: RoomTypesUncheckedUpdateManyWithoutPropertyNestedInput
   }
@@ -20785,6 +22736,7 @@ export namespace Prisma {
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     location_id?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type ReviewRepliesUpdateWithoutTenantInput = {
@@ -20813,6 +22765,7 @@ export namespace Prisma {
     click_rate?: number | null
     tenantId: string
     isAvailable?: boolean
+    facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type PropertyUpdateWithoutLocationInput = {
@@ -20822,6 +22775,7 @@ export namespace Prisma {
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUpdateManyWithoutPropertyNestedInput
     tenant?: TenantUpdateOneRequiredWithoutPropertyNestedInput
     RoomTypes?: RoomTypesUpdateManyWithoutPropertyNestedInput
@@ -20836,6 +22790,7 @@ export namespace Prisma {
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUncheckedUpdateManyWithoutPropertyNestedInput
     RoomTypes?: RoomTypesUncheckedUpdateManyWithoutPropertyNestedInput
   }
@@ -20849,6 +22804,7 @@ export namespace Prisma {
     click_rate?: NullableIntFieldUpdateOperationsInput | number | null
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
   }
 
   export type PropertyImagesCreateManyPropertyInput = {
@@ -20872,6 +22828,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    facilities?: RoomTypesCreatefacilitiesInput | $Enums.RoomFacility[]
   }
 
   export type PropertyImagesUpdateWithoutPropertyInput = {
@@ -20909,10 +22866,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateWithoutPropertyInput = {
@@ -20928,10 +22887,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
     RoomImages?: RoomImagesUncheckedUpdateManyWithoutRoom_typesNestedInput
     Booking?: BookingUncheckedUpdateManyWithoutRoom_typesNestedInput
     Review?: ReviewUncheckedUpdateManyWithoutRoom_typesNestedInput
     Unavailable?: UnavailableUncheckedUpdateManyWithoutRoom_typesNestedInput
+    seasonal_prices?: seasonal_pricesUncheckedUpdateManyWithoutRoom_typeNestedInput
   }
 
   export type RoomTypesUncheckedUpdateManyWithoutPropertyInput = {
@@ -20947,6 +22908,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    facilities?: RoomTypesUpdatefacilitiesInput | $Enums.RoomFacility[]
   }
 
   export type RoomImagesCreateManyRoom_typesInput = {
@@ -20989,6 +22951,15 @@ export namespace Prisma {
     end_date: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type seasonal_pricesCreateManyRoom_typeInput = {
+    id?: number
+    price: Decimal | DecimalJsLike | number | string
+    start_date: Date | string
+    end_date: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type RoomImagesUpdateWithoutRoom_typesInput = {
@@ -21116,6 +23087,32 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type seasonal_pricesUpdateWithoutRoom_typeInput = {
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type seasonal_pricesUncheckedUpdateWithoutRoom_typeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type seasonal_pricesUncheckedUpdateManyWithoutRoom_typeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewCreateManyBookingInput = {
