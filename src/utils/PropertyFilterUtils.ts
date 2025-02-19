@@ -1,0 +1,123 @@
+export function buildPropertyFilter(params: {
+  searchWhere?: string;
+  propertyName?: string;
+  categoryFilter?: string;
+  locationQuery?: string;
+  propertyFacilities?: string[] | null;
+}) {
+  const filter: any = {};
+  if (params.searchWhere)
+    filter.OR = [
+      { name: { contains: params.searchWhere, mode: "insensitive" } },
+      {
+        location: {
+          city: { contains: params.searchWhere, mode: "insensitive" },
+        },
+      },
+    ];
+  if (params.propertyName) {
+    filter.AND = filter.AND || [];
+    filter.AND.push({
+      name: { contains: params.propertyName, mode: "insensitive" },
+    });
+  }
+  if (params.categoryFilter)
+    filter.category = { equals: params.categoryFilter, mode: "insensitive" };
+  if (params.locationQuery)
+    filter.location = {
+      city: { contains: params.locationQuery, mode: "insensitive" },
+    };
+  if (params.propertyFacilities && params.propertyFacilities.length > 0)
+    filter.facilities = { hasSome: params.propertyFacilities };
+  return filter;
+}
+
+export function buildRoomTypeFilter(params: {
+  guestCount: number | null;
+  roomFacilities: string[] | null;
+  checkIn?: string;
+  checkOut?: string;
+  minPrice: number | null;
+  maxPrice: number | null;
+}) {
+  const filter: any = {};
+  if (params.guestCount) filter.capacity = { gte: params.guestCount };
+  if (params.roomFacilities?.length)
+    filter.facilities = { hasSome: params.roomFacilities };
+  if (params.checkIn) {
+    const ci = new Date(params.checkIn);
+    filter.Unavailable = {
+      none: {
+        AND: [
+          {
+            start_date: {
+              lte: params.checkOut ? new Date(params.checkOut) : ci,
+            },
+          },
+          { end_date: { gte: ci } },
+        ],
+      },
+    };
+  }
+  if (params.minPrice || params.maxPrice) {
+    if (params.checkIn) {
+      const ci = new Date(params.checkIn),
+        cond = [];
+      if (params.minPrice)
+        cond.push({
+          OR: [
+            {
+              seasonal_prices: {
+                none: {
+                  AND: [{ start_date: { lte: ci } }, { end_date: { gte: ci } }],
+                },
+              },
+              price: { gte: params.minPrice },
+            },
+            {
+              seasonal_prices: {
+                some: {
+                  AND: [
+                    { start_date: { lte: ci } },
+                    { end_date: { gte: ci } },
+                    { price: { gte: params.minPrice } },
+                  ],
+                },
+              },
+            },
+          ],
+        });
+      if (params.maxPrice)
+        cond.push({
+          OR: [
+            {
+              seasonal_prices: {
+                none: {
+                  AND: [{ start_date: { lte: ci } }, { end_date: { gte: ci } }],
+                },
+              },
+              price: { lte: params.maxPrice },
+            },
+            {
+              seasonal_prices: {
+                some: {
+                  AND: [
+                    { start_date: { lte: ci } },
+                    { end_date: { gte: ci } },
+                    { price: { lte: params.maxPrice } },
+                  ],
+                },
+              },
+            },
+          ],
+        });
+      filter.AND = cond;
+    } else {
+      if (params.minPrice)
+        filter.price = { ...(filter.price || {}), gte: params.minPrice };
+      if (params.maxPrice)
+        filter.price = { ...(filter.price || {}), lte: params.maxPrice };
+    }
+  }
+  return filter;
+}

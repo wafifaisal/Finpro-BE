@@ -6,6 +6,7 @@ import { AuthRouter } from "./router/userAuth.router";
 import { PropertyRouter } from "./router/property.router";
 import { UserRouter } from "./router/user.router";
 import { CreateRouter } from "./router/create.router";
+import { TenantRouter } from "./router/tenant.router";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
@@ -25,12 +26,14 @@ const authRouter = new AuthRouter();
 const userRouter = new UserRouter();
 const propertyRouter = new PropertyRouter();
 const createRouter = new CreateRouter();
+const tenantRouter = new TenantRouter();
 
 //register routers
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
 app.use("/api/property", propertyRouter.getRouter());
 app.use("/api/create", createRouter.getRouter());
+app.use("/api/tenant", tenantRouter.getRouter());
 
 //base router
 app.get("/api", (req: Request, res: Response) => {
