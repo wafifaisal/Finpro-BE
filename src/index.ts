@@ -6,13 +6,10 @@ import { AuthRouter } from "./router/userAuth.router";
 import { PropertyRouter } from "./router/property.router";
 import { UserRouter } from "./router/user.router";
 import { CreateRouter } from "./router/create.router";
-<<<<<<< HEAD
 import { ReviewRouter } from "./router/review.router";
 import { ReviewReplyRouter } from "./router/reviewReply.router";
 import { UserBookingRouter } from "./router/userBooking.router";
-=======
 import { TenantRouter } from "./router/tenant.router";
->>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;

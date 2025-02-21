@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { compare, genSalt } from "bcrypt";
 import { verify } from "jsonwebtoken";
-import prisma from "../../../prisma";
+import prisma from "../../prisma";
 import {
   generateToken,
   googleClient,
   hashPassword,
   sendEmail,
-} from "../../../utils/AuthHelpers";
-import { findUser } from "../../../services/user.service";
+} from "../../utils/AuthHelpers";
+import { findUser } from "../../services/user.service";
 
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
 

@@ -1,10 +1,6 @@
 import { Request, Response } from "express";
-<<<<<<< HEAD:src/controller/property/property.controller.ts
 import prisma from "../../prisma";
-=======
-import prisma from "../../../prisma";
-import { buildPropertyResponse } from "../../../utils/PropertyResponseBuilder";
->>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc:src/controller/feature1/property/property.controller.ts
+import { buildPropertyResponse } from "../../utils/PropertyResponseBuilder";
 
 export class PropertyController {
   async getProperty(req: Request, res: Response): Promise<void> {

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import prisma from "../../../prisma";
-import { uploadImages } from "../../../services/ImageServices";
+import prisma from "../../prisma";
+import { uploadImages } from "../../services/ImageServices";
 import {
   parseLocation,
   parseLocationUpdate,
   parseFacilities,
-} from "../../../utils/ParseUtils";
+} from "../../utils/ParseUtils";
 
 export class CreatePropertyController {
   async createProperty(req: Request, res: Response): Promise<void> {
