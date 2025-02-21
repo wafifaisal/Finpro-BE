@@ -1,48 +1,65 @@
 import { Router } from "express";
+<<<<<<< HEAD
 import { AuthController } from "../controller/auth/auth.controller";
+=======
+import { AuthUserController } from "../controller/feature1/auth/authuser.controller";
+import { AuthTenantController } from "../controller/feature1/auth/authtenant.controller";
+import { SessionController } from "../controller/feature1/auth/session.controller";
+>>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc
 
 export class AuthRouter {
-  private authController: AuthController;
+  private authUserController: AuthUserController;
+  private authTenantController: AuthTenantController;
+  private sessionController: SessionController;
   private router: Router;
 
   constructor() {
-    this.authController = new AuthController();
+    this.authUserController = new AuthUserController();
+    this.authTenantController = new AuthTenantController();
+    this.sessionController = new SessionController();
     this.router = Router();
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {
-    this.router.post("/login", this.authController.loginUser);
-    this.router.post("/register", this.authController.registerUser);
-    this.router.post("/social-login", this.authController.socialLogin);
-    this.router.post("/forgotPassword", this.authController.forgotPasswordUser);
+  private initializeRoutes(): void {
+    // Endpoint untuk user
+    this.router.post("/login", this.authUserController.loginUser);
+    this.router.post("/register", this.authUserController.registerUser);
+    this.router.post("/social-login", this.authUserController.socialLogin);
+    this.router.post(
+      "/forgotPassword",
+      this.authUserController.forgotPasswordUser
+    );
     this.router.post(
       "/resetPassword/:token",
-      this.authController.resetPasswordUser
+      this.authUserController.resetPasswordUser
     );
-    this.router.patch("/verifyuser/:token", this.authController.verifyUser);
+    this.router.patch("/verifyuser/:token", this.authUserController.verifyUser);
 
-    this.router.get("/session", this.authController.getSession);
+    // Endpoint session (user & tenant)
+    this.router.get("/session", this.sessionController.getSession);
 
-    this.router.post("/tenant-register", this.authController.registerTenant);
-    this.router.post("/tenant-login", this.authController.loginTenant);
+    // Endpoint untuk tenant
+    this.router.post(
+      "/tenant-register",
+      this.authTenantController.registerTenant
+    );
+    this.router.post("/tenant-login", this.authTenantController.loginTenant);
     this.router.post(
       "/social-login-tenant",
-      this.authController.socialLoginTenant
+      this.authTenantController.socialLoginTenant
     );
-
     this.router.patch(
       "/verify-tenant/:token",
-      this.authController.verifyTenant
+      this.authTenantController.verifyTenant
     );
-
     this.router.post(
       "/tenant/forgot-password",
-      this.authController.forgotPasswordTenant
+      this.authTenantController.forgotPasswordTenant
     );
     this.router.post(
       "/tenant/reset-password/:token",
-      this.authController.resetPasswordTenant
+      this.authTenantController.resetPasswordTenant
     );
   }
 

@@ -114,7 +114,7 @@ model Property {
   location        Location           @relation(fields: [location_id], references: [id])
   category        String
   terms_condition String?
-  click_rate      Int?
+  click_rate      Int                @default(0)
   location_id     Int
   PropertyImages  PropertyImages[]
   tenant          Tenant             @relation(fields: [tenantId], references: [id])
@@ -178,14 +178,16 @@ model Unavailable {
 }
 
 model seasonal_prices {
-  id           Int       @id @default(autoincrement())
-  price        Decimal   @db.Decimal(11, 2)
-  start_date   DateTime
-  end_date     DateTime
-  room_type    RoomTypes @relation(fields: [room_typesId], references: [id])
-  room_typesId Int
-  created_at   DateTime  @default(now())
-  updated_at   DateTime  @updatedAt
+  id            Int       @id @default(autoincrement())
+  price         Decimal   @db.Decimal(11, 2)
+  start_date    DateTime
+  end_date      DateTime
+  apply_weekend Boolean   @default(false)
+  apply_holiday Boolean   @default(false)
+  room_type     RoomTypes @relation(fields: [room_typesId], references: [id])
+  room_typesId  Int
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
 }
 
 model Booking {

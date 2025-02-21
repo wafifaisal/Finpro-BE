@@ -1,153 +1,31 @@
 import { Request, Response } from "express";
+<<<<<<< HEAD:src/controller/property/property.controller.ts
 import prisma from "../../prisma";
+=======
+import prisma from "../../../prisma";
+import { buildPropertyResponse } from "../../../utils/PropertyResponseBuilder";
+>>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc:src/controller/feature1/property/property.controller.ts
 
 export class PropertyController {
-  async getProperty(req: Request, res: Response) {
+  async getProperty(req: Request, res: Response): Promise<void> {
     try {
-      // Default query parameters
-      const limit = parseInt(req.query.limit as string) || 8;
-      const page = parseInt(req.query.page as string) || 1;
-      const sortBy = (req.query.sortBy as string) || "name";
-      const sortOrder = (req.query.sortOrder as string) || "asc";
-      const nameFilter = req.query.name as string;
-      const categoryFilter = req.query.category as string;
-
-      const filter: any = {};
-
-      if (nameFilter) {
-        filter.name = {
-          contains: nameFilter,
-          mode: "insensitive",
-        };
-      }
-
-      if (categoryFilter) {
-        filter.category = {
-          equals: categoryFilter,
-          mode: "insensitive",
-        };
-      }
-
-      if (req.query.location) {
-        filter.location = {
-          city: {
-            contains: req.query.location,
-            mode: "insensitive",
-          },
-        };
-      }
-
-      const totalProperties = await prisma.property.count({
-        where: filter,
-      });
-      const totalPages = Math.ceil(totalProperties / limit);
-      const properties = await prisma.property.findMany({
-        where: filter,
-        take: limit,
-        skip: (page - 1) * limit,
-        orderBy: {
-          [sortBy]: sortOrder,
-        },
-        select: {
-          id: true,
-          name: true,
-          desc: true,
-          category: true,
-          terms_condition: true,
-          click_rate: true,
-          location: {
-            select: {
-              address: true,
-              city: true,
-              country: true,
-              latitude: true,
-              longitude: true,
-            },
-          },
-          PropertyImages: {
-            select: {
-              image_url: true,
-            },
-          },
-          RoomTypes: {
-            select: {
-              id: true,
-              name: true,
-              price: true,
-              avg_rating: true,
-              Unavailable: {
-                select: {
-                  start_date: true,
-                  end_date: true,
-                },
-              },
-              seasonal_prices: {
-                select: {
-                  id: true,
-                  price: true,
-                  start_date: true,
-                  end_date: true,
-                },
-              },
-              Booking: {
-                select: {
-                  id: true,
-                  start_date: true,
-                  end_date: true,
-                  total_price: true,
-                  status: true,
-                },
-              },
-              // Sertakan data review (ringkas)
-              Review: {
-                select: {
-                  id: true,
-                  rating: true,
-                  review: true,
-                  created_at: true,
-                },
-              },
-            },
-          },
-          tenant: {
-            select: {
-              name: true,
-              email: true,
-            },
-          },
-          isAvailable: true,
-        },
-      });
-
-      // Send response
-      res.status(200).send({
-        totalPages,
-        currentPage: page,
-        limit,
-        result: properties,
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        message: "Error retrieving properties",
-      });
+      const response = await buildPropertyResponse(req.query);
+      res.status(200).json(response);
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "Error retrieving properties" });
     }
   }
 
-  async GetPropertyById(req: Request, res: Response) {
+  async GetPropertyById(req: Request, res: Response): Promise<void> {
     try {
-      const { id } = req.params;
-      const propertyId = parseInt(id, 10);
-
-      if (isNaN(propertyId)) {
-        res
-          .status(400)
-          .json({ message: "Property ID harus berupa angka yang valid" });
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        res.status(400).json({ message: "Invalid property ID" });
         return;
       }
-
-      const property = await prisma.property.findUnique({
-        where: { id: propertyId },
+      const prop = await prisma.property.findUnique({
+        where: { id },
         include: {
           location: true,
           tenant: true,
@@ -163,14 +41,101 @@ export class PropertyController {
           },
         },
       });
-
-      if (!property) {
-        res.status(404).json({ message: "Property tidak ditemukan" });
+      if (!prop) {
+        res.status(404).json({ message: "Property not found" });
         return;
       }
-      res.status(200).json(property);
-    } catch (error) {
-      console.error("Error fetching property by ID:", error);
+      res.status(200).json(prop);
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  async getPropertySuggestions(req: Request, res: Response): Promise<void> {
+    try {
+      const name = req.query.name as string;
+      if (!name?.trim()) {
+        res.status(400).json({ suggestions: [] });
+        return;
+      }
+      const props = await prisma.property.findMany({
+        where: { name: { contains: name, mode: "insensitive" } },
+        select: { name: true },
+        take: 5,
+      });
+      res.status(200).json({ suggestions: props.map((p) => p.name) });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ suggestions: [] });
+    }
+  }
+
+  async getRoomTypeById(req: Request, res: Response): Promise<void> {
+    try {
+      const propertyId = parseInt(req.params.property_id, 10);
+      const roomTypeId = parseInt(req.params.roomtype_id, 10);
+      if (isNaN(propertyId) || isNaN(roomTypeId)) {
+        res.status(400).json({ message: "IDs must be valid numbers" });
+        return;
+      }
+      const rt = await prisma.roomTypes.findUnique({
+        where: { id: roomTypeId },
+        include: {
+          RoomImages: true,
+          Unavailable: true,
+          seasonal_prices: true,
+          Booking: true,
+          Review: true,
+        },
+      });
+      if (!rt) {
+        res.status(404).json({ message: "Room type not found" });
+        return;
+      }
+      if (rt.property_id !== propertyId) {
+        res
+          .status(400)
+          .json({ message: "Room type does not belong to given property" });
+        return;
+      }
+      const imagePreviews = rt.RoomImages.map((img) => img.image_url);
+      const unavailable = rt.Unavailable.map((u) => ({
+        id: u.id,
+        start_date: u.start_date,
+        end_date: u.end_date,
+      }));
+      res.status(200).json({ roomType: { ...rt, imagePreviews, unavailable } });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "Error retrieving room type" });
+    }
+  }
+
+  async incrementClickRate(req: Request, res: Response): Promise<void> {
+    const propertyId = parseInt(req.query.id as string, 10);
+    if (isNaN(propertyId)) {
+      res.status(400).json({ message: "Invalid property id" });
+      return;
+    }
+    try {
+      await prisma.property.update({
+        where: { id: propertyId },
+        data: { click_rate: { increment: 1 } },
+      });
+      res.status(200).json({ message: "Click rate incremented" });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  async getPropertyCount(req: Request, res: Response): Promise<void> {
+    try {
+      const count = await prisma.property.count();
+      res.status(200).json({ count });
+    } catch (e) {
+      console.error(e);
       res.status(500).json({ message: "Internal Server Error" });
     }
   }

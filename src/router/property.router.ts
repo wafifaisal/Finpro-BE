@@ -1,5 +1,10 @@
 import { Router } from "express";
+<<<<<<< HEAD
 import { PropertyController } from "../controller/property/property.controller";
+=======
+import { PropertyController } from "../controller/feature1/property/property.controller";
+import { verifyTokenTenant } from "../middleware/verify.tenant";
+>>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc
 
 export class PropertyRouter {
   private propertyController: PropertyController;
@@ -13,7 +18,22 @@ export class PropertyRouter {
 
   private initializeRoutes() {
     this.router.get("/", this.propertyController.getProperty);
+    this.router.get(
+      "/suggestions",
+      this.propertyController.getPropertySuggestions
+    );
+    this.router.get(
+      "/property-count",
+      this.propertyController.getPropertyCount
+    );
     this.router.get("/:id", this.propertyController.GetPropertyById);
+    this.router.get(
+      "/roomtypes/:property_id/:roomtype_id",
+      verifyTokenTenant,
+
+      this.propertyController.getRoomTypeById
+    );
+    this.router.post("/click", this.propertyController.incrementClickRate);
   }
   public getRouter(): Router {
     return this.router;

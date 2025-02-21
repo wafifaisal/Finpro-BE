@@ -5893,7 +5893,7 @@ export namespace Prisma {
     desc: string | null
     category: string
     terms_condition: string | null
-    click_rate: number | null
+    click_rate: number
     location_id: number
     tenantId: string
     isAvailable: boolean
@@ -6011,7 +6011,7 @@ export namespace Prisma {
       desc: string | null
       category: string
       terms_condition: string | null
-      click_rate: number | null
+      click_rate: number
       location_id: number
       tenantId: string
       isAvailable: boolean
@@ -11582,6 +11582,8 @@ export namespace Prisma {
     price: Decimal | null
     start_date: Date | null
     end_date: Date | null
+    apply_weekend: boolean | null
+    apply_holiday: boolean | null
     room_typesId: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -11592,6 +11594,8 @@ export namespace Prisma {
     price: Decimal | null
     start_date: Date | null
     end_date: Date | null
+    apply_weekend: boolean | null
+    apply_holiday: boolean | null
     room_typesId: number | null
     created_at: Date | null
     updated_at: Date | null
@@ -11602,6 +11606,8 @@ export namespace Prisma {
     price: number
     start_date: number
     end_date: number
+    apply_weekend: number
+    apply_holiday: number
     room_typesId: number
     created_at: number
     updated_at: number
@@ -11626,6 +11632,8 @@ export namespace Prisma {
     price?: true
     start_date?: true
     end_date?: true
+    apply_weekend?: true
+    apply_holiday?: true
     room_typesId?: true
     created_at?: true
     updated_at?: true
@@ -11636,6 +11644,8 @@ export namespace Prisma {
     price?: true
     start_date?: true
     end_date?: true
+    apply_weekend?: true
+    apply_holiday?: true
     room_typesId?: true
     created_at?: true
     updated_at?: true
@@ -11646,6 +11656,8 @@ export namespace Prisma {
     price?: true
     start_date?: true
     end_date?: true
+    apply_weekend?: true
+    apply_holiday?: true
     room_typesId?: true
     created_at?: true
     updated_at?: true
@@ -11743,6 +11755,8 @@ export namespace Prisma {
     price: Decimal
     start_date: Date
     end_date: Date
+    apply_weekend: boolean
+    apply_holiday: boolean
     room_typesId: number
     created_at: Date
     updated_at: Date
@@ -11772,6 +11786,8 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     room_typesId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -11783,6 +11799,8 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     room_typesId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -11794,6 +11812,8 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     room_typesId?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -11805,12 +11825,14 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     room_typesId?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type seasonal_pricesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "start_date" | "end_date" | "room_typesId" | "created_at" | "updated_at", ExtArgs["result"]["seasonal_prices"]>
+  export type seasonal_pricesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "start_date" | "end_date" | "apply_weekend" | "apply_holiday" | "room_typesId" | "created_at" | "updated_at", ExtArgs["result"]["seasonal_prices"]>
   export type seasonal_pricesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
   }
@@ -11831,6 +11853,8 @@ export namespace Prisma {
       price: Prisma.Decimal
       start_date: Date
       end_date: Date
+      apply_weekend: boolean
+      apply_holiday: boolean
       room_typesId: number
       created_at: Date
       updated_at: Date
@@ -12262,6 +12286,8 @@ export namespace Prisma {
     readonly price: FieldRef<"seasonal_prices", 'Decimal'>
     readonly start_date: FieldRef<"seasonal_prices", 'DateTime'>
     readonly end_date: FieldRef<"seasonal_prices", 'DateTime'>
+    readonly apply_weekend: FieldRef<"seasonal_prices", 'Boolean'>
+    readonly apply_holiday: FieldRef<"seasonal_prices", 'Boolean'>
     readonly room_typesId: FieldRef<"seasonal_prices", 'Int'>
     readonly created_at: FieldRef<"seasonal_prices", 'DateTime'>
     readonly updated_at: FieldRef<"seasonal_prices", 'DateTime'>
@@ -16296,6 +16322,8 @@ export namespace Prisma {
     price: 'price',
     start_date: 'start_date',
     end_date: 'end_date',
+    apply_weekend: 'apply_weekend',
+    apply_holiday: 'apply_holiday',
     room_typesId: 'room_typesId',
     created_at: 'created_at',
     updated_at: 'updated_at'
@@ -16789,7 +16817,7 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Property"> | string | null
     category?: StringFilter<"Property"> | string
     terms_condition?: StringNullableFilter<"Property"> | string | null
-    click_rate?: IntNullableFilter<"Property"> | number | null
+    click_rate?: IntFilter<"Property"> | number
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
     isAvailable?: BoolFilter<"Property"> | boolean
@@ -16806,7 +16834,7 @@ export namespace Prisma {
     desc?: SortOrderInput | SortOrder
     category?: SortOrder
     terms_condition?: SortOrderInput | SortOrder
-    click_rate?: SortOrderInput | SortOrder
+    click_rate?: SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
     isAvailable?: SortOrder
@@ -16826,7 +16854,7 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Property"> | string | null
     category?: StringFilter<"Property"> | string
     terms_condition?: StringNullableFilter<"Property"> | string | null
-    click_rate?: IntNullableFilter<"Property"> | number | null
+    click_rate?: IntFilter<"Property"> | number
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
     isAvailable?: BoolFilter<"Property"> | boolean
@@ -16843,7 +16871,7 @@ export namespace Prisma {
     desc?: SortOrderInput | SortOrder
     category?: SortOrder
     terms_condition?: SortOrderInput | SortOrder
-    click_rate?: SortOrderInput | SortOrder
+    click_rate?: SortOrder
     location_id?: SortOrder
     tenantId?: SortOrder
     isAvailable?: SortOrder
@@ -16864,7 +16892,7 @@ export namespace Prisma {
     desc?: StringNullableWithAggregatesFilter<"Property"> | string | null
     category?: StringWithAggregatesFilter<"Property"> | string
     terms_condition?: StringNullableWithAggregatesFilter<"Property"> | string | null
-    click_rate?: IntNullableWithAggregatesFilter<"Property"> | number | null
+    click_rate?: IntWithAggregatesFilter<"Property"> | number
     location_id?: IntWithAggregatesFilter<"Property"> | number
     tenantId?: StringWithAggregatesFilter<"Property"> | string
     isAvailable?: BoolWithAggregatesFilter<"Property"> | boolean
@@ -17182,6 +17210,8 @@ export namespace Prisma {
     price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
     end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    apply_weekend?: BoolFilter<"seasonal_prices"> | boolean
+    apply_holiday?: BoolFilter<"seasonal_prices"> | boolean
     room_typesId?: IntFilter<"seasonal_prices"> | number
     created_at?: DateTimeFilter<"seasonal_prices"> | Date | string
     updated_at?: DateTimeFilter<"seasonal_prices"> | Date | string
@@ -17193,6 +17223,8 @@ export namespace Prisma {
     price?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
+    apply_weekend?: SortOrder
+    apply_holiday?: SortOrder
     room_typesId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -17207,6 +17239,8 @@ export namespace Prisma {
     price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
     end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    apply_weekend?: BoolFilter<"seasonal_prices"> | boolean
+    apply_holiday?: BoolFilter<"seasonal_prices"> | boolean
     room_typesId?: IntFilter<"seasonal_prices"> | number
     created_at?: DateTimeFilter<"seasonal_prices"> | Date | string
     updated_at?: DateTimeFilter<"seasonal_prices"> | Date | string
@@ -17218,6 +17252,8 @@ export namespace Prisma {
     price?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
+    apply_weekend?: SortOrder
+    apply_holiday?: SortOrder
     room_typesId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -17236,6 +17272,8 @@ export namespace Prisma {
     price?: DecimalWithAggregatesFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
     end_date?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
+    apply_weekend?: BoolWithAggregatesFilter<"seasonal_prices"> | boolean
+    apply_holiday?: BoolWithAggregatesFilter<"seasonal_prices"> | boolean
     room_typesId?: IntWithAggregatesFilter<"seasonal_prices"> | number
     created_at?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
@@ -17773,7 +17811,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -17788,7 +17826,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     location_id: number
     tenantId: string
     isAvailable?: boolean
@@ -17802,7 +17840,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -17817,7 +17855,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -17832,7 +17870,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     location_id: number
     tenantId: string
     isAvailable?: boolean
@@ -17844,7 +17882,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
   }
@@ -17855,7 +17893,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -18178,6 +18216,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     start_date: Date | string
     end_date: Date | string
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     room_type: RoomTypesCreateNestedOneWithoutSeasonal_pricesInput
@@ -18188,6 +18228,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     start_date: Date | string
     end_date: Date | string
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     room_typesId: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -18197,6 +18239,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     room_type?: RoomTypesUpdateOneRequiredWithoutSeasonal_pricesNestedInput
@@ -18207,6 +18251,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     room_typesId?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18217,6 +18263,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     start_date: Date | string
     end_date: Date | string
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     room_typesId: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -18226,6 +18274,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18235,6 +18285,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     room_typesId?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18834,17 +18886,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type EnumPropertyFacilityNullableListFilter<$PrismaModel = never> = {
     equals?: $Enums.PropertyFacility[] | ListEnumPropertyFacilityFieldRefInput<$PrismaModel> | null
     has?: $Enums.PropertyFacility | EnumPropertyFacilityFieldRefInput<$PrismaModel> | null
@@ -18932,22 +18973,6 @@ export namespace Prisma {
     location_id?: SortOrder
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type PropertyScalarRelationFilter = {
     is?: PropertyWhereInput
     isNot?: PropertyWhereInput
@@ -18988,6 +19013,17 @@ export namespace Prisma {
   export type PropertyImagesSumOrderByAggregateInput = {
     id?: SortOrder
     property_id?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type EnumRoomFacilityNullableListFilter<$PrismaModel = never> = {
@@ -19097,6 +19133,22 @@ export namespace Prisma {
     property_id?: SortOrder
   }
 
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type RoomTypesScalarRelationFilter = {
     is?: RoomTypesWhereInput
     isNot?: RoomTypesWhereInput
@@ -19192,6 +19244,8 @@ export namespace Prisma {
     price?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
+    apply_weekend?: SortOrder
+    apply_holiday?: SortOrder
     room_typesId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -19208,6 +19262,8 @@ export namespace Prisma {
     price?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
+    apply_weekend?: SortOrder
+    apply_holiday?: SortOrder
     room_typesId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -19218,6 +19274,8 @@ export namespace Prisma {
     price?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
+    apply_weekend?: SortOrder
+    apply_holiday?: SortOrder
     room_typesId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -19768,14 +19826,6 @@ export namespace Prisma {
     connect?: RoomTypesWhereUniqueInput | RoomTypesWhereUniqueInput[]
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type PropertyUpdatefacilitiesInput = {
     set?: $Enums.PropertyFacility[]
     push?: $Enums.PropertyFacility | $Enums.PropertyFacility[]
@@ -19945,6 +19995,14 @@ export namespace Prisma {
     connectOrCreate?: seasonal_pricesCreateOrConnectWithoutRoom_typeInput | seasonal_pricesCreateOrConnectWithoutRoom_typeInput[]
     createMany?: seasonal_pricesCreateManyRoom_typeInputEnvelope
     connect?: seasonal_pricesWhereUniqueInput | seasonal_pricesWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type RoomTypesUpdatefacilitiesInput = {
@@ -20786,7 +20844,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -20800,7 +20858,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     location_id: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
@@ -20864,7 +20922,7 @@ export namespace Prisma {
     desc?: StringNullableFilter<"Property"> | string | null
     category?: StringFilter<"Property"> | string
     terms_condition?: StringNullableFilter<"Property"> | string | null
-    click_rate?: IntNullableFilter<"Property"> | number | null
+    click_rate?: IntFilter<"Property"> | number
     location_id?: IntFilter<"Property"> | number
     tenantId?: StringFilter<"Property"> | string
     isAvailable?: BoolFilter<"Property"> | boolean
@@ -20902,7 +20960,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesCreateNestedManyWithoutPropertyInput
@@ -20916,7 +20974,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     tenantId: string
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
@@ -21225,7 +21283,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -21239,7 +21297,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     location_id: number
     tenantId: string
     isAvailable?: boolean
@@ -21268,7 +21326,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -21282,7 +21340,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -21295,7 +21353,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
     location: LocationCreateNestedOneWithoutPropertyInput
@@ -21309,7 +21367,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     location_id: number
     tenantId: string
     isAvailable?: boolean
@@ -21451,6 +21509,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     start_date: Date | string
     end_date: Date | string
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -21460,6 +21520,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     start_date: Date | string
     end_date: Date | string
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -21490,7 +21552,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -21504,7 +21566,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     location_id?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -21624,6 +21686,8 @@ export namespace Prisma {
     price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
     end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    apply_weekend?: BoolFilter<"seasonal_prices"> | boolean
+    apply_holiday?: BoolFilter<"seasonal_prices"> | boolean
     room_typesId?: IntFilter<"seasonal_prices"> | number
     created_at?: DateTimeFilter<"seasonal_prices"> | Date | string
     updated_at?: DateTimeFilter<"seasonal_prices"> | Date | string
@@ -22688,7 +22752,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     location_id: number
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
@@ -22705,7 +22769,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     location?: LocationUpdateOneRequiredWithoutPropertyNestedInput
@@ -22719,7 +22783,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     location_id?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
@@ -22733,7 +22797,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     location_id?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
@@ -22762,7 +22826,7 @@ export namespace Prisma {
     desc?: string | null
     category: string
     terms_condition?: string | null
-    click_rate?: number | null
+    click_rate?: number
     tenantId: string
     isAvailable?: boolean
     facilities?: PropertyCreatefacilitiesInput | $Enums.PropertyFacility[]
@@ -22773,7 +22837,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
     PropertyImages?: PropertyImagesUpdateManyWithoutPropertyNestedInput
@@ -22787,7 +22851,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
@@ -22801,7 +22865,7 @@ export namespace Prisma {
     desc?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     terms_condition?: NullableStringFieldUpdateOperationsInput | string | null
-    click_rate?: NullableIntFieldUpdateOperationsInput | number | null
+    click_rate?: IntFieldUpdateOperationsInput | number
     tenantId?: StringFieldUpdateOperationsInput | string
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
     facilities?: PropertyUpdatefacilitiesInput | $Enums.PropertyFacility[]
@@ -22958,6 +23022,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     start_date: Date | string
     end_date: Date | string
+    apply_weekend?: boolean
+    apply_holiday?: boolean
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -23093,6 +23159,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23102,6 +23170,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23111,6 +23181,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    apply_weekend?: BoolFieldUpdateOperationsInput | boolean
+    apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

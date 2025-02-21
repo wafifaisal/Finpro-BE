@@ -217,6 +217,8 @@ exports.Prisma.Seasonal_pricesScalarFieldEnum = {
   price: 'price',
   start_date: 'start_date',
   end_date: 'end_date',
+  apply_weekend: 'apply_weekend',
+  apply_holiday: 'apply_holiday',
   room_typesId: 'room_typesId',
   created_at: 'created_at',
   updated_at: 'updated_at'
