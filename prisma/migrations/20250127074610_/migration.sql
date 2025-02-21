@@ -1,22 +1,8 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `propertyId` on the `Unavailable` table. All the data in the column will be lost.
-  - Added the required column `room_types_id` to the `Unavailable` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "PaymentMethod" AS ENUM ('Manual', 'Midtrans');
 
 -- CreateEnum
 CREATE TYPE "BookingStatus" AS ENUM ('new', 'completed', 'canceled', 'waiting_payment');
-
--- DropForeignKey
-ALTER TABLE "Unavailable" DROP CONSTRAINT "Unavailable_propertyId_fkey";
-
--- AlterTable
-ALTER TABLE "Unavailable" DROP COLUMN "propertyId",
-ADD COLUMN     "room_types_id" INTEGER NOT NULL;
 
 -- CreateTable
 CREATE TABLE "Booking" (
@@ -61,9 +47,6 @@ CREATE TABLE "ReviewReplies" (
 
     CONSTRAINT "ReviewReplies_pkey" PRIMARY KEY ("id")
 );
-
--- AddForeignKey
-ALTER TABLE "Unavailable" ADD CONSTRAINT "Unavailable_room_types_id_fkey" FOREIGN KEY ("room_types_id") REFERENCES "RoomTypes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,7 +1,18 @@
+<<<<<<< HEAD:src/controller/user/user.controller.ts
+import { Prisma } from "../../../prisma/generated/client";
+=======
+>>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc:src/controller/feature1/user/user.controller.ts
 import { Request, Response } from "express";
-import prisma from "../../../prisma";
-import { cloudinaryUpload } from "../../../services/cloudinary";
+import prisma from "../../prisma";
+import { cloudinaryUpload } from "../../services/cloudinary";
 import { sign, verify } from "jsonwebtoken";
+<<<<<<< HEAD:src/controller/user/user.controller.ts
+import path from "path";
+import fs from "fs";
+import handlebars from "handlebars";
+import { transporter } from "../../services/mailer";
+=======
+>>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc:src/controller/feature1/user/user.controller.ts
 import bcrypt from "bcrypt";
 import { buildUserFilter, getPagination } from "../../../utils/UserQueryUtils";
 import {

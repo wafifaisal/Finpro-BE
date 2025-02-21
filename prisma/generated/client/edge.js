@@ -335,7 +335,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\Finpro-BE\\finpro-be\\prisma\\generated\\client",
+      "value": "D:\\Materi\\JCWD 0508\\Finpro\\Finpro-BE\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -349,7 +349,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\Finpro-BE\\finpro-be\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Materi\\JCWD 0508\\Finpro\\Finpro-BE\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -363,6 +363,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

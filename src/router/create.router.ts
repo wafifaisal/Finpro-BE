@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateController } from "../controller/feature1/create_property/create.controller";
+import { CreateController } from "../controller/create_property/create.controller";
 import { verifyTokenTenant } from "../middleware/verify.tenant";
 import { upload } from "..";
 import { CreatePropertyController } from "../controller/feature1/create_property/property.controller";

@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { genSalt, hash, compare } from "bcrypt";
-import prisma from "../../../prisma";
+import prisma from "../../prisma";
 import { sign, verify } from "jsonwebtoken";
 import path from "path";
 import fs from "fs";
-import { findTenant } from "../../../services/tenant.service";
+import { findTenant } from "../../services/tenant.service";
 import handlebars from "handlebars";
-import { transporter } from "../../../services/mailer";
-import { findUser } from "../../../services/user.service";
+import { transporter } from "../../services/mailer";
+import { findUser } from "../../services/user.service";
 import { OAuth2Client } from "google-auth-library";
 
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;

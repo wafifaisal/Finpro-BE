@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import prisma from "../../../prisma"; // Sesuaikan path dengan struktur proyek Anda
-import { cloudinaryUpload } from "../../../services/cloudinary";
+import prisma from "../../prisma"; // Pastikan path sesuai dengan project Anda
+import { cloudinaryUpload } from "../../services/cloudinary";
 
 export class CreateController {
   async CreateProperty(req: Request, res: Response) {

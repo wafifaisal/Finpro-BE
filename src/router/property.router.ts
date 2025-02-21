@@ -1,6 +1,10 @@
 import { Router } from "express";
+<<<<<<< HEAD
+import { PropertyController } from "../controller/property/property.controller";
+=======
 import { PropertyController } from "../controller/feature1/property/property.controller";
 import { verifyTokenTenant } from "../middleware/verify.tenant";
+>>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc
 
 export class PropertyRouter {
   private propertyController: PropertyController;
