@@ -20,6 +20,24 @@ export class UserBookingRouter {
       this.userBookingController.uploadPaymentProof
     );
 
+    this.router.post(
+      "/cancel-booking",
+      this.userBookingController.cancelBooking
+    );
+
+    this.router.post(
+      "/payment/midtrans",
+      this.userBookingController.getSnapToken
+    );
+    this.router.post(
+      "/payment/webhook",
+      this.userBookingController.midtransWebHook
+    );
+
+    this.router.get(
+      "/list/:userId",
+      this.userBookingController.getUserBookings
+    );
     this.router.get("/:bookingId", this.userBookingController.getBooking);
   }
 
