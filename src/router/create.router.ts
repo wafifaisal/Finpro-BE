@@ -2,8 +2,8 @@ import { Router } from "express";
 import { CreateController } from "../controller/create_property/create.controller";
 import { verifyTokenTenant } from "../middleware/verify.tenant";
 import { upload } from "..";
-import { CreatePropertyController } from "../controller/feature1/create_property/property.controller";
-import { CreateRoomTypeController } from "../controller/feature1/create_property/roomType.controller";
+import { CreatePropertyController } from "../controller/create_property/property.controller";
+import { CreateRoomTypeController } from "../controller/create_property/roomType.controller";
 
 export class CreateRouter {
   // private createController: CreateController;

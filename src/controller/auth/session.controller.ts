@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import prisma from "../../../prisma";
+import prisma from "../../prisma";
 
 export class SessionController {
   async getSession(req: Request, res: Response): Promise<void> {

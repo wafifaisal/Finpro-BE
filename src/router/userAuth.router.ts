@@ -1,11 +1,7 @@
 import { Router } from "express";
-<<<<<<< HEAD
-import { AuthController } from "../controller/auth/auth.controller";
-=======
-import { AuthUserController } from "../controller/feature1/auth/authuser.controller";
-import { AuthTenantController } from "../controller/feature1/auth/authtenant.controller";
-import { SessionController } from "../controller/feature1/auth/session.controller";
->>>>>>> 6ab9036df35b6aa827f356faec7bdbb7c5af34dc
+import { AuthUserController } from "../controller/auth/authuser.controller";
+import { AuthTenantController } from "../controller/auth/authtenant.controller";
+import { SessionController } from "../controller/auth/session.controller";
 
 export class AuthRouter {
   private authUserController: AuthUserController;

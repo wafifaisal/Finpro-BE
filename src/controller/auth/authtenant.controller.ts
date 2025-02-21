@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { compare } from "bcrypt";
 import { verify } from "jsonwebtoken";
-import prisma from "../../../prisma";
+import prisma from "../../prisma";
 import {
   generateToken,
   hashPassword,
   sendEmail,
   base_url_fe,
   googleClient,
-} from "../../../utils/AuthHelpers";
-import { findTenant } from "../../../services/tenant.service";
+} from "../../utils/AuthHelpers";
+import { findTenant } from "../../services/tenant.service";
 
 export class AuthTenantController {
   async registerTenant(req: Request, res: Response): Promise<void> {

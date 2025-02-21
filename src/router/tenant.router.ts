@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { uploader } from "../services/uploader";
-import { TenantController } from "../controller/feature1/user/tenant.controller";
+import { TenantController } from "../controller/user/tenant.controller";
 import { verifyTokenTenant } from "../middleware/verify.tenant";
 
 export class TenantRouter {
