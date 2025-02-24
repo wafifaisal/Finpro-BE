@@ -39,16 +39,23 @@ export async function buildPropertyResponse(query: any) {
   const { propFilter, limit, page, sortBy, sortOrder } = await getPropertyData(
     query
   );
+
+  if (propFilter.RoomTypes) {
+  } else {
+    propFilter.RoomTypes = { some: {} };
+  }
+
   const stats = await prisma.roomTypes.aggregate({
     _min: { price: true },
     _max: { price: true },
   });
   const total = await prisma.property.count({ where: propFilter });
+  const orderField = sortBy === "price" ? "id" : sortBy;
   const props = await prisma.property.findMany({
     where: propFilter,
     take: limit,
     skip: (page - 1) * limit,
-    orderBy: { [sortBy]: sortOrder },
+    orderBy: { [orderField]: sortOrder },
     select: {
       id: true,
       name: true,

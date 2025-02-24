@@ -30,7 +30,7 @@ export async function sendEmail(
   to: string,
   subject: string
 ): Promise<void> {
-  const templatePath = path.join(__dirname, "../../../templates", templateName);
+  const templatePath = path.join(__dirname, "../templates", templateName);
   const source = fs.readFileSync(templatePath, "utf-8");
   const compiled = handlebars.compile(source);
   const html = compiled(data);

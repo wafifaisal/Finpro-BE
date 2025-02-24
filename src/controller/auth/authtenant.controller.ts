@@ -19,7 +19,8 @@ export class AuthTenantController {
       const exists = await prisma.tenant.findUnique({ where: { email } });
       if (exists) throw new Error("Email has already been used");
       const newTenant = await prisma.tenant.create({
-        data: { name: "", no_handphone: "", email },
+        data: { name: "", no_handphone: null, email },
+
       });
       const token = generateToken({ id: newTenant.id });
       const link = `${base_url_fe}/auth/tenant/verify-tenant/${token}`;
@@ -106,7 +107,8 @@ export class AuthTenantController {
         tenant = await prisma.tenant.create({
           data: {
             name: payload.name || "",
-            no_handphone: "",
+            no_handphone: null,
+
             email: payload.email,
             googleId: payload.sub,
             avatar: payload.picture,
@@ -128,7 +130,6 @@ export class AuthTenantController {
           email: tenant.email,
           name: tenant.name,
           avatar: tenant.avatar,
-          no_telp: tenant.no_handphone,
         },
       });
     } catch (err: any) {

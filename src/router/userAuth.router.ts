@@ -18,7 +18,6 @@ export class AuthRouter {
   }
 
   private initializeRoutes(): void {
-    // Endpoint untuk user
     this.router.post("/login", this.authUserController.loginUser);
     this.router.post("/register", this.authUserController.registerUser);
     this.router.post("/social-login", this.authUserController.socialLogin);
@@ -32,10 +31,7 @@ export class AuthRouter {
     );
     this.router.patch("/verifyuser/:token", this.authUserController.verifyUser);
 
-    // Endpoint session (user & tenant)
     this.router.get("/session", this.sessionController.getSession);
-
-    // Endpoint untuk tenant
     this.router.post(
       "/tenant-register",
       this.authTenantController.registerTenant

@@ -1,21 +1,16 @@
-import { Prisma } from "../../../prisma/generated/client";
+
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { cloudinaryUpload } from "../../services/cloudinary";
 import { sign, verify } from "jsonwebtoken";
-import path from "path";
-import fs from "fs";
-import handlebars from "handlebars";
-import { transporter } from "../../services/mailer";
 import bcrypt from "bcrypt";
-import { getPagination } from "../../utils/TenantQueryUtils";
+import { buildUserFilter, getPagination } from "../../utils/userQueryUtils";
+
 import {
   getVerifyEmailHtml,
   sendVerifyEmail,
 } from "../../utils/userEmailUtils";
-import { buildUserFilter } from "../../utils/userQueryUtils";
 
-const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
 
 export class UserController {
   async getUser(req: Request, res: Response): Promise<void> {
