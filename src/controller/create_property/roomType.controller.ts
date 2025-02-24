@@ -8,6 +8,7 @@ import {
 } from "../../utils/ParseUtils";
 import { computeRecurringDates } from "../../services/computeRecurringDates";
 
+
 export class CreateRoomTypeController {
   async createRoomType(req: Request, res: Response): Promise<void> {
     try {
@@ -32,7 +33,6 @@ export class CreateRoomTypeController {
         seasonal_prices,
         unavailable,
       } = req.body;
-
       const facs = parseFacilities(facilities);
       const seas = parseSeasonalPrices(seasonal_prices);
       const unav = parseUnavailable(unavailable);
@@ -85,6 +85,7 @@ export class CreateRoomTypeController {
         });
       });
 
+
       const room = await prisma.roomTypes.create({
         data: {
           name,
@@ -98,6 +99,7 @@ export class CreateRoomTypeController {
           RoomImages: { create: imgs },
           facilities: facs,
           seasonal_prices: { create: seasonalPricesData },
+
           Unavailable: {
             create: unav.map((u: any) => ({
               start_date: new Date(u.start_date),
@@ -189,6 +191,7 @@ export class CreateRoomTypeController {
             }
           }
           seasonalPricesData.push({
+
             price: parseFloat(sp.price),
             start_date: new Date(sp.start_date),
             end_date: new Date(sp.end_date),
@@ -203,6 +206,7 @@ export class CreateRoomTypeController {
           });
         });
         data.seasonal_prices = { create: seasonalPricesData };
+
       }
       if (unavailable) {
         const unav = parseUnavailable(unavailable);
@@ -238,6 +242,7 @@ export class CreateRoomTypeController {
       await prisma.roomImages.deleteMany({ where: { room_types_id: id } });
       await prisma.seasonal_prices.deleteMany({ where: { room_typesId: id } });
       await prisma.unavailable.deleteMany({ where: { room_types_id: id } });
+
       await prisma.roomTypes.delete({ where: { id } });
       res.status(200).json({ message: "Room type deleted successfully" });
     } catch (err) {

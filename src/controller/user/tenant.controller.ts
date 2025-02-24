@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import { buildTenantFilter, getPagination } from "../../utils/TenantQueryUtils";
 import { fetchTenants } from "../../utils/tenantDataFetcher";
 import { fetchTenantProperties } from "../../utils/tenantPropertyUtils";
-
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
 }
@@ -147,7 +146,6 @@ export class TenantController {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-
   async getTenantPropertyCount(req: Request, res: Response): Promise<void> {
     try {
       const tenantId = req.params.tenantId;
@@ -164,4 +162,5 @@ export class TenantController {
       res.status(500).json({ message: "Internal server error" });
     }
   }
+
 }

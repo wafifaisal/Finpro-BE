@@ -96,6 +96,7 @@ export class AuthUserController {
           data: {
             username: payload.name || "",
             no_handphone: null,
+
             email: payload.email,
             googleId: payload.sub,
             avatar: payload.picture,
@@ -117,6 +118,7 @@ export class AuthUserController {
           email: user.email,
           username: user.username,
           avatar: user.avatar,
+
         },
       });
     } catch (err: any) {

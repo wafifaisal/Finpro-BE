@@ -91,6 +91,7 @@ export class CreatePropertyController {
       await prisma.roomTypes.deleteMany({ where: { property_id: id } });
       await prisma.propertyImages.deleteMany({ where: { property_id: id } });
 
+
       await prisma.property.delete({ where: { id } });
       res.status(200).json({ message: "Property deleted successfully" });
     } catch (err) {

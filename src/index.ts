@@ -6,6 +6,9 @@ import { AuthRouter } from "./router/userAuth.router";
 import { PropertyRouter } from "./router/property.router";
 import { UserRouter } from "./router/user.router";
 import { CreateRouter } from "./router/create.router";
+import { ReviewRouter } from "./router/review.router";
+import { ReviewReplyRouter } from "./router/reviewReply.router";
+import { UserBookingRouter } from "./router/userBooking.router";
 import { TenantRouter } from "./router/tenant.router";
 
 const PORT: number = 8000;
@@ -25,12 +28,18 @@ app.use(
 const authRouter = new AuthRouter();
 const userRouter = new UserRouter();
 const propertyRouter = new PropertyRouter();
+const userBookingRouter = new UserBookingRouter();
+const reviewRouter = new ReviewRouter();
+const reviewReplyRouter = new ReviewReplyRouter();
 const createRouter = new CreateRouter();
 const tenantRouter = new TenantRouter();
 
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
 app.use("/api/property", propertyRouter.getRouter());
+app.use("/api/user-bookings", userBookingRouter.getRouter());
+app.use("/api/reviews", reviewRouter.getRouter());
+app.use("/api/review-reply", reviewReplyRouter.getRouter());
 app.use("/api/create", createRouter.getRouter());
 app.use("/api/tenant", tenantRouter.getRouter());
 
