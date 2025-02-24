@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { AuthUserController } from "../controller/feature1/auth/authuser.controller";
-import { AuthTenantController } from "../controller/feature1/auth/authtenant.controller";
-import { SessionController } from "../controller/feature1/auth/session.controller";
+import { AuthUserController } from "../controller/auth/authuser.controller";
+import { AuthTenantController } from "../controller/auth/authtenant.controller";
+import { SessionController } from "../controller/auth/session.controller";
 
 export class AuthRouter {
   private authUserController: AuthUserController;
@@ -18,7 +18,6 @@ export class AuthRouter {
   }
 
   private initializeRoutes(): void {
-    // Endpoint untuk user
     this.router.post("/login", this.authUserController.loginUser);
     this.router.post("/register", this.authUserController.registerUser);
     this.router.post("/social-login", this.authUserController.socialLogin);
@@ -32,10 +31,7 @@ export class AuthRouter {
     );
     this.router.patch("/verifyuser/:token", this.authUserController.verifyUser);
 
-    // Endpoint session (user & tenant)
     this.router.get("/session", this.sessionController.getSession);
-
-    // Endpoint untuk tenant
     this.router.post(
       "/tenant-register",
       this.authTenantController.registerTenant

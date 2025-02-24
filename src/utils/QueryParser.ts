@@ -1,7 +1,7 @@
 import { ParsedQs } from "qs";
 
 export function parsePagination(query: ParsedQs) {
-  const limit = parseInt(query.limit as string) || 8;
+  const limit = parseInt(query.limit as string) || 9;
   const page = parseInt(query.page as string) || 1;
   return { limit, page };
 }

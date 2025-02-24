@@ -446,7 +446,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics 
+   * Metrics
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -464,14 +464,14 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.2.1
-   * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
+   * Prisma Client JS version: 6.4.1
+   * Query Engine version: a9055b89e58b4b5bfb59600785423b1db3d0e75d
    */
   export type PrismaVersion = {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion 
+  export const prismaVersion: PrismaVersion
 
   /**
    * Utility Types
@@ -487,15 +487,15 @@ export namespace Prisma {
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
     * Type of `Prisma.DbNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class DbNull {
@@ -505,9 +505,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.JsonNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class JsonNull {
@@ -517,9 +517,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.AnyNull`.
-    * 
+    *
     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    * 
+    *
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class AnyNull {
@@ -530,21 +530,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   * 
+   *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -2409,7 +2409,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     avatar: string | null
-    no_handphone: string
+    no_handphone: string | null
     isVerify: boolean
     createdAt: Date
     updatedAt: Date
@@ -2514,7 +2514,7 @@ export namespace Prisma {
       username: string | null
       password: string | null
       avatar: string | null
-      no_handphone: string
+      no_handphone: string | null
       isVerify: boolean
       createdAt: Date
       updatedAt: Date
@@ -3245,6 +3245,10 @@ export namespace Prisma {
      * Filter which Users to update
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
   }
 
   /**
@@ -3267,6 +3271,10 @@ export namespace Prisma {
      * Filter which Users to update
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
   }
 
   /**
@@ -3329,6 +3337,10 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -4409,6 +4421,10 @@ export namespace Prisma {
      * Filter which Tenants to update
      */
     where?: TenantWhereInput
+    /**
+     * Limit how many Tenants to update.
+     */
+    limit?: number
   }
 
   /**
@@ -4431,6 +4447,10 @@ export namespace Prisma {
      * Filter which Tenants to update
      */
     where?: TenantWhereInput
+    /**
+     * Limit how many Tenants to update.
+     */
+    limit?: number
   }
 
   /**
@@ -4493,6 +4513,10 @@ export namespace Prisma {
      * Filter which Tenants to delete
      */
     where?: TenantWhereInput
+    /**
+     * Limit how many Tenants to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -5559,6 +5583,10 @@ export namespace Prisma {
      * Filter which Locations to update
      */
     where?: LocationWhereInput
+    /**
+     * Limit how many Locations to update.
+     */
+    limit?: number
   }
 
   /**
@@ -5581,6 +5609,10 @@ export namespace Prisma {
      * Filter which Locations to update
      */
     where?: LocationWhereInput
+    /**
+     * Limit how many Locations to update.
+     */
+    limit?: number
   }
 
   /**
@@ -5643,6 +5675,10 @@ export namespace Prisma {
      * Filter which Locations to delete
      */
     where?: LocationWhereInput
+    /**
+     * Limit how many Locations to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -6746,6 +6782,10 @@ export namespace Prisma {
      * Filter which Properties to update
      */
     where?: PropertyWhereInput
+    /**
+     * Limit how many Properties to update.
+     */
+    limit?: number
   }
 
   /**
@@ -6768,6 +6808,10 @@ export namespace Prisma {
      * Filter which Properties to update
      */
     where?: PropertyWhereInput
+    /**
+     * Limit how many Properties to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6834,6 +6878,10 @@ export namespace Prisma {
      * Filter which Properties to delete
      */
     where?: PropertyWhereInput
+    /**
+     * Limit how many Properties to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -7891,6 +7939,10 @@ export namespace Prisma {
      * Filter which PropertyImages to update
      */
     where?: PropertyImagesWhereInput
+    /**
+     * Limit how many PropertyImages to update.
+     */
+    limit?: number
   }
 
   /**
@@ -7913,6 +7965,10 @@ export namespace Prisma {
      * Filter which PropertyImages to update
      */
     where?: PropertyImagesWhereInput
+    /**
+     * Limit how many PropertyImages to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -7979,6 +8035,10 @@ export namespace Prisma {
      * Filter which PropertyImages to delete
      */
     where?: PropertyImagesWhereInput
+    /**
+     * Limit how many PropertyImages to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -9130,6 +9190,10 @@ export namespace Prisma {
      * Filter which RoomTypes to update
      */
     where?: RoomTypesWhereInput
+    /**
+     * Limit how many RoomTypes to update.
+     */
+    limit?: number
   }
 
   /**
@@ -9152,6 +9216,10 @@ export namespace Prisma {
      * Filter which RoomTypes to update
      */
     where?: RoomTypesWhereInput
+    /**
+     * Limit how many RoomTypes to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -9218,6 +9286,10 @@ export namespace Prisma {
      * Filter which RoomTypes to delete
      */
     where?: RoomTypesWhereInput
+    /**
+     * Limit how many RoomTypes to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -10347,6 +10419,10 @@ export namespace Prisma {
      * Filter which RoomImages to update
      */
     where?: RoomImagesWhereInput
+    /**
+     * Limit how many RoomImages to update.
+     */
+    limit?: number
   }
 
   /**
@@ -10369,6 +10445,10 @@ export namespace Prisma {
      * Filter which RoomImages to update
      */
     where?: RoomImagesWhereInput
+    /**
+     * Limit how many RoomImages to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10435,6 +10515,10 @@ export namespace Prisma {
      * Filter which RoomImages to delete
      */
     where?: RoomImagesWhereInput
+    /**
+     * Limit how many RoomImages to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -11444,6 +11528,10 @@ export namespace Prisma {
      * Filter which Unavailables to update
      */
     where?: UnavailableWhereInput
+    /**
+     * Limit how many Unavailables to update.
+     */
+    limit?: number
   }
 
   /**
@@ -11466,6 +11554,10 @@ export namespace Prisma {
      * Filter which Unavailables to update
      */
     where?: UnavailableWhereInput
+    /**
+     * Limit how many Unavailables to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -11532,6 +11624,10 @@ export namespace Prisma {
      * Filter which Unavailables to delete
      */
     where?: UnavailableWhereInput
+    /**
+     * Limit how many Unavailables to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -11606,6 +11702,7 @@ export namespace Prisma {
     price: number
     start_date: number
     end_date: number
+    dates: number
     apply_weekend: number
     apply_holiday: number
     room_typesId: number
@@ -11656,6 +11753,7 @@ export namespace Prisma {
     price?: true
     start_date?: true
     end_date?: true
+    dates?: true
     apply_weekend?: true
     apply_holiday?: true
     room_typesId?: true
@@ -11753,8 +11851,9 @@ export namespace Prisma {
   export type Seasonal_pricesGroupByOutputType = {
     id: number
     price: Decimal
-    start_date: Date
-    end_date: Date
+    start_date: Date | null
+    end_date: Date | null
+    dates: Date[]
     apply_weekend: boolean
     apply_holiday: boolean
     room_typesId: number
@@ -11786,6 +11885,7 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    dates?: boolean
     apply_weekend?: boolean
     apply_holiday?: boolean
     room_typesId?: boolean
@@ -11799,6 +11899,7 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    dates?: boolean
     apply_weekend?: boolean
     apply_holiday?: boolean
     room_typesId?: boolean
@@ -11812,6 +11913,7 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    dates?: boolean
     apply_weekend?: boolean
     apply_holiday?: boolean
     room_typesId?: boolean
@@ -11825,6 +11927,7 @@ export namespace Prisma {
     price?: boolean
     start_date?: boolean
     end_date?: boolean
+    dates?: boolean
     apply_weekend?: boolean
     apply_holiday?: boolean
     room_typesId?: boolean
@@ -11832,7 +11935,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type seasonal_pricesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "start_date" | "end_date" | "apply_weekend" | "apply_holiday" | "room_typesId" | "created_at" | "updated_at", ExtArgs["result"]["seasonal_prices"]>
+  export type seasonal_pricesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "start_date" | "end_date" | "dates" | "apply_weekend" | "apply_holiday" | "room_typesId" | "created_at" | "updated_at", ExtArgs["result"]["seasonal_prices"]>
   export type seasonal_pricesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     room_type?: boolean | RoomTypesDefaultArgs<ExtArgs>
   }
@@ -11851,8 +11954,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       price: Prisma.Decimal
-      start_date: Date
-      end_date: Date
+      start_date: Date | null
+      end_date: Date | null
+      dates: Date[]
       apply_weekend: boolean
       apply_holiday: boolean
       room_typesId: number
@@ -12286,6 +12390,7 @@ export namespace Prisma {
     readonly price: FieldRef<"seasonal_prices", 'Decimal'>
     readonly start_date: FieldRef<"seasonal_prices", 'DateTime'>
     readonly end_date: FieldRef<"seasonal_prices", 'DateTime'>
+    readonly dates: FieldRef<"seasonal_prices", 'DateTime[]'>
     readonly apply_weekend: FieldRef<"seasonal_prices", 'Boolean'>
     readonly apply_holiday: FieldRef<"seasonal_prices", 'Boolean'>
     readonly room_typesId: FieldRef<"seasonal_prices", 'Int'>
@@ -12584,6 +12689,10 @@ export namespace Prisma {
      * Filter which seasonal_prices to update
      */
     where?: seasonal_pricesWhereInput
+    /**
+     * Limit how many seasonal_prices to update.
+     */
+    limit?: number
   }
 
   /**
@@ -12606,6 +12715,10 @@ export namespace Prisma {
      * Filter which seasonal_prices to update
      */
     where?: seasonal_pricesWhereInput
+    /**
+     * Limit how many seasonal_prices to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -12672,6 +12785,10 @@ export namespace Prisma {
      * Filter which seasonal_prices to delete
      */
     where?: seasonal_pricesWhereInput
+    /**
+     * Limit how many seasonal_prices to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -13786,6 +13903,10 @@ export namespace Prisma {
      * Filter which Bookings to update
      */
     where?: BookingWhereInput
+    /**
+     * Limit how many Bookings to update.
+     */
+    limit?: number
   }
 
   /**
@@ -13808,6 +13929,10 @@ export namespace Prisma {
      * Filter which Bookings to update
      */
     where?: BookingWhereInput
+    /**
+     * Limit how many Bookings to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -13874,6 +13999,10 @@ export namespace Prisma {
      * Filter which Bookings to delete
      */
     where?: BookingWhereInput
+    /**
+     * Limit how many Bookings to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -14972,6 +15101,10 @@ export namespace Prisma {
      * Filter which Reviews to update
      */
     where?: ReviewWhereInput
+    /**
+     * Limit how many Reviews to update.
+     */
+    limit?: number
   }
 
   /**
@@ -14994,6 +15127,10 @@ export namespace Prisma {
      * Filter which Reviews to update
      */
     where?: ReviewWhereInput
+    /**
+     * Limit how many Reviews to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -15060,6 +15197,10 @@ export namespace Prisma {
      * Filter which Reviews to delete
      */
     where?: ReviewWhereInput
+    /**
+     * Limit how many Reviews to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -16075,6 +16216,10 @@ export namespace Prisma {
      * Filter which ReviewReplies to update
      */
     where?: ReviewRepliesWhereInput
+    /**
+     * Limit how many ReviewReplies to update.
+     */
+    limit?: number
   }
 
   /**
@@ -16097,6 +16242,10 @@ export namespace Prisma {
      * Filter which ReviewReplies to update
      */
     where?: ReviewRepliesWhereInput
+    /**
+     * Limit how many ReviewReplies to update.
+     */
+    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -16163,6 +16312,10 @@ export namespace Prisma {
      * Filter which ReviewReplies to delete
      */
     where?: ReviewRepliesWhereInput
+    /**
+     * Limit how many ReviewReplies to delete.
+     */
+    limit?: number
   }
 
   /**
@@ -16322,6 +16475,7 @@ export namespace Prisma {
     price: 'price',
     start_date: 'start_date',
     end_date: 'end_date',
+    dates: 'dates',
     apply_weekend: 'apply_weekend',
     apply_holiday: 'apply_holiday',
     room_typesId: 'room_typesId',
@@ -16535,6 +16689,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'PaymentMethod'
    */
   export type EnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod'>
@@ -16574,7 +16735,7 @@ export namespace Prisma {
     username?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
-    no_handphone?: StringFilter<"User"> | string
+    no_handphone?: StringNullableFilter<"User"> | string | null
     isVerify?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -16590,7 +16751,7 @@ export namespace Prisma {
     username?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
-    no_handphone?: SortOrder
+    no_handphone?: SortOrderInput | SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16625,7 +16786,7 @@ export namespace Prisma {
     username?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
-    no_handphone?: SortOrder
+    no_handphone?: SortOrderInput | SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16645,7 +16806,7 @@ export namespace Prisma {
     username?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
-    no_handphone?: StringWithAggregatesFilter<"User"> | string
+    no_handphone?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerify?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -17208,8 +17369,9 @@ export namespace Prisma {
     NOT?: seasonal_pricesWhereInput | seasonal_pricesWhereInput[]
     id?: IntFilter<"seasonal_prices"> | number
     price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
-    end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    start_date?: DateTimeNullableFilter<"seasonal_prices"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"seasonal_prices"> | Date | string | null
+    dates?: DateTimeNullableListFilter<"seasonal_prices">
     apply_weekend?: BoolFilter<"seasonal_prices"> | boolean
     apply_holiday?: BoolFilter<"seasonal_prices"> | boolean
     room_typesId?: IntFilter<"seasonal_prices"> | number
@@ -17221,8 +17383,9 @@ export namespace Prisma {
   export type seasonal_pricesOrderByWithRelationInput = {
     id?: SortOrder
     price?: SortOrder
-    start_date?: SortOrder
-    end_date?: SortOrder
+    start_date?: SortOrderInput | SortOrder
+    end_date?: SortOrderInput | SortOrder
+    dates?: SortOrder
     apply_weekend?: SortOrder
     apply_holiday?: SortOrder
     room_typesId?: SortOrder
@@ -17237,8 +17400,9 @@ export namespace Prisma {
     OR?: seasonal_pricesWhereInput[]
     NOT?: seasonal_pricesWhereInput | seasonal_pricesWhereInput[]
     price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
-    end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    start_date?: DateTimeNullableFilter<"seasonal_prices"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"seasonal_prices"> | Date | string | null
+    dates?: DateTimeNullableListFilter<"seasonal_prices">
     apply_weekend?: BoolFilter<"seasonal_prices"> | boolean
     apply_holiday?: BoolFilter<"seasonal_prices"> | boolean
     room_typesId?: IntFilter<"seasonal_prices"> | number
@@ -17250,8 +17414,9 @@ export namespace Prisma {
   export type seasonal_pricesOrderByWithAggregationInput = {
     id?: SortOrder
     price?: SortOrder
-    start_date?: SortOrder
-    end_date?: SortOrder
+    start_date?: SortOrderInput | SortOrder
+    end_date?: SortOrderInput | SortOrder
+    dates?: SortOrder
     apply_weekend?: SortOrder
     apply_holiday?: SortOrder
     room_typesId?: SortOrder
@@ -17270,8 +17435,9 @@ export namespace Prisma {
     NOT?: seasonal_pricesScalarWhereWithAggregatesInput | seasonal_pricesScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"seasonal_prices"> | number
     price?: DecimalWithAggregatesFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
-    end_date?: DateTimeWithAggregatesFilter<"seasonal_prices"> | Date | string
+    start_date?: DateTimeNullableWithAggregatesFilter<"seasonal_prices"> | Date | string | null
+    end_date?: DateTimeNullableWithAggregatesFilter<"seasonal_prices"> | Date | string | null
+    dates?: DateTimeNullableListFilter<"seasonal_prices">
     apply_weekend?: BoolWithAggregatesFilter<"seasonal_prices"> | boolean
     apply_holiday?: BoolWithAggregatesFilter<"seasonal_prices"> | boolean
     room_typesId?: IntWithAggregatesFilter<"seasonal_prices"> | number
@@ -17529,7 +17695,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17545,7 +17711,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17561,7 +17727,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17577,7 +17743,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17593,7 +17759,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17607,7 +17773,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17621,7 +17787,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18214,8 +18380,9 @@ export namespace Prisma {
 
   export type seasonal_pricesCreateInput = {
     price: Decimal | DecimalJsLike | number | string
-    start_date: Date | string
-    end_date: Date | string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    dates?: seasonal_pricesCreatedatesInput | Date[] | string[]
     apply_weekend?: boolean
     apply_holiday?: boolean
     created_at?: Date | string
@@ -18226,8 +18393,9 @@ export namespace Prisma {
   export type seasonal_pricesUncheckedCreateInput = {
     id?: number
     price: Decimal | DecimalJsLike | number | string
-    start_date: Date | string
-    end_date: Date | string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    dates?: seasonal_pricesCreatedatesInput | Date[] | string[]
     apply_weekend?: boolean
     apply_holiday?: boolean
     room_typesId: number
@@ -18237,8 +18405,9 @@ export namespace Prisma {
 
   export type seasonal_pricesUpdateInput = {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18249,8 +18418,9 @@ export namespace Prisma {
   export type seasonal_pricesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     room_typesId?: IntFieldUpdateOperationsInput | number
@@ -18261,8 +18431,9 @@ export namespace Prisma {
   export type seasonal_pricesCreateManyInput = {
     id?: number
     price: Decimal | DecimalJsLike | number | string
-    start_date: Date | string
-    end_date: Date | string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    dates?: seasonal_pricesCreatedatesInput | Date[] | string[]
     apply_weekend?: boolean
     apply_holiday?: boolean
     room_typesId: number
@@ -18272,8 +18443,9 @@ export namespace Prisma {
 
   export type seasonal_pricesUpdateManyMutationInput = {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18283,8 +18455,9 @@ export namespace Prisma {
   export type seasonal_pricesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     room_typesId?: IntFieldUpdateOperationsInput | number
@@ -19239,11 +19412,20 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type DateTimeNullableListFilter<$PrismaModel = never> = {
+    equals?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    has?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    hasEvery?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    hasSome?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type seasonal_pricesCountOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
+    dates?: SortOrder
     apply_weekend?: SortOrder
     apply_holiday?: SortOrder
     room_typesId?: SortOrder
@@ -19312,6 +19494,7 @@ export namespace Prisma {
   export type JsonNullableFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
     string_ends_with?: string | StringFieldRefInput<$PrismaModel>
@@ -19411,6 +19594,7 @@ export namespace Prisma {
   export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
     string_ends_with?: string | StringFieldRefInput<$PrismaModel>
@@ -20186,6 +20370,10 @@ export namespace Prisma {
     update?: XOR<XOR<RoomTypesUpdateToOneWithWhereWithoutUnavailableInput, RoomTypesUpdateWithoutUnavailableInput>, RoomTypesUncheckedUpdateWithoutUnavailableInput>
   }
 
+  export type seasonal_pricesCreatedatesInput = {
+    set: Date[] | string[]
+  }
+
   export type RoomTypesCreateNestedOneWithoutSeasonal_pricesInput = {
     create?: XOR<RoomTypesCreateWithoutSeasonal_pricesInput, RoomTypesUncheckedCreateWithoutSeasonal_pricesInput>
     connectOrCreate?: RoomTypesCreateOrConnectWithoutSeasonal_pricesInput
@@ -20198,6 +20386,11 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type seasonal_pricesUpdatedatesInput = {
+    set?: Date[] | string[]
+    push?: Date | string | Date[] | string[]
   }
 
   export type RoomTypesUpdateOneRequiredWithoutSeasonal_pricesNestedInput = {
@@ -20665,6 +20858,7 @@ export namespace Prisma {
   export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
     string_ends_with?: string | StringFieldRefInput<$PrismaModel>
@@ -21507,8 +21701,9 @@ export namespace Prisma {
 
   export type seasonal_pricesCreateWithoutRoom_typeInput = {
     price: Decimal | DecimalJsLike | number | string
-    start_date: Date | string
-    end_date: Date | string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    dates?: seasonal_pricesCreatedatesInput | Date[] | string[]
     apply_weekend?: boolean
     apply_holiday?: boolean
     created_at?: Date | string
@@ -21518,8 +21713,9 @@ export namespace Prisma {
   export type seasonal_pricesUncheckedCreateWithoutRoom_typeInput = {
     id?: number
     price: Decimal | DecimalJsLike | number | string
-    start_date: Date | string
-    end_date: Date | string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    dates?: seasonal_pricesCreatedatesInput | Date[] | string[]
     apply_weekend?: boolean
     apply_holiday?: boolean
     created_at?: Date | string
@@ -21684,8 +21880,9 @@ export namespace Prisma {
     NOT?: seasonal_pricesScalarWhereInput | seasonal_pricesScalarWhereInput[]
     id?: IntFilter<"seasonal_prices"> | number
     price?: DecimalFilter<"seasonal_prices"> | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFilter<"seasonal_prices"> | Date | string
-    end_date?: DateTimeFilter<"seasonal_prices"> | Date | string
+    start_date?: DateTimeNullableFilter<"seasonal_prices"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"seasonal_prices"> | Date | string | null
+    dates?: DateTimeNullableListFilter<"seasonal_prices">
     apply_weekend?: BoolFilter<"seasonal_prices"> | boolean
     apply_holiday?: BoolFilter<"seasonal_prices"> | boolean
     room_typesId?: IntFilter<"seasonal_prices"> | number
@@ -21993,7 +22190,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22008,7 +22205,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22118,7 +22315,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22133,7 +22330,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22216,7 +22413,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22231,7 +22428,7 @@ export namespace Prisma {
     username?: string | null
     password?: string | null
     avatar?: string | null
-    no_handphone: string
+    no_handphone?: string | null
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22366,7 +22563,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22381,7 +22578,7 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    no_handphone?: StringFieldUpdateOperationsInput | string
+    no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23020,8 +23217,9 @@ export namespace Prisma {
   export type seasonal_pricesCreateManyRoom_typeInput = {
     id?: number
     price: Decimal | DecimalJsLike | number | string
-    start_date: Date | string
-    end_date: Date | string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    dates?: seasonal_pricesCreatedatesInput | Date[] | string[]
     apply_weekend?: boolean
     apply_holiday?: boolean
     created_at?: Date | string
@@ -23157,8 +23355,9 @@ export namespace Prisma {
 
   export type seasonal_pricesUpdateWithoutRoom_typeInput = {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23168,8 +23367,9 @@ export namespace Prisma {
   export type seasonal_pricesUncheckedUpdateWithoutRoom_typeInput = {
     id?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23179,8 +23379,9 @@ export namespace Prisma {
   export type seasonal_pricesUncheckedUpdateManyWithoutRoom_typeInput = {
     id?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dates?: seasonal_pricesUpdatedatesInput | Date[] | string[]
     apply_weekend?: BoolFieldUpdateOperationsInput | boolean
     apply_holiday?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

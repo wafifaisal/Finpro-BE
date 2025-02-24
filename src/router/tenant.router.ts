@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { uploader } from "../services/uploader";
-import { TenantController } from "../controller/feature1/user/tenant.controller";
+import { TenantController } from "../controller/user/tenant.controller";
 import { verifyTokenTenant } from "../middleware/verify.tenant";
 
 export class TenantRouter {
@@ -14,6 +14,10 @@ export class TenantRouter {
   }
 
   private initializeRoutes() {
+    this.router.get(
+      "/count-properties/:tenantId",
+      this.tenantController.getTenantPropertyCount
+    );
     this.router.get("/", this.tenantController.getTenant);
     this.router.get(
       "/properties",

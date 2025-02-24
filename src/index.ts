@@ -28,7 +28,6 @@ const propertyRouter = new PropertyRouter();
 const createRouter = new CreateRouter();
 const tenantRouter = new TenantRouter();
 
-//register routers
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
 app.use("/api/property", propertyRouter.getRouter());
