@@ -26,9 +26,11 @@ export class PropertyRouter {
     this.router.get(
       "/roomtypes/:property_id/:roomtype_id",
       verifyTokenTenant,
-
       this.propertyController.getRoomTypeById
     );
+
+    this.router.get("/rooms/:roomId", this.propertyController.getRoomTypes);
+
     this.router.post("/click", this.propertyController.incrementClickRate);
   }
   public getRouter(): Router {

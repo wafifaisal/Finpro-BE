@@ -212,6 +212,15 @@ exports.Prisma.UnavailableScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RoomAvailabilityScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  availableCount: 'availableCount',
+  room_typesId: 'room_typesId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.Seasonal_pricesScalarFieldEnum = {
   id: 'id',
   price: 'price',
@@ -229,6 +238,7 @@ exports.Prisma.BookingScalarFieldEnum = {
   id: 'id',
   num_of_guests: 'num_of_guests',
   total_price: 'total_price',
+  quantity: 'quantity',
   details: 'details',
   start_date: 'start_date',
   end_date: 'end_date',
@@ -349,6 +359,7 @@ exports.Prisma.ModelName = {
   RoomTypes: 'RoomTypes',
   RoomImages: 'RoomImages',
   Unavailable: 'Unavailable',
+  RoomAvailability: 'RoomAvailability',
   seasonal_prices: 'seasonal_prices',
   Booking: 'Booking',
   Review: 'Review',

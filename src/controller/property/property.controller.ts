@@ -135,4 +135,34 @@ export class PropertyController {
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
+
+  async getRoomTypes(req: Request, res: Response): Promise<void> {
+    try {
+      const { roomId } = req.params;
+      const id = parseInt(roomId, 10);
+      if (isNaN(id)) {
+        res.status(400).json({ error: "Invalid room ID" });
+        return;
+      }
+
+      const room = await prisma.roomTypes.findUnique({
+        where: { id },
+        include: {
+          RoomImages: true,
+          RoomAvailability: true,
+          seasonal_prices: true,
+        },
+      });
+
+      if (!room) {
+        res.status(404).json({ error: "Room not found" });
+        return;
+      }
+
+      res.status(200).json(room);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
 }
