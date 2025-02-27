@@ -154,7 +154,7 @@ export class TenantController {
         return;
       }
       const totalProperties = await prisma.property.count({
-        where: { tenantId },
+        where: { tenantId, isAvailable: true },
       });
       res.status(200).json({ totalProperties });
     } catch (err) {
@@ -162,5 +162,4 @@ export class TenantController {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-
 }

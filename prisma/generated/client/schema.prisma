@@ -209,6 +209,7 @@ model Booking {
   num_of_guests  Int
   total_price    Int
   quantity       Int            @default(1)
+  add_breakfast  Boolean        @default(false)
   details        Json?
   start_date     DateTime
   end_date       DateTime

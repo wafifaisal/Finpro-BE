@@ -239,6 +239,7 @@ exports.Prisma.BookingScalarFieldEnum = {
   num_of_guests: 'num_of_guests',
   total_price: 'total_price',
   quantity: 'quantity',
+  add_breakfast: 'add_breakfast',
   details: 'details',
   start_date: 'start_date',
   end_date: 'end_date',

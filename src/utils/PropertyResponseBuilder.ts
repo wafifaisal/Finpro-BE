@@ -21,7 +21,10 @@ export async function getPropertyData(query: any) {
   const guestCount = parseGuestCount(query);
   const { roomFacilities, propertyFacilities } = parseFacilities(query);
   const { checkIn, checkOut } = parseDates(query);
+
   const propFilter = buildPropertyFilter({ ...text, propertyFacilities });
+  propFilter.isAvailable = true;
+
   const roomFilter = buildRoomTypeFilter({
     guestCount,
     roomFacilities,
@@ -30,8 +33,9 @@ export async function getPropertyData(query: any) {
     minPrice,
     maxPrice,
   });
-  if (Object.keys(roomFilter).length)
+  if (Object.keys(roomFilter).length) {
     propFilter.RoomTypes = { some: roomFilter };
+  }
   return { propFilter, limit, page, sortBy, sortOrder };
 }
 
@@ -40,8 +44,7 @@ export async function buildPropertyResponse(query: any) {
     query
   );
 
-  if (propFilter.RoomTypes) {
-  } else {
+  if (!propFilter.RoomTypes) {
     propFilter.RoomTypes = { some: {} };
   }
 
@@ -73,8 +76,12 @@ export async function buildPropertyResponse(query: any) {
         },
       },
       facilities: true,
-      PropertyImages: { select: { image_url: true } },
+      PropertyImages: {
+        where: { deletedAt: null },
+        select: { image_url: true },
+      },
       RoomTypes: {
+        where: { deletedAt: null },
         select: {
           id: true,
           name: true,
@@ -106,6 +113,7 @@ export async function buildPropertyResponse(query: any) {
       isAvailable: true,
     },
   });
+
   return {
     totalPages: Math.ceil(total / limit),
     currentPage: page,
