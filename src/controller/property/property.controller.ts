@@ -5,7 +5,10 @@ import { buildPropertyResponse } from "../../utils/PropertyResponseBuilder";
 export class PropertyController {
   async getProperty(req: Request, res: Response): Promise<void> {
     try {
-      const response = await buildPropertyResponse(req.query);
+      const response = await buildPropertyResponse({
+        ...req.query,
+        isAvailable: true,
+      });
       res.status(200).json(response);
     } catch (e) {
       console.error(e);
@@ -20,15 +23,20 @@ export class PropertyController {
         res.status(400).json({ message: "Invalid property ID" });
         return;
       }
-      const prop = await prisma.property.findUnique({
-        where: { id },
+      const prop = await prisma.property.findFirst({
+        where: { id, isAvailable: true },
         include: {
           location: true,
           tenant: true,
-          PropertyImages: true,
+          PropertyImages: {
+            where: { deletedAt: null },
+          },
           RoomTypes: {
+            where: { deletedAt: null },
             include: {
-              RoomImages: true,
+              RoomImages: {
+                where: { deletedAt: null },
+              },
               Unavailable: true,
               seasonal_prices: true,
               Booking: true,
@@ -56,7 +64,10 @@ export class PropertyController {
         return;
       }
       const props = await prisma.property.findMany({
-        where: { name: { contains: name, mode: "insensitive" } },
+        where: {
+          name: { contains: name, mode: "insensitive" },
+          isAvailable: true,
+        },
         select: { name: true },
         take: 5,
       });
@@ -75,10 +86,10 @@ export class PropertyController {
         res.status(400).json({ message: "IDs must be valid numbers" });
         return;
       }
-      const rt = await prisma.roomTypes.findUnique({
-        where: { id: roomTypeId },
+      const rt = await prisma.roomTypes.findFirst({
+        where: { id: roomTypeId, deletedAt: null },
         include: {
-          RoomImages: true,
+          RoomImages: { where: { deletedAt: null } },
           Unavailable: true,
           seasonal_prices: true,
           Booking: true,
@@ -128,7 +139,9 @@ export class PropertyController {
 
   async getPropertyCount(req: Request, res: Response): Promise<void> {
     try {
-      const count = await prisma.property.count();
+      const count = await prisma.property.count({
+        where: { isAvailable: true },
+      });
       res.status(200).json({ count });
     } catch (e) {
       console.error(e);
@@ -144,11 +157,10 @@ export class PropertyController {
         res.status(400).json({ error: "Invalid room ID" });
         return;
       }
-
-      const room = await prisma.roomTypes.findUnique({
-        where: { id },
+      const room = await prisma.roomTypes.findFirst({
+        where: { id, deletedAt: null },
         include: {
-          RoomImages: true,
+          RoomImages: { where: { deletedAt: null } },
           RoomAvailability: true,
           seasonal_prices: true,
         },

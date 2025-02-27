@@ -1,4 +1,3 @@
-// src/services/bookingService.ts
 import prisma from "../prisma";
 import { getDatesBetween } from "../utils/dateUtils";
 
@@ -10,6 +9,7 @@ interface CreateBookingParams {
   startDate: Date;
   endDate: Date;
   paymentMethod: "Manual" | "Midtrans";
+  add_breakfast?: boolean;
 }
 
 export async function createBooking(params: CreateBookingParams) {
@@ -21,9 +21,9 @@ export async function createBooking(params: CreateBookingParams) {
     startDate,
     endDate,
     paymentMethod,
+    add_breakfast,
   } = params;
 
-  // Fetch the room type
   const roomType = await prisma.roomTypes.findUnique({
     where: { id: roomTypeId },
   });
@@ -38,13 +38,13 @@ export async function createBooking(params: CreateBookingParams) {
     (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
   );
 
-  const breakfastCost = roomType.has_breakfast
-    ? roomType.breakfast_price * bookingQuantity * nights
-    : 0;
+  const breakfastCost =
+    roomType.has_breakfast && add_breakfast
+      ? roomType.breakfast_price * bookingQuantity * nights
+      : 0;
 
-  const totalPrice = roomType.price * bookingQuantity + breakfastCost;
+  const totalPrice = roomType.price * bookingQuantity * nights + breakfastCost;
 
-  // Use a transaction to create the booking and update availability
   const newBooking = await prisma.$transaction(async (tx) => {
     const bookingCreated = await tx.booking.create({
       data: {
@@ -57,6 +57,7 @@ export async function createBooking(params: CreateBookingParams) {
         end_date: checkOutDate,
         payment_method: paymentMethod,
         status: "new",
+        add_breakfast: add_breakfast ?? false,
       },
     });
 

@@ -3,6 +3,7 @@ import * as bookingService from "../../services/bookingService";
 import * as paymentService from "../../services/paymentService";
 import * as uploadService from "../../services/uploadService";
 import prisma from "../../prisma";
+import { getBookingDetails } from "../../services/GetBookingService";
 
 export class UserBookingController {
   async newBooking(req: Request, res: Response): Promise<void> {
@@ -15,6 +16,7 @@ export class UserBookingController {
         startDate,
         endDate,
         paymentMethod,
+        add_breakfast,
       } = req.body;
 
       const newBooking = await bookingService.createBooking({
@@ -25,6 +27,7 @@ export class UserBookingController {
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         paymentMethod,
+        add_breakfast,
       });
       res.status(201).send({ booking: newBooking });
     } catch (error: any) {
@@ -36,41 +39,14 @@ export class UserBookingController {
   async getBooking(req: Request, res: Response): Promise<void> {
     const { bookingId } = req.params;
     try {
-      const booking = await prisma.booking.findUnique({
-        where: { id: bookingId },
-        include: {
-          room_types: {
-            select: {
-              name: true,
-              price: true,
-              has_breakfast: true,
-              breakfast_price: true,
-              RoomImages: {
-                select: { image_url: true },
-                take: 1,
-              },
-            },
-          },
-        },
-      });
+      const bookingWithCosts = await getBookingDetails(bookingId);
 
-      if (!booking) {
+      if (!bookingWithCosts) {
         res.status(404).send({ error: "Booking not found" });
         return;
       }
 
-      const checkInDate = new Date(booking.start_date);
-      const checkOutDate = new Date(booking.end_date);
-      const nights = Math.ceil(
-        (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
-      );
-      const quantity = booking.quantity || 1;
-      const breakfastCost = booking.room_types.has_breakfast
-        ? booking.room_types.breakfast_price * quantity * nights
-        : 0;
-
-      const bookingWithBreakfast = { ...booking, breakfastCost };
-      res.status(200).send({ result: bookingWithBreakfast });
+      res.status(200).send({ result: bookingWithCosts });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
@@ -183,6 +159,7 @@ export class UserBookingController {
           status: true,
           user_id: true,
           room_types_id: true,
+          add_breakfast: true,
           room_types: {
             select: {
               name: true,

@@ -5,15 +5,23 @@ export async function fetchTenantProperties(
   skip: number,
   limit: number
 ) {
-  const totalProperties = await prisma.property.count({ where: { tenantId } });
+  const totalProperties = await prisma.property.count({
+    where: { tenantId, isAvailable: true },
+  });
   const totalPages = Math.ceil(totalProperties / limit);
+
   const properties = await prisma.property.findMany({
-    where: { tenantId },
+    where: { tenantId, isAvailable: true },
     include: {
-      PropertyImages: true,
+      PropertyImages: {
+        where: { deletedAt: null },
+      },
       RoomTypes: {
+        where: { deletedAt: null },
         include: {
-          RoomImages: true,
+          RoomImages: {
+            where: { deletedAt: null },
+          },
           Review: true,
           seasonal_prices: true,
           Unavailable: true,
@@ -25,5 +33,6 @@ export async function fetchTenantProperties(
     skip,
     take: limit,
   });
+
   return { properties, totalPages, totalProperties };
 }
