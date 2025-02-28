@@ -4,6 +4,7 @@ import * as paymentService from "../../services/paymentService";
 import * as uploadService from "../../services/uploadService";
 import prisma from "../../prisma";
 import { getBookingDetails } from "../../services/GetBookingService";
+import { getDatesBetween } from "../../utils/dateUtils";
 
 export class UserBookingController {
   async newBooking(req: Request, res: Response): Promise<void> {
@@ -224,16 +225,66 @@ export class UserBookingController {
         return;
       }
 
-      await prisma.$transaction([
-        prisma.booking.update({
+      await prisma.$transaction(async (tx) => {
+        await tx.booking.update({
           where: { id: bookingId },
           data: { status: "canceled" },
-        }),
-        prisma.roomTypes.update({
-          where: { id: booking.room_types_id },
-          data: { stock: { increment: 1 } },
-        }),
-      ]);
+        });
+        const bookingDates = getDatesBetween(
+          new Date(booking.start_date),
+          new Date(booking.end_date)
+        );
+
+        for (const date of bookingDates) {
+          const formattedDate = new Date(date.toISOString().split("T")[0]);
+
+          const availability = await tx.roomAvailability.findUnique({
+            where: {
+              uniqueRoomAvailability: {
+                room_typesId: booking.room_types_id,
+                date: formattedDate,
+              },
+            },
+          });
+
+          if (availability) {
+            await tx.roomAvailability.update({
+              where: {
+                uniqueRoomAvailability: {
+                  room_typesId: booking.room_types_id,
+                  date: formattedDate,
+                },
+              },
+              data: { availableCount: { increment: booking.quantity } },
+            });
+            const updatedAvailability = await tx.roomAvailability.findUnique({
+              where: {
+                uniqueRoomAvailability: {
+                  room_typesId: booking.room_types_id,
+                  date: formattedDate,
+                },
+              },
+            });
+            if (updatedAvailability && updatedAvailability.availableCount > 0) {
+              await tx.unavailable.deleteMany({
+                where: {
+                  room_types_id: booking.room_types_id,
+                  start_date: formattedDate,
+                  end_date: formattedDate,
+                },
+              });
+            }
+          } else {
+            await tx.roomAvailability.create({
+              data: {
+                room_typesId: booking.room_types_id,
+                date: formattedDate,
+                availableCount: booking.quantity,
+              },
+            });
+          }
+        }
+      });
 
       res.status(200).json({ message: "Booking canceled successfully" });
     } catch (error) {
