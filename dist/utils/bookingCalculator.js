@@ -63,3 +63,4 @@ function calculateCosts(booking) {
             regularCost,
         } });
 }
+//# sourceMappingURL=bookingCalculator.js.map

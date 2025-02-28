@@ -8,3 +8,4 @@ const useAuth = () => {
     return { getToken, setToken, removeToken };
 };
 exports.useAuth = useAuth;
+//# sourceMappingURL=useAuth.js.map

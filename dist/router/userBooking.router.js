@@ -26,3 +26,4 @@ class UserBookingRouter {
     }
 }
 exports.UserBookingRouter = UserBookingRouter;
+//# sourceMappingURL=userBooking.router.js.map

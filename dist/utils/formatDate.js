@@ -10,3 +10,4 @@ const formatDateDay = (date) => {
     return (0, date_fns_1.format)(dateObj, "dd MMMM yyyy");
 };
 exports.formatDateDay = formatDateDay;
+//# sourceMappingURL=formatDate.js.map

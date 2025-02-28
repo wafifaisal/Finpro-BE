@@ -47,3 +47,4 @@ function getBookingDetails(bookingId) {
         return (0, bookingCalculator_1.calculateCosts)(booking);
     });
 }
+//# sourceMappingURL=GetBookingService.js.map

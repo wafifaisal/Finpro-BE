@@ -126,3 +126,4 @@ class CreatePropertyController {
     }
 }
 exports.CreatePropertyController = CreatePropertyController;
+//# sourceMappingURL=property.controller.js.map

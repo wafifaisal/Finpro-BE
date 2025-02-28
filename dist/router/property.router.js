@@ -24,3 +24,4 @@ class PropertyRouter {
     }
 }
 exports.PropertyRouter = PropertyRouter;
+//# sourceMappingURL=property.router.js.map

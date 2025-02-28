@@ -28,3 +28,4 @@ const uploader = (type = "memoryStorage", filePrefix, folderName) => {
     return (0, multer_1.default)({ storage });
 };
 exports.uploader = uploader;
+//# sourceMappingURL=uploader.js.map

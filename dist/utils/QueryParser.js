@@ -49,3 +49,4 @@ function parseDates(query) {
         checkOut: query.checkOut,
     };
 }
+//# sourceMappingURL=QueryParser.js.map

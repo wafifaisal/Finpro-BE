@@ -34,3 +34,4 @@ const verifyTokenTenant = (req, res, next) => {
     }
 };
 exports.verifyTokenTenant = verifyTokenTenant;
+//# sourceMappingURL=verify.tenant.js.map

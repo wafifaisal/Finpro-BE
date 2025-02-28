@@ -19,3 +19,4 @@ function uploadImages(files, folder) {
         return uploads.map((u) => ({ image_url: u.secure_url }));
     });
 }
+//# sourceMappingURL=ImageServices.js.map

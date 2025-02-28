@@ -213,3 +213,4 @@ class CreateRoomTypeController {
     }
 }
 exports.CreateRoomTypeController = CreateRoomTypeController;
+//# sourceMappingURL=roomType.controller.js.map

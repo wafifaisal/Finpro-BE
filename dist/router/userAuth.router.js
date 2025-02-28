@@ -33,3 +33,4 @@ class AuthRouter {
     }
 }
 exports.AuthRouter = AuthRouter;
+//# sourceMappingURL=userAuth.router.js.map

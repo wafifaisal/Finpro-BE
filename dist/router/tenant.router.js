@@ -26,3 +26,4 @@ class TenantRouter {
     }
 }
 exports.TenantRouter = TenantRouter;
+//# sourceMappingURL=tenant.router.js.map

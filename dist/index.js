@@ -45,10 +45,11 @@ app.use("/api/review-reply", reviewReplyRouter.getRouter());
 app.use("/api/create", createRouter.getRouter());
 app.use("/api/tenant", tenantRouter.getRouter());
 app.use("/api/tenant-bookings", tenantBookingRouter.getRouter());
-//base router
 app.get("/api", (req, res) => {
     res.status(200).send("Welcome to my API");
 });
 app.listen(PORT, () => {
     console.log(`Server is running on -> https://localhost:${PORT}/api`);
 });
+exports.default = app;
+//# sourceMappingURL=index.js.map

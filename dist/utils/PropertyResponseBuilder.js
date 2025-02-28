@@ -123,3 +123,4 @@ function buildPropertyResponse(query) {
         };
     });
 }
+//# sourceMappingURL=PropertyResponseBuilder.js.map

@@ -20,3 +20,4 @@ class TenantBookingRouter {
     }
 }
 exports.TenantBookingRouter = TenantBookingRouter;
+//# sourceMappingURL=tenantBooking.router.js.map

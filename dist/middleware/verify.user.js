@@ -24,3 +24,4 @@ const verifyTokenUser = (req, res, next) => {
     }
 };
 exports.verifyTokenUser = verifyTokenUser;
+//# sourceMappingURL=verify.user.js.map

@@ -33,3 +33,4 @@ function uploadPaymentProofService(bookingId, file) {
         });
     });
 }
+//# sourceMappingURL=uploadService.js.map

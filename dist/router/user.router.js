@@ -25,3 +25,4 @@ class UserRouter {
     }
 }
 exports.UserRouter = UserRouter;
+//# sourceMappingURL=user.router.js.map

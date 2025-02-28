@@ -20,3 +20,4 @@ class ReviewReplyRouter {
     }
 }
 exports.ReviewReplyRouter = ReviewReplyRouter;
+//# sourceMappingURL=reviewReply.router.js.map

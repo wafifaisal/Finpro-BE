@@ -27,3 +27,4 @@ function fetchTenants(filter, limit, skip) {
         return { total_page, tenants };
     });
 }
+//# sourceMappingURL=tenantDataFetcher.js.map

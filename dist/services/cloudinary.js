@@ -77,3 +77,4 @@ const extractPublicIdFormUrl = (url) => {
     const publicId = publicIdWithExtension.split(".")[0];
     return publicId;
 };
+//# sourceMappingURL=cloudinary.js.map

@@ -19,3 +19,4 @@ function getPagination(query) {
     const skip = limit * (page - 1);
     return { page, limit, skip };
 }
+//# sourceMappingURL=userQueryUtils.js.map

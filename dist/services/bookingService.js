@@ -119,3 +119,4 @@ function createBooking(params) {
         return newBooking;
     });
 }
+//# sourceMappingURL=bookingService.js.map

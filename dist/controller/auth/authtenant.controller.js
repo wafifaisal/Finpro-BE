@@ -220,3 +220,4 @@ class AuthTenantController {
     }
 }
 exports.AuthTenantController = AuthTenantController;
+//# sourceMappingURL=authtenant.controller.js.map
