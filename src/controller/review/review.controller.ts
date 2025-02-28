@@ -30,19 +30,18 @@ export class ReviewController {
     }
   }
 
-  async getReview(req: Request, res: Response): Promise<void> {
-    const { bookingId } = req.params;
+  async getUserReviews(req: Request, res: Response): Promise<void> {
+    const { userId } = req.params;
     try {
-      const review = await prisma.review.findFirst({
-        where: { booking_id: bookingId },
+      const bookings = await prisma.booking.findMany({
+        where: { user_id: userId, status: "completed" },
+        include: {
+          Review: true,
+          room_types: { include: { property: true, RoomImages: true } },
+        },
       });
 
-      if (!review) {
-        res.status(404).send({ error: "Review not found" });
-        return;
-      }
-
-      res.status(200).send(review);
+      res.status(200).send(bookings);
     } catch (error) {
       res.status(500).send({ message: error });
     }

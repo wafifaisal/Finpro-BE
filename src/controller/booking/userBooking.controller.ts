@@ -160,7 +160,6 @@ export class UserBookingController {
           status: true,
           user_id: true,
           room_types_id: true,
-          add_breakfast: true,
           room_types: {
             select: {
               name: true,

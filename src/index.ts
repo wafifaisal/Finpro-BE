@@ -10,6 +10,7 @@ import { ReviewRouter } from "./router/review.router";
 import { ReviewReplyRouter } from "./router/reviewReply.router";
 import { UserBookingRouter } from "./router/userBooking.router";
 import { TenantRouter } from "./router/tenant.router";
+import { TenantBookingRouter } from "./router/tenantBooking.router";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
@@ -33,6 +34,7 @@ const reviewRouter = new ReviewRouter();
 const reviewReplyRouter = new ReviewReplyRouter();
 const createRouter = new CreateRouter();
 const tenantRouter = new TenantRouter();
+const tenantBookingRouter = new TenantBookingRouter();
 
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
@@ -42,6 +44,7 @@ app.use("/api/reviews", reviewRouter.getRouter());
 app.use("/api/review-reply", reviewReplyRouter.getRouter());
 app.use("/api/create", createRouter.getRouter());
 app.use("/api/tenant", tenantRouter.getRouter());
+app.use("/api/tenant-bookings", tenantBookingRouter.getRouter());
 
 //base router
 app.get("/api", (req: Request, res: Response) => {
