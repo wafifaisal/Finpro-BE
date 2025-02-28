@@ -88,10 +88,34 @@ export class CreatePropertyController {
         res.status(404).json({ message: "Property not found" });
         return;
       }
-      await prisma.propertyImages.deleteMany({ where: { property_id: id } });
-      await prisma.property.delete({ where: { id } });
+      const activeBooking = await prisma.booking.findFirst({
+        where: {
+          room_types: { property_id: id },
+          status: { notIn: ["canceled", "completed"] },
+        },
+      });
+      if (activeBooking) {
+        res.status(400).json({
+          message:
+            "Properti tidak dapat dihapus karena ada pemesanan aktif yang terkait dengannya.",
+        });
+        return;
+      }
+      await prisma.roomTypes.updateMany({
+        where: { property_id: id },
+        data: { deletedAt: new Date() },
+      });
+      await prisma.propertyImages.updateMany({
+        where: { property_id: id },
+        data: { deletedAt: new Date() },
+      });
+      await prisma.property.update({
+        where: { id },
+        data: { isAvailable: false },
+      });
       res.status(200).json({ message: "Property deleted successfully" });
     } catch (err) {
+      console.error(err);
       res.status(400).json(err);
     }
   }

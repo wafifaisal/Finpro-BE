@@ -37,6 +37,9 @@ export class SessionController {
           name: tenant.name,
           email: tenant.email,
           avatar: tenant.avatar || null,
+          isVerify: tenant.isVerify,
+          googleId: tenant.googleId,
+
         });
       } else if (decoded.type === "user") {
         const user = await prisma.user.findUnique({

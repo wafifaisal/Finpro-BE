@@ -60,7 +60,11 @@ export function parseFacilities(facilities: any) {
 export function parseSeasonalPrices(seasonal: any) {
   if (!seasonal) return [];
   try {
-    return JSON.parse(seasonal);
+    const parsed = JSON.parse(seasonal);
+    return parsed.map((sp: any) => ({
+      ...sp,
+      dates: sp.dates || [],
+    }));
   } catch {
     return [];
   }

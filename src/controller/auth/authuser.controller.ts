@@ -35,7 +35,7 @@ export class AuthUserController {
       const exists = await prisma.user.findUnique({ where: { email } });
       if (exists) throw new Error("Email has already been used");
       const newUser = await prisma.user.create({
-        data: { username: "", no_handphone: "", email },
+        data: { username: "", no_handphone: null, email },
       });
       const token = generateToken({ id: newUser.id });
       const link = `${base_url_fe}/auth/user/verifyUser/${token}`;
@@ -95,7 +95,8 @@ export class AuthUserController {
         user = await prisma.user.create({
           data: {
             username: payload.name || "",
-            no_handphone: "",
+            no_handphone: null,
+
             email: payload.email,
             googleId: payload.sub,
             avatar: payload.picture,
@@ -117,7 +118,7 @@ export class AuthUserController {
           email: user.email,
           username: user.username,
           avatar: user.avatar,
-          no_telp: user.no_handphone,
+
         },
       });
     } catch (err: any) {

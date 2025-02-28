@@ -7,11 +7,7 @@ const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
 
 export function getVerifyEmailHtml(token: string): string {
   const linkUser = `${base_url_fe}/profile/${token}`;
-  const templatePath = path.join(
-    __dirname,
-    "../../../templates",
-    "verifyEmail.hbs"
-  );
+  const templatePath = path.join(__dirname, "../templates", "verifyEmail.hbs");
   const templateSource = fs.readFileSync(templatePath, "utf-8");
   const compiledTemplate = handlebars.compile(templateSource);
   return compiledTemplate({ linkUser });

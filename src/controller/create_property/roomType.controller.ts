@@ -6,6 +6,7 @@ import {
   parseSeasonalPrices,
   parseUnavailable,
 } from "../../utils/ParseUtils";
+import { computeRecurringDates } from "../../services/computeRecurringDates";
 
 export class CreateRoomTypeController {
   async createRoomType(req: Request, res: Response): Promise<void> {
@@ -34,6 +35,50 @@ export class CreateRoomTypeController {
       const facs = parseFacilities(facilities);
       const seas = parseSeasonalPrices(seasonal_prices);
       const unav = parseUnavailable(unavailable);
+
+      const seasonalPricesData: any[] = [];
+      seas.forEach((sp: any) => {
+        if (
+          (sp.apply_weekend || sp.apply_holiday) &&
+          sp.start_date &&
+          sp.end_date
+        ) {
+          const computedDatesISO = computeRecurringDates(
+            sp.start_date,
+            sp.end_date,
+            !!sp.apply_weekend,
+            !!sp.apply_holiday
+          );
+          if (computedDatesISO.length > 0) {
+            const computedDates: Date[] = computedDatesISO.map(
+              (d: string) => new Date(d)
+            );
+            seasonalPricesData.push({
+              price: parseFloat(sp.price),
+              start_date: computedDates[0],
+              end_date: computedDates[computedDates.length - 1],
+              apply_weekend: !!sp.apply_weekend,
+              apply_holiday: !!sp.apply_holiday,
+              dates: computedDates,
+            });
+            return;
+          }
+        }
+        seasonalPricesData.push({
+          price: parseFloat(sp.price),
+          start_date: new Date(sp.start_date),
+          end_date: new Date(sp.end_date),
+          apply_weekend: !!sp.apply_weekend,
+          apply_holiday: !!sp.apply_holiday,
+          dates:
+            sp.dates && Array.isArray(sp.dates)
+              ? sp.dates
+                  .map((d: string) => new Date(d))
+                  .filter((d: Date) => !isNaN(d.getTime()))
+              : [],
+        });
+      });
+
       const room = await prisma.roomTypes.create({
         data: {
           name,
@@ -46,15 +91,8 @@ export class CreateRoomTypeController {
           property: { connect: { id: pid } },
           RoomImages: { create: imgs },
           facilities: facs,
-          seasonal_prices: {
-            create: seas.map((sp: any) => ({
-              price: parseFloat(sp.price),
-              start_date: new Date(sp.start_date),
-              end_date: new Date(sp.end_date),
-              apply_weekend: !!sp.apply_weekend,
-              apply_holiday: !!sp.apply_holiday,
-            })),
-          },
+          seasonal_prices: { create: seasonalPricesData },
+
           Unavailable: {
             create: unav.map((u: any) => ({
               start_date: new Date(u.start_date),
@@ -117,15 +155,49 @@ export class CreateRoomTypeController {
         await prisma.seasonal_prices.deleteMany({
           where: { room_typesId: id },
         });
-        data.seasonal_prices = {
-          create: seas.map((sp: any) => ({
+        const seasonalPricesData: any[] = [];
+        seas.forEach((sp: any) => {
+          if (
+            (sp.apply_weekend || sp.apply_holiday) &&
+            sp.start_date &&
+            sp.end_date
+          ) {
+            const computedDatesISO = computeRecurringDates(
+              sp.start_date,
+              sp.end_date,
+              !!sp.apply_weekend,
+              !!sp.apply_holiday
+            );
+            if (computedDatesISO.length > 0) {
+              const computedDates: Date[] = computedDatesISO.map(
+                (d: string) => new Date(d)
+              );
+              seasonalPricesData.push({
+                price: parseFloat(sp.price),
+                start_date: computedDates[0],
+                end_date: computedDates[computedDates.length - 1],
+                apply_weekend: !!sp.apply_weekend,
+                apply_holiday: !!sp.apply_holiday,
+                dates: computedDates,
+              });
+              return;
+            }
+          }
+          seasonalPricesData.push({
             price: parseFloat(sp.price),
             start_date: new Date(sp.start_date),
             end_date: new Date(sp.end_date),
             apply_weekend: !!sp.apply_weekend,
             apply_holiday: !!sp.apply_holiday,
-          })),
-        };
+            dates:
+              sp.dates && Array.isArray(sp.dates)
+                ? sp.dates
+                    .map((d: string) => new Date(d))
+                    .filter((d: Date) => !isNaN(d.getTime()))
+                : [],
+          });
+        });
+        data.seasonal_prices = { create: seasonalPricesData };
       }
       if (unavailable) {
         const unav = parseUnavailable(unavailable);
@@ -153,15 +225,33 @@ export class CreateRoomTypeController {
         res.status(400).json({ message: "Invalid room type ID" });
         return;
       }
+
       const room = await prisma.roomTypes.findUnique({ where: { id } });
       if (!room) {
         res.status(404).json({ message: "Room type not found" });
         return;
       }
-      await prisma.roomImages.deleteMany({ where: { room_types_id: id } });
-      await prisma.roomTypes.delete({ where: { id } });
+      const activeBooking = await prisma.booking.findFirst({
+        where: {
+          room_types_id: id,
+          status: { notIn: ["canceled", "completed"] },
+        },
+      });
+      if (activeBooking) {
+        res.status(400).json({
+          message:
+            "Jenis kamar tidak dapat dihapus karena ada pemesanan aktif terkait.",
+        });
+        return;
+      }
+      await prisma.roomTypes.update({
+        where: { id },
+        data: { deletedAt: new Date() },
+      });
+
       res.status(200).json({ message: "Room type deleted successfully" });
     } catch (err) {
+      console.error(err);
       res.status(400).json(err);
     }
   }

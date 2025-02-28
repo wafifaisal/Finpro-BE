@@ -21,7 +21,10 @@ export async function getPropertyData(query: any) {
   const guestCount = parseGuestCount(query);
   const { roomFacilities, propertyFacilities } = parseFacilities(query);
   const { checkIn, checkOut } = parseDates(query);
+
   const propFilter = buildPropertyFilter({ ...text, propertyFacilities });
+  propFilter.isAvailable = true;
+
   const roomFilter = buildRoomTypeFilter({
     guestCount,
     roomFacilities,
@@ -30,8 +33,9 @@ export async function getPropertyData(query: any) {
     minPrice,
     maxPrice,
   });
-  if (Object.keys(roomFilter).length)
+  if (Object.keys(roomFilter).length) {
     propFilter.RoomTypes = { some: roomFilter };
+  }
   return { propFilter, limit, page, sortBy, sortOrder };
 }
 
@@ -39,16 +43,22 @@ export async function buildPropertyResponse(query: any) {
   const { propFilter, limit, page, sortBy, sortOrder } = await getPropertyData(
     query
   );
+
+  if (!propFilter.RoomTypes) {
+    propFilter.RoomTypes = { some: {} };
+  }
+
   const stats = await prisma.roomTypes.aggregate({
     _min: { price: true },
     _max: { price: true },
   });
   const total = await prisma.property.count({ where: propFilter });
+  const orderField = sortBy === "price" ? "id" : sortBy;
   const props = await prisma.property.findMany({
     where: propFilter,
     take: limit,
     skip: (page - 1) * limit,
-    orderBy: { [sortBy]: sortOrder },
+    orderBy: { [orderField]: sortOrder },
     select: {
       id: true,
       name: true,
@@ -66,8 +76,12 @@ export async function buildPropertyResponse(query: any) {
         },
       },
       facilities: true,
-      PropertyImages: { select: { image_url: true } },
+      PropertyImages: {
+        where: { deletedAt: null },
+        select: { image_url: true },
+      },
       RoomTypes: {
+        where: { deletedAt: null },
         select: {
           id: true,
           name: true,
@@ -99,6 +113,7 @@ export async function buildPropertyResponse(query: any) {
       isAvailable: true,
     },
   });
+
   return {
     totalPages: Math.ceil(total / limit),
     currentPage: page,

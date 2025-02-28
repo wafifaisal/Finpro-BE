@@ -70,7 +70,7 @@ model User {
   username     String?
   password     String?
   avatar       String?   @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
-  no_handphone String    @unique
+  no_handphone String?   @unique
   isVerify     Boolean   @default(false)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -135,26 +135,27 @@ model PropertyImages {
 }
 
 model RoomTypes {
-  id              Int               @id @default(autoincrement())
-  name            String
-  stock           Int
-  capacity        Int
-  bed_details     String?
-  price           Int
-  has_breakfast   Boolean           @default(false)
-  breakfast_price Int
-  avg_rating      Int?
-  property        Property          @relation(fields: [property_id], references: [id])
-  property_id     Int
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  deletedAt       DateTime?
-  RoomImages      RoomImages[]
-  Booking         Booking[]
-  Review          Review[]
-  Unavailable     Unavailable[]
-  seasonal_prices seasonal_prices[]
-  facilities      RoomFacility[]    @default([])
+  id               Int                @id @default(autoincrement())
+  name             String
+  stock            Int
+  capacity         Int
+  bed_details      String?
+  price            Int
+  has_breakfast    Boolean            @default(false)
+  breakfast_price  Int
+  avg_rating       Int?
+  property         Property           @relation(fields: [property_id], references: [id])
+  property_id      Int
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  deletedAt        DateTime?
+  RoomImages       RoomImages[]
+  Booking          Booking[]
+  Review           Review[]
+  Unavailable      Unavailable[]
+  seasonal_prices  seasonal_prices[]
+  facilities       RoomFacility[]     @default([])
+  RoomAvailability RoomAvailability[]
 }
 
 model RoomImages {
@@ -177,23 +178,38 @@ model Unavailable {
   updatedAt     DateTime  @updatedAt
 }
 
+model RoomAvailability {
+  id             Int       @id @default(autoincrement())
+  date           DateTime
+  availableCount Int
+  room_typesId   Int
+  room_types     RoomTypes @relation(fields: [room_typesId], references: [id])
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([date, room_typesId], name: "uniqueRoomAvailability")
+}
+
 model seasonal_prices {
-  id            Int       @id @default(autoincrement())
-  price         Decimal   @db.Decimal(11, 2)
-  start_date    DateTime
-  end_date      DateTime
-  apply_weekend Boolean   @default(false)
-  apply_holiday Boolean   @default(false)
-  room_type     RoomTypes @relation(fields: [room_typesId], references: [id])
+  id            Int        @id @default(autoincrement())
+  price         Decimal    @db.Decimal(11, 2)
+  start_date    DateTime?
+  end_date      DateTime?
+  dates         DateTime[]
+  apply_weekend Boolean    @default(false)
+  apply_holiday Boolean    @default(false)
+  room_type     RoomTypes  @relation(fields: [room_typesId], references: [id])
   room_typesId  Int
-  created_at    DateTime  @default(now())
-  updated_at    DateTime  @updatedAt
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
 }
 
 model Booking {
   id             String         @id @default(uuid())
   num_of_guests  Int
   total_price    Int
+  quantity       Int            @default(1)
+  add_breakfast  Boolean        @default(false)
   details        Json?
   start_date     DateTime
   end_date       DateTime
