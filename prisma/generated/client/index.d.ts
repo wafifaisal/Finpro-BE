@@ -14091,10 +14091,7 @@ export namespace Prisma {
     num_of_guests: number | null
     total_price: number | null
     quantity: number | null
-<<<<<<< HEAD
-=======
     add_breakfast: boolean | null
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     start_date: Date | null
     end_date: Date | null
     created_at: Date | null
@@ -14111,10 +14108,7 @@ export namespace Prisma {
     num_of_guests: number | null
     total_price: number | null
     quantity: number | null
-<<<<<<< HEAD
-=======
     add_breakfast: boolean | null
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     start_date: Date | null
     end_date: Date | null
     created_at: Date | null
@@ -14131,10 +14125,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity: number
-<<<<<<< HEAD
-=======
     add_breakfast: number
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details: number
     start_date: number
     end_date: number
@@ -14168,10 +14159,7 @@ export namespace Prisma {
     num_of_guests?: true
     total_price?: true
     quantity?: true
-<<<<<<< HEAD
-=======
     add_breakfast?: true
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     start_date?: true
     end_date?: true
     created_at?: true
@@ -14188,10 +14176,7 @@ export namespace Prisma {
     num_of_guests?: true
     total_price?: true
     quantity?: true
-<<<<<<< HEAD
-=======
     add_breakfast?: true
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     start_date?: true
     end_date?: true
     created_at?: true
@@ -14208,10 +14193,7 @@ export namespace Prisma {
     num_of_guests?: true
     total_price?: true
     quantity?: true
-<<<<<<< HEAD
-=======
     add_breakfast?: true
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: true
     start_date?: true
     end_date?: true
@@ -14316,10 +14298,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity: number
-<<<<<<< HEAD
-=======
     add_breakfast: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details: JsonValue | null
     start_date: Date
     end_date: Date
@@ -14356,10 +14335,7 @@ export namespace Prisma {
     num_of_guests?: boolean
     total_price?: boolean
     quantity?: boolean
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: boolean
     start_date?: boolean
     end_date?: boolean
@@ -14381,10 +14357,7 @@ export namespace Prisma {
     num_of_guests?: boolean
     total_price?: boolean
     quantity?: boolean
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: boolean
     start_date?: boolean
     end_date?: boolean
@@ -14404,10 +14377,7 @@ export namespace Prisma {
     num_of_guests?: boolean
     total_price?: boolean
     quantity?: boolean
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: boolean
     start_date?: boolean
     end_date?: boolean
@@ -14427,10 +14397,7 @@ export namespace Prisma {
     num_of_guests?: boolean
     total_price?: boolean
     quantity?: boolean
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: boolean
     start_date?: boolean
     end_date?: boolean
@@ -14443,11 +14410,7 @@ export namespace Prisma {
     room_types_id?: boolean
   }
 
-<<<<<<< HEAD
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "num_of_guests" | "total_price" | "quantity" | "details" | "start_date" | "end_date" | "created_at" | "updated_at" | "payment_proof" | "payment_method" | "status" | "user_id" | "room_types_id", ExtArgs["result"]["booking"]>
-=======
   export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "num_of_guests" | "total_price" | "quantity" | "add_breakfast" | "details" | "start_date" | "end_date" | "created_at" | "updated_at" | "payment_proof" | "payment_method" | "status" | "user_id" | "room_types_id", ExtArgs["result"]["booking"]>
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
   export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     room_types?: boolean | RoomTypesDefaultArgs<ExtArgs>
@@ -14475,10 +14438,7 @@ export namespace Prisma {
       num_of_guests: number
       total_price: number
       quantity: number
-<<<<<<< HEAD
-=======
       add_breakfast: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
       details: Prisma.JsonValue | null
       start_date: Date
       end_date: Date
@@ -14919,10 +14879,7 @@ export namespace Prisma {
     readonly num_of_guests: FieldRef<"Booking", 'Int'>
     readonly total_price: FieldRef<"Booking", 'Int'>
     readonly quantity: FieldRef<"Booking", 'Int'>
-<<<<<<< HEAD
-=======
     readonly add_breakfast: FieldRef<"Booking", 'Boolean'>
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     readonly details: FieldRef<"Booking", 'Json'>
     readonly start_date: FieldRef<"Booking", 'DateTime'>
     readonly end_date: FieldRef<"Booking", 'DateTime'>
@@ -17826,10 +17783,7 @@ export namespace Prisma {
     num_of_guests: 'num_of_guests',
     total_price: 'total_price',
     quantity: 'quantity',
-<<<<<<< HEAD
-=======
     add_breakfast: 'add_breakfast',
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details: 'details',
     start_date: 'start_date',
     end_date: 'end_date',
@@ -18859,10 +18813,7 @@ export namespace Prisma {
     num_of_guests?: IntFilter<"Booking"> | number
     total_price?: IntFilter<"Booking"> | number
     quantity?: IntFilter<"Booking"> | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFilter<"Booking"> | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: JsonNullableFilter<"Booking">
     start_date?: DateTimeFilter<"Booking"> | Date | string
     end_date?: DateTimeFilter<"Booking"> | Date | string
@@ -18883,10 +18834,7 @@ export namespace Prisma {
     num_of_guests?: SortOrder
     total_price?: SortOrder
     quantity?: SortOrder
-<<<<<<< HEAD
-=======
     add_breakfast?: SortOrder
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: SortOrderInput | SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
@@ -18910,10 +18858,7 @@ export namespace Prisma {
     num_of_guests?: IntFilter<"Booking"> | number
     total_price?: IntFilter<"Booking"> | number
     quantity?: IntFilter<"Booking"> | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFilter<"Booking"> | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: JsonNullableFilter<"Booking">
     start_date?: DateTimeFilter<"Booking"> | Date | string
     end_date?: DateTimeFilter<"Booking"> | Date | string
@@ -18934,10 +18879,7 @@ export namespace Prisma {
     num_of_guests?: SortOrder
     total_price?: SortOrder
     quantity?: SortOrder
-<<<<<<< HEAD
-=======
     add_breakfast?: SortOrder
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: SortOrderInput | SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
@@ -18963,10 +18905,7 @@ export namespace Prisma {
     num_of_guests?: IntWithAggregatesFilter<"Booking"> | number
     total_price?: IntWithAggregatesFilter<"Booking"> | number
     quantity?: IntWithAggregatesFilter<"Booking"> | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolWithAggregatesFilter<"Booking"> | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: JsonNullableWithAggregatesFilter<"Booking">
     start_date?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     end_date?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
@@ -19964,10 +19903,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -19986,10 +19922,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -20008,10 +19941,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20030,10 +19960,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20052,10 +19979,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -20073,10 +19997,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20092,10 +20013,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21115,10 +21033,7 @@ export namespace Prisma {
     num_of_guests?: SortOrder
     total_price?: SortOrder
     quantity?: SortOrder
-<<<<<<< HEAD
-=======
     add_breakfast?: SortOrder
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
@@ -21143,10 +21058,7 @@ export namespace Prisma {
     num_of_guests?: SortOrder
     total_price?: SortOrder
     quantity?: SortOrder
-<<<<<<< HEAD
-=======
     add_breakfast?: SortOrder
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     start_date?: SortOrder
     end_date?: SortOrder
     created_at?: SortOrder
@@ -21163,10 +21075,7 @@ export namespace Prisma {
     num_of_guests?: SortOrder
     total_price?: SortOrder
     quantity?: SortOrder
-<<<<<<< HEAD
-=======
     add_breakfast?: SortOrder
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     start_date?: SortOrder
     end_date?: SortOrder
     created_at?: SortOrder
@@ -22553,10 +22462,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -22574,10 +22480,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -22657,10 +22560,7 @@ export namespace Prisma {
     num_of_guests?: IntFilter<"Booking"> | number
     total_price?: IntFilter<"Booking"> | number
     quantity?: IntFilter<"Booking"> | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFilter<"Booking"> | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: JsonNullableFilter<"Booking">
     start_date?: DateTimeFilter<"Booking"> | Date | string
     end_date?: DateTimeFilter<"Booking"> | Date | string
@@ -23277,10 +23177,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -23298,10 +23195,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -24349,10 +24243,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -24370,10 +24261,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -24523,10 +24411,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24544,10 +24429,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24719,10 +24601,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -24750,10 +24629,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24771,10 +24647,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24792,10 +24665,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25085,10 +24955,7 @@ export namespace Prisma {
     num_of_guests: number
     total_price: number
     quantity?: number
-<<<<<<< HEAD
-=======
     add_breakfast?: boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date: Date | string
     end_date: Date | string
@@ -25167,10 +25034,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25188,10 +25052,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25209,10 +25070,7 @@ export namespace Prisma {
     num_of_guests?: IntFieldUpdateOperationsInput | number
     total_price?: IntFieldUpdateOperationsInput | number
     quantity?: IntFieldUpdateOperationsInput | number
-<<<<<<< HEAD
-=======
     add_breakfast?: BoolFieldUpdateOperationsInput | boolean
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
     details?: NullableJsonNullValueInput | InputJsonValue
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
