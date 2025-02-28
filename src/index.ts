@@ -53,3 +53,5 @@ app.get("/api", (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Server is running on -> https://localhost:${PORT}/api`);
 });
+
+export default app;
