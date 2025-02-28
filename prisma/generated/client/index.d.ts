@@ -12796,13 +12796,10 @@ export namespace Prisma {
      */
     where?: RoomAvailabilityWhereInput
     /**
-<<<<<<< HEAD
-=======
      * Limit how many RoomAvailabilities to update.
      */
     limit?: number
     /**
->>>>>>> b083064594da5535ef442d125c6a6f048d4f640f
      * Choose, which related nodes to fetch as well
      */
     include?: RoomAvailabilityIncludeUpdateManyAndReturn<ExtArgs> | null
