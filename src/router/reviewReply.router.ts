@@ -15,6 +15,12 @@ export class ReviewReplyRouter {
   private initializeRoutes() {
     this.router.post("/", this.reviewReplyController.createReviewReply);
     this.router.get(
+      "/count-reviews",
+      verifyTokenTenant,
+      this.reviewReplyController.countTenantReviews
+    );
+
+    this.router.get(
       "/tenant/:tenantId",
       this.reviewReplyController.getReviewsByTenant
     );
