@@ -9,15 +9,11 @@ export class TenantBookingController {
     try {
       const { tenantId } = req.params;
       const { status } = req.query;
-
-      // Validate status
       const validStatuses = ["new", "completed", "canceled", "waiting_payment"];
       if (status && !validStatuses.includes(status as string)) {
         res.status(400).json({ error: "Invalid booking status" });
         return;
       }
-
-      // Find all bookings related to properties owned by the tenant
       const bookings = await prisma.booking.findMany({
         where: {
           room_types: {
@@ -124,7 +120,6 @@ export class TenantBookingController {
         return;
       }
 
-      // Prepare email content
       const emailContent = `
         <h1>Booking Confirmation</h1>
         <p>Hello ${booking.user.username},</p>
@@ -151,9 +146,7 @@ export class TenantBookingController {
   async cancelTenantBooking(req: Request, res: Response): Promise<void> {
     try {
       const { bookingId } = req.params;
-      const { tenantId } = req.body; // Ensure tenant ID is provided from auth middleware or request body.
-
-      // Find booking and verify tenant ownership
+      const { tenantId } = req.body;
       const booking = await prisma.booking.findUnique({
         where: { id: bookingId },
         select: {
@@ -189,7 +182,6 @@ export class TenantBookingController {
         return;
       }
 
-      // Execute cancellation within a transaction
       await prisma.$transaction([
         prisma.booking.update({
           where: { id: bookingId },
@@ -197,7 +189,7 @@ export class TenantBookingController {
         }),
         prisma.roomTypes.update({
           where: { id: booking.room_types.id },
-          data: { stock: { increment: 1 } }, // Restore stock after cancellation
+          data: { stock: { increment: 1 } },
         }),
       ]);
 
