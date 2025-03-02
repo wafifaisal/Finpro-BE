@@ -14,6 +14,7 @@ class UserBookingRouter {
     initializeRoutes() {
         this.router.post("/", this.userBookingController.newBooking);
         this.router.get("/count-booking", verify_user_1.verifyTokenUser, this.userBookingController.getUserBookingCount);
+        this.router.get("/total-expenditure", verify_user_1.verifyTokenUser, this.userBookingController.getUserTotalExpenditure);
         this.router.patch("/payment-proof", (0, uploader_1.uploader)("memoryStorage", "payment-proof").single("paymentProof"), this.userBookingController.uploadPaymentProof);
         this.router.post("/cancel-booking", this.userBookingController.cancelBooking);
         this.router.post("/payment/midtrans", this.userBookingController.getSnapToken);

@@ -53,7 +53,17 @@ class PropertyController {
                                 Unavailable: true,
                                 seasonal_prices: true,
                                 Booking: true,
-                                Review: true,
+                                Review: {
+                                    include: {
+                                        user: {
+                                            select: {
+                                                avatar: true,
+                                                username: true,
+                                                email: true,
+                                            },
+                                        },
+                                    },
+                                },
                             },
                         },
                     },
@@ -62,7 +72,20 @@ class PropertyController {
                     res.status(404).json({ message: "Property not found" });
                     return;
                 }
-                res.status(200).json(prop);
+                const roomTypesWithRating = prop.RoomTypes.map((rt) => {
+                    const reviewCount = rt.Review.length;
+                    const totalRating = rt.Review.reduce((sum, review) => sum + review.rating, 0);
+                    const avg_rating = reviewCount > 0 ? totalRating / reviewCount : 0;
+                    return Object.assign(Object.assign({}, rt), { avg_rating,
+                        reviewCount });
+                });
+                const allReviews = prop.RoomTypes.flatMap((rt) => rt.Review);
+                const totalReviews = allReviews.length;
+                const overallTotalRating = allReviews.reduce((sum, review) => sum + review.rating, 0);
+                const overallRating = totalReviews > 0 ? overallTotalRating / totalReviews : 0;
+                const response = Object.assign(Object.assign({}, prop), { overallRating,
+                    totalReviews, RoomTypes: roomTypesWithRating });
+                res.status(200).json(response);
             }
             catch (e) {
                 console.error(e);
@@ -110,7 +133,17 @@ class PropertyController {
                         Unavailable: true,
                         seasonal_prices: true,
                         Booking: true,
-                        Review: true,
+                        Review: {
+                            include: {
+                                user: {
+                                    select: {
+                                        avatar: true,
+                                        username: true,
+                                        email: true,
+                                    },
+                                },
+                            },
+                        },
                     },
                 });
                 if (!rt) {
@@ -129,7 +162,15 @@ class PropertyController {
                     start_date: u.start_date,
                     end_date: u.end_date,
                 }));
-                res.status(200).json({ roomType: Object.assign(Object.assign({}, rt), { imagePreviews, unavailable }) });
+                const reviewCount = rt.Review.length;
+                const totalRating = rt.Review.reduce((sum, review) => sum + review.rating, 0);
+                const avg_rating = reviewCount > 0 ? totalRating / reviewCount : 0;
+                res.status(200).json({
+                    roomType: Object.assign(Object.assign({}, rt), { avg_rating,
+                        reviewCount,
+                        imagePreviews,
+                        unavailable }),
+                });
             }
             catch (e) {
                 console.error(e);
