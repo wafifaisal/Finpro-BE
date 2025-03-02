@@ -46,6 +46,10 @@ export class TenantRouter {
 
     this.router.delete("/:id", this.tenantController.deleteTenant);
     this.router.get("/tenant-count", this.tenantController.getTenantCount);
+    this.router.get(
+      "/count-reviews/:id",
+      this.tenantController.countTenantReviews
+    );
   }
 
   getRouter(): Router {

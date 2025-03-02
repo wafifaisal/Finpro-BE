@@ -26,6 +26,9 @@ export async function createBooking(params: CreateBookingParams) {
 
   const roomType = await prisma.roomTypes.findUnique({
     where: { id: roomTypeId },
+    include: {
+      seasonal_prices: true,
+    },
   });
   if (!roomType) {
     throw new Error("Room type not found");
@@ -38,13 +41,58 @@ export async function createBooking(params: CreateBookingParams) {
     (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
   );
 
+  // Perhitungan harga kamar per malam (menggunakan harga seasonal jika berlaku)
+  let seasonalNights = 0;
+  let regularNights = 0;
+  let seasonalCost = 0;
+  let regularCost = 0;
+
+  for (let i = 0; i < nights; i++) {
+    const currentDate = new Date(checkInDate);
+    currentDate.setDate(currentDate.getDate() + i);
+    let priceForNight = roomType.price;
+    let isSeasonal = false;
+
+    if (roomType.seasonal_prices && roomType.seasonal_prices.length > 0) {
+      // Cari apakah tanggal saat ini termasuk dalam harga seasonal
+      const seasonal = roomType.seasonal_prices.find((sp: any) => {
+        if (sp.dates && sp.dates.length > 0) {
+          const target = currentDate.toISOString().split("T")[0];
+          return sp.dates.some((d: string) => {
+            const dStr = new Date(d).toISOString().split("T")[0];
+            return dStr === target;
+          });
+        } else if (sp.start_date && sp.end_date) {
+          const spStart = new Date(sp.start_date);
+          const spEnd = new Date(sp.end_date);
+          return currentDate >= spStart && currentDate <= spEnd;
+        }
+        return false;
+      });
+
+      if (seasonal) {
+        priceForNight = Number(seasonal.price);
+        isSeasonal = true;
+      }
+    }
+
+    if (isSeasonal) {
+      seasonalNights++;
+      seasonalCost += priceForNight * bookingQuantity;
+    } else {
+      regularNights++;
+      regularCost += priceForNight * bookingQuantity;
+    }
+  }
+
+  const roomCost = seasonalCost + regularCost;
   const breakfastCost =
     roomType.has_breakfast && add_breakfast
       ? roomType.breakfast_price * bookingQuantity * nights
       : 0;
+  const totalPrice = roomCost + breakfastCost;
 
-  const totalPrice = roomType.price * bookingQuantity * nights + breakfastCost;
-
+  // Pembuatan booking beserta update ketersediaan kamar
   const newBooking = await prisma.$transaction(async (tx) => {
     const bookingCreated = await tx.booking.create({
       data: {
