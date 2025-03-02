@@ -18,6 +18,10 @@ export class TenantRouter {
     this.router.get("/count-reviews", this.tenantController.countTenantReviews);
     this.router.get("/tenant-count", this.tenantController.getTenantCount);
     this.router.get(
+      "/count-properties",
+      this.tenantController.getTenantPropertyCount
+    );
+    this.router.get(
       "/profile",
       verifyTokenTenant,
       this.tenantController.getTenantProfile
@@ -26,10 +30,6 @@ export class TenantRouter {
       "/properties",
       verifyTokenTenant,
       this.tenantController.getTenantProperties
-    );
-    this.router.get(
-      "/count-properties",
-      this.tenantController.getTenantPropertyCount
     );
 
     this.router.patch(
