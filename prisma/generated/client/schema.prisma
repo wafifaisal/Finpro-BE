@@ -119,7 +119,7 @@ model Property {
   PropertyImages  PropertyImages[]
   tenant          Tenant             @relation(fields: [tenantId], references: [id])
   tenantId        String
-  isAvailable     Boolean            @default(true) // Menunjukkan apakah properti tersedia
+  isAvailable     Boolean            @default(true)
   RoomTypes       RoomTypes[]
   facilities      PropertyFacility[] @default([])
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { compare, genSalt } from "bcrypt";
+import { compare } from "bcrypt";
 import { verify } from "jsonwebtoken";
 import prisma from "../../prisma";
 import {
@@ -118,7 +118,6 @@ export class AuthUserController {
           email: user.email,
           username: user.username,
           avatar: user.avatar,
-
         },
       });
     } catch (err: any) {
