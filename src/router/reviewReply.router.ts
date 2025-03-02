@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ReviewReplyController } from "../controller/review/reviewReply.controller";
+import { verifyTokenTenant } from "../middleware/verify.tenant";
 
 export class ReviewReplyRouter {
   private reviewReplyController = new ReviewReplyController();
@@ -16,6 +17,11 @@ export class ReviewReplyRouter {
     this.router.get(
       "/tenant/:tenantId",
       this.reviewReplyController.getReviewsByTenant
+    );
+    this.router.get(
+      "/count-reviews/:id",
+      verifyTokenTenant,
+      this.reviewReplyController.countTenantReviews
     );
   }
 

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ReviewController } from "../controller/review/review.controller";
+import { verifyTokenUser } from "../middleware/verify.user";
 
 export class ReviewRouter {
   private reviewController = new ReviewController();
@@ -13,6 +14,7 @@ export class ReviewRouter {
 
   private initializeRoutes() {
     this.router.post("/", this.reviewController.newReview);
+    this.router.get("/count", this.reviewController.getUserReviewCount);
     this.router.get("/:userId", this.reviewController.getUserReviews);
     this.router.delete("/:reviewId", this.reviewController.deleteReview);
   }
