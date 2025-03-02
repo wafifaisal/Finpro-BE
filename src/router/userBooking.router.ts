@@ -20,6 +20,11 @@ export class UserBookingRouter {
       verifyTokenUser,
       this.userBookingController.getUserBookingCount
     );
+    this.router.get(
+      "/total-expenditure",
+      verifyTokenUser,
+      this.userBookingController.getUserTotalExpenditure
+    );
     this.router.patch(
       "/payment-proof",
       uploader("memoryStorage", "payment-proof").single("paymentProof"),

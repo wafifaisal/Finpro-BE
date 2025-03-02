@@ -83,4 +83,21 @@ export class ReviewController {
       res.status(500).send({ message: error });
     }
   }
+
+  async getUserReviewCount(req: Request, res: Response): Promise<void> {
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(400).json({ message: "User ID is required" });
+      return;
+    }
+    try {
+      const reviewCount = await prisma.review.count({
+        where: { user_id: userId },
+      });
+      res.status(200).json({ totalReview: reviewCount });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Internal server error" });
+    }
+  }
 }

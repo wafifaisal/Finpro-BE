@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { TenantBookingController } from "../controller/booking/tenantBooking.controller";
+import { verifyTokenTenant } from "../middleware/verify.tenant";
 
 export class TenantBookingRouter {
   private tenantBookingController: TenantBookingController;
@@ -15,6 +16,12 @@ export class TenantBookingRouter {
     this.router.post(
       "/:bookingId/cancel-booking",
       this.tenantBookingController.cancelTenantBooking
+    );
+
+    this.router.get(
+      "/total-expenditure",
+      verifyTokenTenant,
+      this.tenantBookingController.getTenantExpenditure
     );
 
     this.router.get(
