@@ -202,7 +202,7 @@ export class TenantBookingController {
 
   async getTenantExpenditure(req: Request, res: Response): Promise<void> {
     try {
-      const { tenantId } = req.params;
+      const tenantId = req.tenant?.id;
       const result = await prisma.booking.aggregate({
         _sum: {
           total_price: true,
