@@ -18,7 +18,7 @@ export class TenantRouter {
     this.router.get("/count-reviews", this.tenantController.countTenantReviews);
     this.router.get("/tenant-count", this.tenantController.getTenantCount);
     this.router.get(
-      "/count-properties",
+      "/count-properties/:tenantId",
       this.tenantController.getTenantPropertyCount
     );
     this.router.get(
