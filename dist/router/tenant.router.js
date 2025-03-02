@@ -12,14 +12,15 @@ class TenantRouter {
         this.initializeRoutes();
     }
     initializeRoutes() {
-        this.router.get("/count-properties/:tenantId", this.tenantController.getTenantPropertyCount);
         this.router.get("/", this.tenantController.getTenant);
+        this.router.get("/count-reviews", this.tenantController.countTenantReviews);
+        this.router.get("/tenant-count", this.tenantController.getTenantCount);
+        this.router.get("/profile", verify_tenant_1.verifyTokenTenant, this.tenantController.getTenantProfile);
         this.router.get("/properties", verify_tenant_1.verifyTokenTenant, this.tenantController.getTenantProperties);
+        this.router.get("/count-properties/:tenantId", this.tenantController.getTenantPropertyCount);
         this.router.patch("/update-password", verify_tenant_1.verifyTokenTenant, this.tenantController.updatePassword);
         this.router.patch("/avatar-cloud", verify_tenant_1.verifyTokenTenant, (0, uploader_1.uploader)("memoryStorage", "avatar").single("file"), this.tenantController.editAvatarTenant);
-        this.router.get("/profile", verify_tenant_1.verifyTokenTenant, this.tenantController.getTenantProfile);
         this.router.delete("/:id", this.tenantController.deleteTenant);
-        this.router.get("/tenant-count", this.tenantController.getTenantCount);
     }
     getRouter() {
         return this.router;

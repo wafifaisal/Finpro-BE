@@ -148,7 +148,7 @@ export class TenantController {
   }
   async getTenantPropertyCount(req: Request, res: Response): Promise<void> {
     try {
-      const tenantId = req.params.tenantId;
+      const tenantId = req.tenant?.id;
       if (!tenantId) {
         res.status(400).json({ message: "Tenant ID is required" });
         return;
@@ -164,7 +164,7 @@ export class TenantController {
   }
 
   async countTenantReviews(req: Request, res: Response): Promise<void> {
-    const { tenantId } = req.params;
+    const tenantId = req.tenant?.id;
     try {
       const result = await prisma.review.aggregate({
         _avg: { rating: true },

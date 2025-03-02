@@ -98,6 +98,30 @@ class ReviewReplyController {
             }
         });
     }
+    countTenantReviews(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { tenantId } = req.params;
+            try {
+                const result = yield prisma_1.default.review.aggregate({
+                    _avg: { rating: true },
+                    _count: { rating: true },
+                    where: {
+                        room_types: {
+                            property: {
+                                tenantId: tenantId,
+                            },
+                        },
+                    },
+                });
+                const totalReviews = result._count.rating;
+                const avgRating = result._avg.rating || 0;
+                res.status(200).send({ totalReviews, avgRating });
+            }
+            catch (error) {
+                res.status(500).send({ message: error });
+            }
+        });
+    }
 }
 exports.ReviewReplyController = ReviewReplyController;
 //# sourceMappingURL=reviewReply.controller.js.map

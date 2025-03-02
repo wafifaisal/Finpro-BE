@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TenantBookingRouter = void 0;
 const express_1 = require("express");
 const tenantBooking_controller_1 = require("../controller/booking/tenantBooking.controller");
+const verify_tenant_1 = require("../middleware/verify.tenant");
 class TenantBookingRouter {
     constructor() {
         this.tenantBookingController = new tenantBooking_controller_1.TenantBookingController();
@@ -11,6 +12,7 @@ class TenantBookingRouter {
     }
     initializeRoutes() {
         this.router.post("/:bookingId/cancel-booking", this.tenantBookingController.cancelTenantBooking);
+        this.router.get("/total-expenditure", verify_tenant_1.verifyTokenTenant, this.tenantBookingController.getTenantExpenditure);
         this.router.get("/:tenantId", this.tenantBookingController.getTenantBookings);
         this.router.patch("/:bookingId/status", this.tenantBookingController.updateBookingStatus);
         this.router.post("/:bookingId/resend-confirmation", this.tenantBookingController.resendBookingConfirmation);
