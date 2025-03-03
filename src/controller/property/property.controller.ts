@@ -243,4 +243,22 @@ export class PropertyController {
       res.status(500).json({ error: "Internal server error" });
     }
   }
+  async getTenantPropertyCount(req: Request, res: Response): Promise<void> {
+    try {
+      const { tenantId } = req.params;
+      if (!tenantId) {
+        res.status(400).json({ message: "Tenant ID is required" });
+        return;
+      }
+
+      const totalProperties = await prisma.property.count({
+        where: { tenantId, isAvailable: true },
+      });
+
+      res.status(200).json({ totalProperties });
+    } catch (e) {
+      console.error("Error fetching tenant property count:", e);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
 }

@@ -17,6 +17,7 @@ class PropertyRouter {
         this.router.get("/:id", this.propertyController.GetPropertyById);
         this.router.get("/roomtypes/:property_id/:roomtype_id", verify_tenant_1.verifyTokenTenant, this.propertyController.getRoomTypeById);
         this.router.get("/rooms/:roomId", this.propertyController.getRoomTypes);
+        this.router.get("/tenant/:tenantId/count-properties", this.propertyController.getTenantPropertyCount);
         this.router.post("/click", this.propertyController.incrementClickRate);
     }
     getRouter() {

@@ -241,6 +241,25 @@ class PropertyController {
             }
         });
     }
+    getTenantPropertyCount(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { tenantId } = req.params;
+                if (!tenantId) {
+                    res.status(400).json({ message: "Tenant ID is required" });
+                    return;
+                }
+                const totalProperties = yield prisma_1.default.property.count({
+                    where: { tenantId, isAvailable: true },
+                });
+                res.status(200).json({ totalProperties });
+            }
+            catch (e) {
+                console.error("Error fetching tenant property count:", e);
+                res.status(500).json({ message: "Internal Server Error" });
+            }
+        });
+    }
 }
 exports.PropertyController = PropertyController;
 //# sourceMappingURL=property.controller.js.map
