@@ -12,7 +12,6 @@ interface MulterRequest extends Request {
 export class TenantController {
   async getTenant(req: Request, res: Response): Promise<void> {
     try {
-      console.log(req.tenant);
       const filter = buildTenantFilter(req.query);
       const { page, limit, skip } = getPagination(req.query);
       const { total_page, tenants } = await fetchTenants(filter, limit, skip);
@@ -146,25 +145,9 @@ export class TenantController {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-  async getTenantPropertyCount(req: Request, res: Response): Promise<void> {
-    try {
-      const tenantId = req.tenant?.id;
-      if (!tenantId) {
-        res.status(400).json({ message: "Tenant ID is required" });
-        return;
-      }
-      const totalProperties = await prisma.property.count({
-        where: { tenantId, isAvailable: true },
-      });
-      res.status(200).json({ totalProperties });
-    } catch (err) {
-      console.error("Error fetching tenant property count:", err);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  }
 
   async countTenantReviews(req: Request, res: Response): Promise<void> {
-    const tenantId = req.tenant?.id;
+    const { tenantId } = req.params;
     try {
       const result = await prisma.review.aggregate({
         _avg: { rating: true },

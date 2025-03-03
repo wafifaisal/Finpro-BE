@@ -30,7 +30,10 @@ export class PropertyRouter {
     );
 
     this.router.get("/rooms/:roomId", this.propertyController.getRoomTypes);
-
+    this.router.get(
+      "/tenant/:tenantId/count-properties",
+      this.propertyController.getTenantPropertyCount
+    );
     this.router.post("/click", this.propertyController.incrementClickRate);
   }
   public getRouter(): Router {

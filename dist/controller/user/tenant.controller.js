@@ -23,7 +23,6 @@ class TenantController {
     getTenant(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.tenant);
                 const filter = (0, TenantQueryUtils_1.buildTenantFilter)(req.query);
                 const { page, limit, skip } = (0, TenantQueryUtils_1.getPagination)(req.query);
                 const { total_page, tenants } = yield (0, tenantDataFetcher_1.fetchTenants)(filter, limit, skip);
@@ -175,30 +174,9 @@ class TenantController {
             }
         });
     }
-    getTenantPropertyCount(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            try {
-                const tenantId = (_a = req.tenant) === null || _a === void 0 ? void 0 : _a.id;
-                if (!tenantId) {
-                    res.status(400).json({ message: "Tenant ID is required" });
-                    return;
-                }
-                const totalProperties = yield prisma_1.default.property.count({
-                    where: { tenantId, isAvailable: true },
-                });
-                res.status(200).json({ totalProperties });
-            }
-            catch (err) {
-                console.error("Error fetching tenant property count:", err);
-                res.status(500).json({ message: "Internal server error" });
-            }
-        });
-    }
     countTenantReviews(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const tenantId = (_a = req.tenant) === null || _a === void 0 ? void 0 : _a.id;
+            const { tenantId } = req.params;
             try {
                 const result = yield prisma_1.default.review.aggregate({
                     _avg: { rating: true },

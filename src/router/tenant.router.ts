@@ -15,12 +15,11 @@ export class TenantRouter {
 
   private initializeRoutes() {
     this.router.get("/", this.tenantController.getTenant);
-    this.router.get("/count-reviews", this.tenantController.countTenantReviews);
-    this.router.get("/tenant-count", this.tenantController.getTenantCount);
     this.router.get(
-      "/count-properties/:tenantId",
-      this.tenantController.getTenantPropertyCount
+      "/count-reviews/:tenantId",
+      this.tenantController.countTenantReviews
     );
+    this.router.get("/tenant-count", this.tenantController.getTenantCount);
     this.router.get(
       "/profile",
       verifyTokenTenant,
