@@ -93,7 +93,13 @@ function buildPropertyResponse(query) {
                             select: { id: true, start_date: true, end_date: true },
                         },
                         seasonal_prices: {
-                            select: { id: true, price: true, start_date: true, end_date: true },
+                            select: {
+                                id: true,
+                                price: true,
+                                start_date: true,
+                                end_date: true,
+                                dates: true,
+                            },
                         },
                         Booking: {
                             select: {
