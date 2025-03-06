@@ -8,7 +8,7 @@ exports.parseGuestCount = parseGuestCount;
 exports.parseFacilities = parseFacilities;
 exports.parseDates = parseDates;
 function parsePagination(query) {
-    const limit = parseInt(query.limit) || 9;
+    const limit = parseInt(query.limit) || 40;
     const page = parseInt(query.page) || 1;
     return { limit, page };
 }
