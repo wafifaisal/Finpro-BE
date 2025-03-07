@@ -133,7 +133,14 @@ export class AuthUserController {
         res.status(404).send({ message: "Email not found!" });
         return;
       }
-      const token = generateToken({ id: user.id, email: user.email }, "1h");
+      const token = generateToken(
+        {
+          id: user.id,
+          email: user.email,
+          version: user.resetPasswordTokenVersion || 0,
+        },
+        "1h"
+      );
       const resetLink = `${base_url_fe}/auth/user/login/reset-password/${token}`;
       await sendEmail(
         "forgotPassword.hbs",
@@ -150,7 +157,6 @@ export class AuthUserController {
         .send({ message: "An error occurred while sending the reset link." });
     }
   }
-
   async resetPasswordUser(req: Request, res: Response): Promise<void> {
     try {
       const { token, newPassword, confirmPassword } = req.body;
@@ -174,10 +180,18 @@ export class AuthUserController {
         res.status(404).send({ message: "User not found!" });
         return;
       }
+      const tokenVersion = decoded.version;
+      if (tokenVersion !== (user.resetPasswordTokenVersion || 0)) {
+        res.status(400).send({ message: "Reset link has already been used!" });
+        return;
+      }
       const hashed = await hashPassword(newPassword);
       await prisma.user.update({
         where: { id: user.id },
-        data: { password: hashed },
+        data: {
+          password: hashed,
+          resetPasswordTokenVersion: (user.resetPasswordTokenVersion || 0) + 1,
+        },
       });
       res
         .status(200)

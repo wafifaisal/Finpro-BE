@@ -20,7 +20,6 @@ export class AuthTenantController {
       if (exists) throw new Error("Email has already been used");
       const newTenant = await prisma.tenant.create({
         data: { name: "", no_handphone: null, email },
-
       });
       const token = generateToken({ id: newTenant.id });
       const link = `${base_url_fe}/auth/tenant/verify-tenant/${token}`;
@@ -88,7 +87,6 @@ export class AuthTenantController {
       res.status(400).send({ message: err.message });
     }
   }
-
   async socialLoginTenant(req: Request, res: Response): Promise<void> {
     try {
       const { tokenId } = req.body;
@@ -145,7 +143,14 @@ export class AuthTenantController {
         res.status(404).send({ message: "Email not found!" });
         return;
       }
-      const token = generateToken({ id: tenant.id, email: tenant.email }, "1h");
+      const token = generateToken(
+        {
+          id: tenant.id,
+          email: tenant.email,
+          version: tenant.resetPasswordTokenVersion || 0,
+        },
+        "1h"
+      );
       const resetLink = `${base_url_fe}/auth/tenant/login/reset-password/${token}`;
       await sendEmail(
         "forgotPassword.hbs",
@@ -188,10 +193,19 @@ export class AuthTenantController {
         res.status(404).send({ message: "Tenant not found!" });
         return;
       }
+      const tokenVersion = decoded.version;
+      if (tokenVersion !== (tenant.resetPasswordTokenVersion || 0)) {
+        res.status(400).send({ message: "Reset link has already been used!" });
+        return;
+      }
       const hashed = await hashPassword(newPassword);
       await prisma.tenant.update({
         where: { id: tenant.id },
-        data: { password: hashed },
+        data: {
+          password: hashed,
+          resetPasswordTokenVersion:
+            (tenant.resetPasswordTokenVersion || 0) + 1,
+        },
       });
       res
         .status(200)
