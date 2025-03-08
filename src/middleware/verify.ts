@@ -1,4 +1,3 @@
-// src/middleware/verify.ts
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 

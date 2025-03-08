@@ -16,7 +16,6 @@ exports.updateRoomTypeAvgRating = updateRoomTypeAvgRating;
 const prisma_1 = __importDefault(require("../prisma"));
 function updateRoomTypeAvgRating(roomTypeId) {
     return __awaiter(this, void 0, void 0, function* () {
-        // Ambil semua review yang tidak dihapus untuk room type tertentu
         const reviews = yield prisma_1.default.review.findMany({
             where: {
                 room_types_id: roomTypeId,
@@ -26,10 +25,8 @@ function updateRoomTypeAvgRating(roomTypeId) {
                 rating: true,
             },
         });
-        // Hitung total rating dan rata-rata
         const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
         const avg_rating = reviews.length > 0 ? totalRating / reviews.length : 0;
-        // Perbarui field avg_rating pada RoomTypes
         yield prisma_1.default.roomTypes.update({
             where: { id: roomTypeId },
             data: { avg_rating },

@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSnapTokenService = getSnapTokenService;
 exports.handleMidtransWebhook = handleMidtransWebhook;
-// src/services/paymentService.ts
 const prisma_1 = __importDefault(require("../prisma"));
 const midtransClient = require("midtrans-client");
 function getSnapTokenService(booking_id) {
