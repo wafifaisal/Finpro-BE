@@ -31,7 +31,6 @@ function createBooking(params) {
         const checkInDate = new Date(startDate);
         const checkOutDate = new Date(endDate);
         const nights = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
-        // Perhitungan harga kamar per malam (menggunakan harga seasonal jika berlaku)
         let seasonalNights = 0;
         let regularNights = 0;
         let seasonalCost = 0;
@@ -42,7 +41,6 @@ function createBooking(params) {
             let priceForNight = roomType.price;
             let isSeasonal = false;
             if (roomType.seasonal_prices && roomType.seasonal_prices.length > 0) {
-                // Cari apakah tanggal saat ini termasuk dalam harga seasonal
                 const seasonal = roomType.seasonal_prices.find((sp) => {
                     if (sp.dates && sp.dates.length > 0) {
                         const target = currentDate.toISOString().split("T")[0];
@@ -77,7 +75,6 @@ function createBooking(params) {
             ? roomType.breakfast_price * bookingQuantity * nights
             : 0;
         const totalPrice = roomCost + breakfastCost;
-        // Pembuatan booking beserta update ketersediaan kamar
         const newBooking = yield prisma_1.default.$transaction((tx) => __awaiter(this, void 0, void 0, function* () {
             const bookingCreated = yield tx.booking.create({
                 data: {
