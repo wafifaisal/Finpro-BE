@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
+import { updateRoomTypeAvgRating } from "../../utils/roomTypeUtils";
 
 export class ReviewController {
   async newReview(req: Request, res: Response): Promise<void> {
@@ -22,9 +23,22 @@ export class ReviewController {
           review: comment,
           room_types_id: booking.room_types_id,
         },
+        include: {
+          user: {
+            select: {
+              avatar: true,
+              username: true,
+              email: true,
+            },
+          },
+        },
       });
 
-      res.status(201).send(review);
+      const updatedAvgRating = await updateRoomTypeAvgRating(
+        booking.room_types_id
+      );
+
+      res.status(201).send({ review, updatedAvgRating });
     } catch (error) {
       res.status(500).send({ message: error });
     }
@@ -36,7 +50,17 @@ export class ReviewController {
       const bookings = await prisma.booking.findMany({
         where: { user_id: userId, status: "completed" },
         include: {
-          Review: true,
+          Review: {
+            include: {
+              user: {
+                select: {
+                  avatar: true,
+                  username: true,
+                  email: true,
+                },
+              },
+            },
+          },
           room_types: { include: { property: true, RoomImages: true } },
         },
       });
@@ -79,6 +103,23 @@ export class ReviewController {
     } catch (error) {
       console.error("Error fetching booking:", error);
       res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  async getUserReviewCount(req: Request, res: Response): Promise<void> {
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(400).json({ message: "User ID is required" });
+      return;
+    }
+    try {
+      const reviewCount = await prisma.review.count({
+        where: { user_id: userId },
+      });
+      res.status(200).json({ totalReview: reviewCount });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Internal server error" });
     }
   }
 }

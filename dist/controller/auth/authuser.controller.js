@@ -154,7 +154,11 @@ class AuthUserController {
                     res.status(404).send({ message: "Email not found!" });
                     return;
                 }
-                const token = (0, AuthHelpers_1.generateToken)({ id: user.id, email: user.email }, "1h");
+                const token = (0, AuthHelpers_1.generateToken)({
+                    id: user.id,
+                    email: user.email,
+                    version: user.resetPasswordTokenVersion || 0,
+                }, "1h");
                 const resetLink = `${base_url_fe}/auth/user/login/reset-password/${token}`;
                 yield (0, AuthHelpers_1.sendEmail)("forgotPassword.hbs", { username: user.username, resetLink }, email, "Password Reset Request");
                 res
@@ -193,10 +197,18 @@ class AuthUserController {
                     res.status(404).send({ message: "User not found!" });
                     return;
                 }
+                const tokenVersion = decoded.version;
+                if (tokenVersion !== (user.resetPasswordTokenVersion || 0)) {
+                    res.status(400).send({ message: "Reset link has already been used!" });
+                    return;
+                }
                 const hashed = yield (0, AuthHelpers_1.hashPassword)(newPassword);
                 yield prisma_1.default.user.update({
                     where: { id: user.id },
-                    data: { password: hashed },
+                    data: {
+                        password: hashed,
+                        resetPasswordTokenVersion: (user.resetPasswordTokenVersion || 0) + 1,
+                    },
                 });
                 res
                     .status(200)

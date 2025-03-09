@@ -163,7 +163,11 @@ class AuthTenantController {
                     res.status(404).send({ message: "Email not found!" });
                     return;
                 }
-                const token = (0, AuthHelpers_1.generateToken)({ id: tenant.id, email: tenant.email }, "1h");
+                const token = (0, AuthHelpers_1.generateToken)({
+                    id: tenant.id,
+                    email: tenant.email,
+                    version: tenant.resetPasswordTokenVersion || 0,
+                }, "1h");
                 const resetLink = `${AuthHelpers_1.base_url_fe}/auth/tenant/login/reset-password/${token}`;
                 yield (0, AuthHelpers_1.sendEmail)("forgotPassword.hbs", { name: tenant.name, resetLink }, email, "Password Reset Request");
                 res
@@ -204,10 +208,18 @@ class AuthTenantController {
                     res.status(404).send({ message: "Tenant not found!" });
                     return;
                 }
+                const tokenVersion = decoded.version;
+                if (tokenVersion !== (tenant.resetPasswordTokenVersion || 0)) {
+                    res.status(400).send({ message: "Reset link has already been used!" });
+                    return;
+                }
                 const hashed = yield (0, AuthHelpers_1.hashPassword)(newPassword);
                 yield prisma_1.default.tenant.update({
                     where: { id: tenant.id },
-                    data: { password: hashed },
+                    data: {
+                        password: hashed,
+                        resetPasswordTokenVersion: (tenant.resetPasswordTokenVersion || 0) + 1,
+                    },
                 });
                 res
                     .status(200)

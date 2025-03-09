@@ -31,10 +31,9 @@ export const uploader = (
             file: Express.Multer.File,
             cb: FileNameCallback
           ) => {
-            // asd.png
-            const originalNameParts = file.originalname.split("."); // [asd, png]
+            const originalNameParts = file.originalname.split(".");
             const fileExtension =
-              originalNameParts[originalNameParts.length - 1]; // png
+              originalNameParts[originalNameParts.length - 1];
             const newFileName = filePrefix + Date.now() + "." + fileExtension;
             cb(null, newFileName);
           },

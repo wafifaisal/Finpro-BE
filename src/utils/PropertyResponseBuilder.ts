@@ -93,7 +93,13 @@ export async function buildPropertyResponse(query: any) {
             select: { id: true, start_date: true, end_date: true },
           },
           seasonal_prices: {
-            select: { id: true, price: true, start_date: true, end_date: true },
+            select: {
+              id: true,
+              price: true,
+              start_date: true,
+              end_date: true,
+              dates: true,
+            },
           },
           Booking: {
             select: {
@@ -114,11 +120,26 @@ export async function buildPropertyResponse(query: any) {
     },
   });
 
+  const propsWithRating = props.map((property) => {
+    const roomTypes = property.RoomTypes || [];
+    const allReviews = roomTypes.flatMap((rt) => rt.Review || []);
+    const totalReviews = allReviews.length;
+    const overallRating =
+      totalReviews > 0
+        ? allReviews.reduce((sum, r) => sum + r.rating, 0) / totalReviews
+        : 0;
+    return {
+      ...property,
+      overallRating,
+      totalReviews,
+    };
+  });
+
   return {
     totalPages: Math.ceil(total / limit),
     currentPage: page,
     limit,
-    result: props,
+    result: propsWithRating,
     minPrice: stats._min.price,
     maxPrice: stats._max.price,
   };

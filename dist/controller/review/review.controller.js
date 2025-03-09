@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewController = void 0;
 const prisma_1 = __importDefault(require("../../prisma"));
+const roomTypeUtils_1 = require("../../utils/roomTypeUtils");
 class ReviewController {
     newReview(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,8 +35,18 @@ class ReviewController {
                         review: comment,
                         room_types_id: booking.room_types_id,
                     },
+                    include: {
+                        user: {
+                            select: {
+                                avatar: true,
+                                username: true,
+                                email: true,
+                            },
+                        },
+                    },
                 });
-                res.status(201).send(review);
+                const updatedAvgRating = yield (0, roomTypeUtils_1.updateRoomTypeAvgRating)(booking.room_types_id);
+                res.status(201).send({ review, updatedAvgRating });
             }
             catch (error) {
                 res.status(500).send({ message: error });
@@ -49,7 +60,17 @@ class ReviewController {
                 const bookings = yield prisma_1.default.booking.findMany({
                     where: { user_id: userId, status: "completed" },
                     include: {
-                        Review: true,
+                        Review: {
+                            include: {
+                                user: {
+                                    select: {
+                                        avatar: true,
+                                        username: true,
+                                        email: true,
+                                    },
+                                },
+                            },
+                        },
                         room_types: { include: { property: true, RoomImages: true } },
                     },
                 });
@@ -71,6 +92,26 @@ class ReviewController {
             }
             catch (error) {
                 res.status(500).send({ message: error });
+            }
+        });
+    }
+    getUserReviewCount(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+            if (!userId) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
+            try {
+                const reviewCount = yield prisma_1.default.review.count({
+                    where: { user_id: userId },
+                });
+                res.status(200).json({ totalReview: reviewCount });
+            }
+            catch (error) {
+                console.error(error);
+                res.status(500).json({ error: error.message || "Internal server error" });
             }
         });
     }

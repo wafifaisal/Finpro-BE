@@ -14,11 +14,17 @@ export class TenantRouter {
   }
 
   private initializeRoutes() {
-    this.router.get(
-      "/count-properties/:tenantId",
-      this.tenantController.getTenantPropertyCount
-    );
     this.router.get("/", this.tenantController.getTenant);
+    this.router.get(
+      "/count-reviews/:tenantId",
+      this.tenantController.countTenantReviews
+    );
+    this.router.get("/tenant-count", this.tenantController.getTenantCount);
+    this.router.get(
+      "/profile",
+      verifyTokenTenant,
+      this.tenantController.getTenantProfile
+    );
     this.router.get(
       "/properties",
       verifyTokenTenant,
@@ -38,14 +44,7 @@ export class TenantRouter {
       this.tenantController.editAvatarTenant
     );
 
-    this.router.get(
-      "/profile",
-      verifyTokenTenant,
-      this.tenantController.getTenantProfile
-    );
-
     this.router.delete("/:id", this.tenantController.deleteTenant);
-    this.router.get("/tenant-count", this.tenantController.getTenantCount);
   }
 
   getRouter(): Router {

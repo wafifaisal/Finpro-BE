@@ -1,4 +1,3 @@
-// src/services/paymentService.ts
 import prisma from "../prisma";
 const midtransClient = require("midtrans-client");
 

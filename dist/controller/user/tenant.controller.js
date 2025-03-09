@@ -23,7 +23,6 @@ class TenantController {
     getTenant(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.tenant);
                 const filter = (0, TenantQueryUtils_1.buildTenantFilter)(req.query);
                 const { page, limit, skip } = (0, TenantQueryUtils_1.getPagination)(req.query);
                 const { total_page, tenants } = yield (0, tenantDataFetcher_1.fetchTenants)(filter, limit, skip);
@@ -175,22 +174,27 @@ class TenantController {
             }
         });
     }
-    getTenantPropertyCount(req, res) {
+    countTenantReviews(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { tenantId } = req.params;
             try {
-                const tenantId = req.params.tenantId;
-                if (!tenantId) {
-                    res.status(400).json({ message: "Tenant ID is required" });
-                    return;
-                }
-                const totalProperties = yield prisma_1.default.property.count({
-                    where: { tenantId, isAvailable: true },
+                const result = yield prisma_1.default.review.aggregate({
+                    _avg: { rating: true },
+                    _count: { rating: true },
+                    where: {
+                        room_types: {
+                            property: {
+                                tenantId: tenantId,
+                            },
+                        },
+                    },
                 });
-                res.status(200).json({ totalProperties });
+                const totalReviews = result._count.rating;
+                const avgRating = result._avg.rating || 0;
+                res.status(200).send({ totalReviews, avgRating });
             }
-            catch (err) {
-                console.error("Error fetching tenant property count:", err);
-                res.status(500).json({ message: "Internal server error" });
+            catch (error) {
+                res.status(500).send({ message: error });
             }
         });
     }

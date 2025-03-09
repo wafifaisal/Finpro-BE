@@ -18,9 +18,8 @@ const uploader = (type = "memoryStorage", filePrefix, folderName) => {
                 cb(null, destination);
             },
             filename: (req, file, cb) => {
-                // asd.png
-                const originalNameParts = file.originalname.split("."); // [asd, png]
-                const fileExtension = originalNameParts[originalNameParts.length - 1]; // png
+                const originalNameParts = file.originalname.split(".");
+                const fileExtension = originalNameParts[originalNameParts.length - 1];
                 const newFileName = filePrefix + Date.now() + "." + fileExtension;
                 cb(null, newFileName);
             },

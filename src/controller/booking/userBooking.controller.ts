@@ -160,6 +160,7 @@ export class UserBookingController {
           status: true,
           user_id: true,
           room_types_id: true,
+          add_breakfast: true,
           room_types: {
             select: {
               name: true,
@@ -306,6 +307,31 @@ export class UserBookingController {
     } catch (err) {
       console.error("Error fetching booking user count:", err);
       res.status(500).json({ message: "Internal server error" });
+    }
+  }
+
+  async getUserTotalExpenditure(req: Request, res: Response): Promise<void> {
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(400).json({ message: "User ID is required" });
+      return;
+    }
+    try {
+      const totalExpenditure = await prisma.booking.aggregate({
+        _sum: { total_price: true },
+        where: {
+          user_id: userId,
+          status: "completed",
+        },
+      });
+      res.status(200).json({
+        totalExpenditure: totalExpenditure._sum.total_price || 0,
+      });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({
+        error: error.message || "Internal server error",
+      });
     }
   }
 }

@@ -22,13 +22,11 @@ class TenantBookingController {
             try {
                 const { tenantId } = req.params;
                 const { status } = req.query;
-                // Validate status
                 const validStatuses = ["new", "completed", "canceled", "waiting_payment"];
                 if (status && !validStatuses.includes(status)) {
                     res.status(400).json({ error: "Invalid booking status" });
                     return;
                 }
-                // Find all bookings related to properties owned by the tenant
                 const bookings = yield prisma_1.default.booking.findMany({
                     where: {
                         room_types: {
@@ -131,7 +129,6 @@ class TenantBookingController {
                     res.status(400).json({ error: "Booking is not completed yet" });
                     return;
                 }
-                // Prepare email content
                 const emailContent = `
         <h1>Booking Confirmation</h1>
         <p>Hello ${booking.user.username},</p>
@@ -158,8 +155,7 @@ class TenantBookingController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { bookingId } = req.params;
-                const { tenantId } = req.body; // Ensure tenant ID is provided from auth middleware or request body.
-                // Find booking and verify tenant ownership
+                const { tenantId } = req.body;
                 const booking = yield prisma_1.default.booking.findUnique({
                     where: { id: bookingId },
                     select: {
@@ -191,7 +187,6 @@ class TenantBookingController {
                     });
                     return;
                 }
-                // Execute cancellation within a transaction
                 yield prisma_1.default.$transaction([
                     prisma_1.default.booking.update({
                         where: { id: bookingId },
@@ -199,7 +194,7 @@ class TenantBookingController {
                     }),
                     prisma_1.default.roomTypes.update({
                         where: { id: booking.room_types.id },
-                        data: { stock: { increment: 1 } }, // Restore stock after cancellation
+                        data: { stock: { increment: 1 } },
                     }),
                 ]);
                 res.status(200).send({ message: "Booking canceled successfully" });
@@ -207,6 +202,58 @@ class TenantBookingController {
             catch (error) {
                 console.error(error);
                 res.status(500).send({ error: "Internal server error" });
+            }
+        });
+    }
+    getTenantExpenditure(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            try {
+                const tenantId = (_a = req.tenant) === null || _a === void 0 ? void 0 : _a.id;
+                const result = yield prisma_1.default.booking.aggregate({
+                    _sum: {
+                        total_price: true,
+                    },
+                    where: {
+                        room_types: {
+                            property: {
+                                tenantId,
+                            },
+                        },
+                        status: "completed",
+                    },
+                });
+                const totalExpenditure = result._sum.total_price || 0;
+                res.status(200).json({ totalExpenditure });
+            }
+            catch (error) {
+                console.error(error);
+                res.status(500).send({ error: "Internal server error" });
+            }
+        });
+    }
+    countTenantReviews(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            const tenantId = (_a = req.tenant) === null || _a === void 0 ? void 0 : _a.id;
+            try {
+                const result = yield prisma_1.default.review.aggregate({
+                    _avg: { rating: true },
+                    _count: { rating: true },
+                    where: {
+                        room_types: {
+                            property: {
+                                tenantId: tenantId,
+                            },
+                        },
+                    },
+                });
+                const totalReviews = result._count.rating;
+                const avgRating = result._avg.rating || 0;
+                res.status(200).send({ totalReviews, avgRating });
+            }
+            catch (error) {
+                res.status(500).send({ message: error });
             }
         });
     }

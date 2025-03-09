@@ -20,28 +20,24 @@ export function calculateCosts(booking: any) {
       booking.room_types.seasonal_prices &&
       booking.room_types.seasonal_prices.length > 0
     ) {
-      for (const sp of booking.room_types.seasonal_prices) {
+      const seasonal = booking.room_types.seasonal_prices.find((sp: any) => {
         if (sp.dates && sp.dates.length > 0) {
           const target = currentDate.toISOString().split("T")[0];
-          if (
-            sp.dates.some((d: Date) => {
-              const dStr = new Date(d).toISOString().split("T")[0];
-              return dStr === target;
-            })
-          ) {
-            priceForNight = Number(sp.price);
-            isSeasonal = true;
-            break;
-          }
+          return sp.dates.some((d: string) => {
+            const dStr = new Date(d).toISOString().split("T")[0];
+            return dStr === target;
+          });
         } else if (sp.start_date && sp.end_date) {
           const spStart = new Date(sp.start_date);
           const spEnd = new Date(sp.end_date);
-          if (currentDate >= spStart && currentDate <= spEnd) {
-            priceForNight = Number(sp.price);
-            isSeasonal = true;
-            break;
-          }
+          return currentDate >= spStart && currentDate <= spEnd;
         }
+        return false;
+      });
+
+      if (seasonal) {
+        priceForNight = Number(seasonal.price);
+        isSeasonal = true;
       }
     }
 
@@ -63,6 +59,7 @@ export function calculateCosts(booking: any) {
 
   return {
     ...booking,
+    total_price: computedTotal,
     breakfastCost,
     computedTotal,
     seasonalBreakdown: {

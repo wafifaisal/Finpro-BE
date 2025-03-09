@@ -109,4 +109,27 @@ export class ReviewReplyController {
       return;
     }
   }
+  async countTenantReviews(req: Request, res: Response): Promise<void> {
+    const { tenantId } = req.params;
+    try {
+      const result = await prisma.review.aggregate({
+        _avg: { rating: true },
+        _count: { rating: true },
+        where: {
+          room_types: {
+            property: {
+              tenantId: tenantId,
+            },
+          },
+        },
+      });
+
+      const totalReviews = result._count.rating;
+      const avgRating = result._avg.rating || 0;
+
+      res.status(200).send({ totalReviews, avgRating });
+    } catch (error) {
+      res.status(500).send({ message: error });
+    }
+  }
 }

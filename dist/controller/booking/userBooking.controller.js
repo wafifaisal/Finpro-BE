@@ -194,6 +194,7 @@ class UserBookingController {
                         status: true,
                         user_id: true,
                         room_types_id: true,
+                        add_breakfast: true,
                         room_types: {
                             select: {
                                 name: true,
@@ -334,6 +335,34 @@ class UserBookingController {
             catch (err) {
                 console.error("Error fetching booking user count:", err);
                 res.status(500).json({ message: "Internal server error" });
+            }
+        });
+    }
+    getUserTotalExpenditure(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+            if (!userId) {
+                res.status(400).json({ message: "User ID is required" });
+                return;
+            }
+            try {
+                const totalExpenditure = yield prisma_1.default.booking.aggregate({
+                    _sum: { total_price: true },
+                    where: {
+                        user_id: userId,
+                        status: "completed",
+                    },
+                });
+                res.status(200).json({
+                    totalExpenditure: totalExpenditure._sum.total_price || 0,
+                });
+            }
+            catch (error) {
+                console.error(error);
+                res.status(500).json({
+                    error: error.message || "Internal server error",
+                });
             }
         });
     }

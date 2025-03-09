@@ -65,35 +65,37 @@ enum PropertyFacility {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  email        String    @unique
-  username     String?
-  password     String?
-  avatar       String?   @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
-  no_handphone String?   @unique
-  isVerify     Boolean   @default(false)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime?
-  googleId     String?   @unique
-  Booking      Booking[]
-  Review       Review[]
+  id                        String    @id @default(uuid())
+  email                     String    @unique
+  username                  String?
+  password                  String?
+  avatar                    String?   @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
+  no_handphone              String?   @unique
+  resetPasswordTokenVersion Int       @default(0)
+  isVerify                  Boolean   @default(false)
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+  deletedAt                 DateTime?
+  googleId                  String?   @unique
+  Booking                   Booking[]
+  Review                    Review[]
 }
 
 model Tenant {
-  id            String          @id @default(uuid())
-  googleId      String?         @unique
-  name          String
-  password      String?
-  no_handphone  String?         @unique
-  email         String          @unique
-  avatar        String?         @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
-  isVerify      Boolean         @default(false)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  deletedAt     DateTime?
-  Property      Property[]
-  ReviewReplies ReviewReplies[]
+  id                        String          @id @default(uuid())
+  googleId                  String?         @unique
+  name                      String
+  password                  String?
+  no_handphone              String?         @unique
+  email                     String          @unique
+  avatar                    String?         @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
+  resetPasswordTokenVersion Int             @default(0)
+  isVerify                  Boolean         @default(false)
+  createdAt                 DateTime        @default(now())
+  updatedAt                 DateTime        @updatedAt
+  deletedAt                 DateTime?
+  Property                  Property[]
+  ReviewReplies             ReviewReplies[]
 }
 
 model Location {
