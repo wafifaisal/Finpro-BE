@@ -17,6 +17,7 @@ export class ReviewRouter {
     this.router.get("/count", this.reviewController.getUserReviewCount);
     this.router.get("/:userId", this.reviewController.getUserReviews);
     this.router.delete("/:reviewId", this.reviewController.deleteReview);
+    this.router.get("/create/:bookingId", this.reviewController.getBookingById);
   }
 
   public getRouter(): Router {

@@ -24,6 +24,7 @@ export async function createBooking(params: CreateBookingParams) {
     add_breakfast,
   } = params;
 
+  // Retrieve room type including seasonal pricing.
   const roomType = await prisma.roomTypes.findUnique({
     where: { id: roomTypeId },
     include: {
