@@ -2,7 +2,7 @@ import prisma from "../prisma";
 const midtransClient = require("midtrans-client");
 
 export async function getSnapTokenService(booking_id: string) {
-  // Retrieve booking including dates and seasonal pricing info.
+  // Retrieve booking including dates, seasonal pricing, and breakfast info.
   const booking = await prisma.booking.findUnique({
     where: { id: booking_id },
     select: {
@@ -13,11 +13,14 @@ export async function getSnapTokenService(booking_id: string) {
       created_at: true,
       start_date: true,
       end_date: true,
+      add_breakfast: true, // include breakfast flag from booking
       room_types: {
         select: {
           name: true,
           price: true,
           seasonal_prices: true, // Array of seasonal prices
+          breakfast_price: true, // breakfast price
+          has_breakfast: true, // flag if breakfast is available
         },
       },
     },
@@ -26,13 +29,13 @@ export async function getSnapTokenService(booking_id: string) {
   if (!booking) {
     throw new Error("Booking not found");
   }
-
   if (booking.status !== "new") {
     throw new Error("Booking is not in a valid state for payment");
   }
 
   // --- Expiry Logic: 30 minutes from booking.created_at ---
   const bookingCreationTime = new Date(booking.created_at);
+  // Using an offset of 1 hour if required (you can adjust or remove if not needed)
   const localBookingCreationTime = new Date(
     bookingCreationTime.getTime() + 60 * 60 * 1000
   );
@@ -105,12 +108,28 @@ export async function getSnapTokenService(booking_id: string) {
     computedSeasonal += Number(price) * seasonalMap[Number(price)] * quantity;
   }
   const computedGross = computedRegular + computedSeasonal;
+  // --- End Breakdown ---
+
+  // --- Calculate breakfast cost if applicable ---
+  const breakfastCost =
+    booking.room_types.has_breakfast && booking.add_breakfast
+      ? booking.room_types.breakfast_price * quantity * nights
+      : 0;
+  // --- End Breakfast Calculation ---
+
+  const finalGross = computedGross + breakfastCost;
+
+  if (finalGross !== booking.total_price) {
+    console.warn(
+      `Computed gross (${finalGross}) does not match booking.total_price (${booking.total_price}). Using computed gross.`
+    );
+  }
 
   // --- Build combined item_details as a single line item ---
   const item_details = [
     {
       id: booking_id,
-      price: computedGross,
+      price: finalGross,
       quantity: 1,
       name: (booking.room_types.name + " Total").slice(0, 50),
     },
@@ -132,7 +151,7 @@ export async function getSnapTokenService(booking_id: string) {
   const parameters = {
     transaction_details: {
       order_id: booking_id,
-      gross_amount: computedGross, // must equal the sum of item_details
+      gross_amount: finalGross, // must equal the sum of item_details
     },
     customer_details: { username: user.username, email: user.email },
     item_details,
