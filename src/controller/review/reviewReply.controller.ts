@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import prisma from "../../prisma";
 
 export class ReviewReplyController {
-  async getReviewsByTenant(req: Request, res: Response) {
+  async getReviewsByTenant(req: Request, res: Response): Promise<void> {
     const { tenantId } = req.params;
+
     try {
       const tenant = await prisma.tenant.findUnique({
         where: { id: tenantId },
@@ -15,6 +16,7 @@ export class ReviewReplyController {
                   Review: {
                     include: {
                       user: true,
+                      ReviewReplies: true,
                     },
                   },
                 },
@@ -25,33 +27,45 @@ export class ReviewReplyController {
       });
 
       if (!tenant) {
-        res.status(404).send({ error: "Tenant not found" });
+        res.status(404).json({ error: "Tenant not found" });
         return;
       }
 
       const reviews = tenant.Property.flatMap((property) =>
-        property.RoomTypes.flatMap((roomType) => roomType.Review)
+        property.RoomTypes.flatMap((roomType) =>
+          roomType.Review.map((review) => ({
+            id: review.id,
+            rating: review.rating,
+            review: review.review,
+            user_id: review.user_id,
+            user: review.user,
+            reply: review.ReviewReplies.length ? review.ReviewReplies[0] : null,
+          }))
+        )
       );
 
-      res.status(200).send(reviews);
+      res.status(200).json(reviews);
+      return;
     } catch (error) {
-      res.status(500).send({ message: error });
+      console.error("Error fetching reviews:", error);
+      res.status(500).json({ message: "Internal server error" });
+      return;
     }
   }
 
-  async createReviewReply(req: Request, res: Response) {
+  async createReviewReply(req: Request, res: Response): Promise<void> {
     const { tenantId, reviewId, reply } = req.body;
 
     if (!tenantId || !reviewId || !reply) {
       res
         .status(400)
-        .send({ error: "Missing required fields: tenantId, reviewId, reply" });
+        .json({ error: "Missing required fields: tenantId, reviewId, reply" });
       return;
     }
 
     try {
       const review = await prisma.review.findUnique({
-        where: { id: parseInt(reviewId) },
+        where: { id: reviewId },
         include: {
           room_types: {
             include: {
@@ -62,35 +76,37 @@ export class ReviewReplyController {
       });
 
       if (!review || review.room_types.property.tenantId !== tenantId) {
-        res.status(404).send({
-          error:
-            "Review not found or you do not have permission to reply to this review",
+        res.status(403).json({
+          error: "Review not found or unauthorized to reply to this review",
         });
         return;
       }
 
       const existingReply = await prisma.reviewReplies.findFirst({
-        where: { review_id: parseInt(reviewId) },
+        where: { review_id: reviewId },
       });
 
       if (existingReply) {
         res
           .status(400)
-          .send({ error: "A reply to this review already exists" });
+          .json({ error: "A reply already exists for this review" });
         return;
       }
 
-      const reviewReply = await prisma.reviewReplies.create({
+      const newReply = await prisma.reviewReplies.create({
         data: {
           tenant_id: tenantId,
-          review_id: parseInt(reviewId),
+          review_id: reviewId,
           reply,
         },
       });
 
-      res.status(201).send(reviewReply);
+      res.status(201).json(newReply);
+      return;
     } catch (error) {
-      res.status(500).send({ message: error });
+      console.error("Error creating review reply:", error);
+      res.status(500).json({ message: "Internal server error" });
+      return;
     }
   }
 }

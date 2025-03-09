@@ -11,6 +11,8 @@ import { ReviewReplyRouter } from "./router/reviewReply.router";
 import { UserBookingRouter } from "./router/userBooking.router";
 import { TenantRouter } from "./router/tenant.router";
 import { TenantBookingRouter } from "./router/tenantBooking.router";
+import { PropertyReportRouter } from "./router/propertyReport.router";
+import { SalesReportRouter } from "./router/salesReport.router";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
@@ -35,6 +37,8 @@ const reviewReplyRouter = new ReviewReplyRouter();
 const createRouter = new CreateRouter();
 const tenantRouter = new TenantRouter();
 const tenantBookingRouter = new TenantBookingRouter();
+const salesReportRouter = new SalesReportRouter();
+const propertyReportRouter = new PropertyReportRouter();
 
 app.use("/api/auth", authRouter.getRouter());
 app.use("/api/users", userRouter.getRouter());
@@ -45,6 +49,8 @@ app.use("/api/review-reply", reviewReplyRouter.getRouter());
 app.use("/api/create", createRouter.getRouter());
 app.use("/api/tenant", tenantRouter.getRouter());
 app.use("/api/tenant-bookings", tenantBookingRouter.getRouter());
+app.use("/api/sales-report", salesReportRouter.getRouter());
+app.use("/api/property-report", propertyReportRouter.getRouter());
 
 app.get("/api", (req: Request, res: Response) => {
   res.status(200).send("Welcome to my API");

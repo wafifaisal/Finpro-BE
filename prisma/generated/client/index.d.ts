@@ -461,7 +461,7 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike
 
   /**
-   * Metrics
+   * Metrics 
    */
   export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
@@ -479,14 +479,14 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.4.1
-   * Query Engine version: a9055b89e58b4b5bfb59600785423b1db3d0e75d
+   * Prisma Client JS version: 6.2.1
+   * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
    */
   export type PrismaVersion = {
     client: string
   }
 
-  export const prismaVersion: PrismaVersion
+  export const prismaVersion: PrismaVersion 
 
   /**
    * Utility Types
@@ -502,15 +502,15 @@ export namespace Prisma {
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   namespace NullTypes {
     /**
     * Type of `Prisma.DbNull`.
-    *
+    * 
     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    *
+    * 
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class DbNull {
@@ -520,9 +520,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.JsonNull`.
-    *
+    * 
     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    *
+    * 
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class JsonNull {
@@ -532,9 +532,9 @@ export namespace Prisma {
 
     /**
     * Type of `Prisma.AnyNull`.
-    *
+    * 
     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    *
+    * 
     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
     */
     class AnyNull {
@@ -545,21 +545,21 @@ export namespace Prisma {
 
   /**
    * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const DbNull: NullTypes.DbNull
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const JsonNull: NullTypes.JsonNull
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   *
+   * 
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
   export const AnyNull: NullTypes.AnyNull
@@ -3345,10 +3345,6 @@ export namespace Prisma {
      * Filter which Users to update
      */
     where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
   }
 
   /**
@@ -3371,10 +3367,6 @@ export namespace Prisma {
      * Filter which Users to update
      */
     where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
   }
 
   /**
@@ -3437,10 +3429,6 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
-    /**
-     * Limit how many Users to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -4521,10 +4509,6 @@ export namespace Prisma {
      * Filter which Tenants to update
      */
     where?: TenantWhereInput
-    /**
-     * Limit how many Tenants to update.
-     */
-    limit?: number
   }
 
   /**
@@ -4547,10 +4531,6 @@ export namespace Prisma {
      * Filter which Tenants to update
      */
     where?: TenantWhereInput
-    /**
-     * Limit how many Tenants to update.
-     */
-    limit?: number
   }
 
   /**
@@ -4613,10 +4593,6 @@ export namespace Prisma {
      * Filter which Tenants to delete
      */
     where?: TenantWhereInput
-    /**
-     * Limit how many Tenants to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -5683,10 +5659,6 @@ export namespace Prisma {
      * Filter which Locations to update
      */
     where?: LocationWhereInput
-    /**
-     * Limit how many Locations to update.
-     */
-    limit?: number
   }
 
   /**
@@ -5709,10 +5681,6 @@ export namespace Prisma {
      * Filter which Locations to update
      */
     where?: LocationWhereInput
-    /**
-     * Limit how many Locations to update.
-     */
-    limit?: number
   }
 
   /**
@@ -5775,10 +5743,6 @@ export namespace Prisma {
      * Filter which Locations to delete
      */
     where?: LocationWhereInput
-    /**
-     * Limit how many Locations to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -6882,10 +6846,6 @@ export namespace Prisma {
      * Filter which Properties to update
      */
     where?: PropertyWhereInput
-    /**
-     * Limit how many Properties to update.
-     */
-    limit?: number
   }
 
   /**
@@ -6908,10 +6868,6 @@ export namespace Prisma {
      * Filter which Properties to update
      */
     where?: PropertyWhereInput
-    /**
-     * Limit how many Properties to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6978,10 +6934,6 @@ export namespace Prisma {
      * Filter which Properties to delete
      */
     where?: PropertyWhereInput
-    /**
-     * Limit how many Properties to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -8039,10 +7991,6 @@ export namespace Prisma {
      * Filter which PropertyImages to update
      */
     where?: PropertyImagesWhereInput
-    /**
-     * Limit how many PropertyImages to update.
-     */
-    limit?: number
   }
 
   /**
@@ -8065,10 +8013,6 @@ export namespace Prisma {
      * Filter which PropertyImages to update
      */
     where?: PropertyImagesWhereInput
-    /**
-     * Limit how many PropertyImages to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -8135,10 +8079,6 @@ export namespace Prisma {
      * Filter which PropertyImages to delete
      */
     where?: PropertyImagesWhereInput
-    /**
-     * Limit how many PropertyImages to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -9294,10 +9234,6 @@ export namespace Prisma {
      * Filter which RoomTypes to update
      */
     where?: RoomTypesWhereInput
-    /**
-     * Limit how many RoomTypes to update.
-     */
-    limit?: number
   }
 
   /**
@@ -9320,10 +9256,6 @@ export namespace Prisma {
      * Filter which RoomTypes to update
      */
     where?: RoomTypesWhereInput
-    /**
-     * Limit how many RoomTypes to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -9390,10 +9322,6 @@ export namespace Prisma {
      * Filter which RoomTypes to delete
      */
     where?: RoomTypesWhereInput
-    /**
-     * Limit how many RoomTypes to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -10547,10 +10475,6 @@ export namespace Prisma {
      * Filter which RoomImages to update
      */
     where?: RoomImagesWhereInput
-    /**
-     * Limit how many RoomImages to update.
-     */
-    limit?: number
   }
 
   /**
@@ -10573,10 +10497,6 @@ export namespace Prisma {
      * Filter which RoomImages to update
      */
     where?: RoomImagesWhereInput
-    /**
-     * Limit how many RoomImages to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10643,10 +10563,6 @@ export namespace Prisma {
      * Filter which RoomImages to delete
      */
     where?: RoomImagesWhereInput
-    /**
-     * Limit how many RoomImages to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -11656,10 +11572,6 @@ export namespace Prisma {
      * Filter which Unavailables to update
      */
     where?: UnavailableWhereInput
-    /**
-     * Limit how many Unavailables to update.
-     */
-    limit?: number
   }
 
   /**
@@ -11682,10 +11594,6 @@ export namespace Prisma {
      * Filter which Unavailables to update
      */
     where?: UnavailableWhereInput
-    /**
-     * Limit how many Unavailables to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -11752,10 +11660,6 @@ export namespace Prisma {
      * Filter which Unavailables to delete
      */
     where?: UnavailableWhereInput
-    /**
-     * Limit how many Unavailables to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -12769,10 +12673,6 @@ export namespace Prisma {
      * Filter which RoomAvailabilities to update
      */
     where?: RoomAvailabilityWhereInput
-    /**
-     * Limit how many RoomAvailabilities to update.
-     */
-    limit?: number
   }
 
   /**
@@ -12795,10 +12695,6 @@ export namespace Prisma {
      * Filter which RoomAvailabilities to update
      */
     where?: RoomAvailabilityWhereInput
-    /**
-     * Limit how many RoomAvailabilities to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -12865,10 +12761,6 @@ export namespace Prisma {
      * Filter which RoomAvailabilities to delete
      */
     where?: RoomAvailabilityWhereInput
-    /**
-     * Limit how many RoomAvailabilities to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -13930,10 +13822,6 @@ export namespace Prisma {
      * Filter which seasonal_prices to update
      */
     where?: seasonal_pricesWhereInput
-    /**
-     * Limit how many seasonal_prices to update.
-     */
-    limit?: number
   }
 
   /**
@@ -13956,10 +13844,6 @@ export namespace Prisma {
      * Filter which seasonal_prices to update
      */
     where?: seasonal_pricesWhereInput
-    /**
-     * Limit how many seasonal_prices to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -14026,10 +13910,6 @@ export namespace Prisma {
      * Filter which seasonal_prices to delete
      */
     where?: seasonal_pricesWhereInput
-    /**
-     * Limit how many seasonal_prices to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -15174,10 +15054,6 @@ export namespace Prisma {
      * Filter which Bookings to update
      */
     where?: BookingWhereInput
-    /**
-     * Limit how many Bookings to update.
-     */
-    limit?: number
   }
 
   /**
@@ -15200,10 +15076,6 @@ export namespace Prisma {
      * Filter which Bookings to update
      */
     where?: BookingWhereInput
-    /**
-     * Limit how many Bookings to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -15270,10 +15142,6 @@ export namespace Prisma {
      * Filter which Bookings to delete
      */
     where?: BookingWhereInput
-    /**
-     * Limit how many Bookings to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -16372,10 +16240,6 @@ export namespace Prisma {
      * Filter which Reviews to update
      */
     where?: ReviewWhereInput
-    /**
-     * Limit how many Reviews to update.
-     */
-    limit?: number
   }
 
   /**
@@ -16398,10 +16262,6 @@ export namespace Prisma {
      * Filter which Reviews to update
      */
     where?: ReviewWhereInput
-    /**
-     * Limit how many Reviews to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -16468,10 +16328,6 @@ export namespace Prisma {
      * Filter which Reviews to delete
      */
     where?: ReviewWhereInput
-    /**
-     * Limit how many Reviews to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -17487,10 +17343,6 @@ export namespace Prisma {
      * Filter which ReviewReplies to update
      */
     where?: ReviewRepliesWhereInput
-    /**
-     * Limit how many ReviewReplies to update.
-     */
-    limit?: number
   }
 
   /**
@@ -17513,10 +17365,6 @@ export namespace Prisma {
      * Filter which ReviewReplies to update
      */
     where?: ReviewRepliesWhereInput
-    /**
-     * Limit how many ReviewReplies to update.
-     */
-    limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -17583,10 +17431,6 @@ export namespace Prisma {
      * Filter which ReviewReplies to delete
      */
     where?: ReviewRepliesWhereInput
-    /**
-     * Limit how many ReviewReplies to delete.
-     */
-    limit?: number
   }
 
   /**
@@ -17970,13 +17814,6 @@ export namespace Prisma {
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -20986,7 +20823,6 @@ export namespace Prisma {
   export type JsonNullableFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
     string_ends_with?: string | StringFieldRefInput<$PrismaModel>
@@ -21094,7 +20930,6 @@ export namespace Prisma {
   export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
     string_ends_with?: string | StringFieldRefInput<$PrismaModel>
@@ -22414,7 +22249,6 @@ export namespace Prisma {
   export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
     string_ends_with?: string | StringFieldRefInput<$PrismaModel>
