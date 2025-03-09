@@ -2,22 +2,24 @@ import prisma from "../prisma";
 const midtransClient = require("midtrans-client");
 
 export async function getSnapTokenService(booking_id: string) {
-  // Retrieve booking including dates and seasonal pricing info.
   const booking = await prisma.booking.findUnique({
     where: { id: booking_id },
     select: {
       quantity: true,
       status: true,
-      total_price: true, // stored total (if available)
+      total_price: true,
       user_id: true,
       created_at: true,
       start_date: true,
       end_date: true,
+      add_breakfast: true,
       room_types: {
         select: {
           name: true,
           price: true,
-          seasonal_prices: true, // Array of seasonal prices
+          seasonal_prices: true,
+          breakfast_price: true,
+          has_breakfast: true,
         },
       },
     },
@@ -26,12 +28,10 @@ export async function getSnapTokenService(booking_id: string) {
   if (!booking) {
     throw new Error("Booking not found");
   }
-
   if (booking.status !== "new") {
     throw new Error("Booking is not in a valid state for payment");
   }
 
-  // --- Expiry Logic: 30 minutes from booking.created_at ---
   const bookingCreationTime = new Date(booking.created_at);
   const localBookingCreationTime = new Date(
     bookingCreationTime.getTime() + 60 * 60 * 1000
@@ -45,9 +45,7 @@ export async function getSnapTokenService(booking_id: string) {
   }
   const remainingMilliseconds = expiryTime.getTime() - now.getTime();
   const remainingMinutes = Math.floor(remainingMilliseconds / (60 * 1000));
-  // --- End Expiry Logic ---
 
-  // --- Breakdown Regular and Seasonal Nights ---
   if (!booking.start_date || !booking.end_date) {
     throw new Error("Booking dates are missing");
   }
@@ -106,16 +104,27 @@ export async function getSnapTokenService(booking_id: string) {
   }
   const computedGross = computedRegular + computedSeasonal;
 
-  // --- Build combined item_details as a single line item ---
+  const breakfastCost =
+    booking.room_types.has_breakfast && booking.add_breakfast
+      ? booking.room_types.breakfast_price * quantity * nights
+      : 0;
+
+  const finalGross = computedGross + breakfastCost;
+
+  if (finalGross !== booking.total_price) {
+    console.warn(
+      `Computed gross (${finalGross}) does not match booking.total_price (${booking.total_price}). Using computed gross.`
+    );
+  }
+
   const item_details = [
     {
       id: booking_id,
-      price: computedGross,
+      price: finalGross,
       quantity: 1,
       name: (booking.room_types.name + " Total").slice(0, 50),
     },
   ];
-  // --- End Build item_details ---
 
   const user = await prisma.user.findUnique({
     where: { id: booking.user_id },
@@ -132,7 +141,7 @@ export async function getSnapTokenService(booking_id: string) {
   const parameters = {
     transaction_details: {
       order_id: booking_id,
-      gross_amount: computedGross, // must equal the sum of item_details
+      gross_amount: finalGross,
     },
     customer_details: { username: user.username, email: user.email },
     item_details,
