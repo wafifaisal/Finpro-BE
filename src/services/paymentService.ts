@@ -2,22 +2,24 @@ import prisma from "../prisma";
 const midtransClient = require("midtrans-client");
 
 export async function getSnapTokenService(booking_id: string) {
-  // Retrieve booking including dates and seasonal pricing info.
   const booking = await prisma.booking.findUnique({
     where: { id: booking_id },
     select: {
       quantity: true,
       status: true,
-      total_price: true, // stored total (if available)
+      total_price: true,
       user_id: true,
       created_at: true,
       start_date: true,
       end_date: true,
+      add_breakfast: true, // pastikan field ini ada di model booking
       room_types: {
         select: {
           name: true,
           price: true,
-          seasonal_prices: true, // Array of seasonal prices
+          seasonal_prices: true,
+          breakfast_price: true,
+          has_breakfast: true, // pastikan field ini ada di model room_types
         },
       },
     },
@@ -31,7 +33,6 @@ export async function getSnapTokenService(booking_id: string) {
     throw new Error("Booking is not in a valid state for payment");
   }
 
-  // --- Expiry Logic: 30 minutes from booking.created_at ---
   const bookingCreationTime = new Date(booking.created_at);
   const localBookingCreationTime = new Date(
     bookingCreationTime.getTime() + 60 * 60 * 1000
@@ -74,7 +75,9 @@ export async function getSnapTokenService(booking_id: string) {
         if (sp.dates && Array.isArray(sp.dates) && sp.dates.length > 0) {
           const target = currentDate.toISOString().split("T")[0];
           if (
-            sp.dates.some((d: Date) => d.toISOString().split("T")[0] === target)
+            sp.dates.some(
+              (d: Date) => new Date(d).toISOString().split("T")[0] === target
+            )
           ) {
             priceForNight = Number(sp.price);
             isSeasonal = true;
@@ -104,7 +107,16 @@ export async function getSnapTokenService(booking_id: string) {
   for (const price in seasonalMap) {
     computedSeasonal += Number(price) * seasonalMap[Number(price)] * quantity;
   }
-  const computedGross = computedRegular + computedSeasonal;
+  const computedRoomTotal = computedRegular + computedSeasonal;
+
+  // --- Tambahkan perhitungan harga breakfast ---
+  const computedBreakfast =
+    booking.room_types.has_breakfast && booking.add_breakfast
+      ? booking.room_types.breakfast_price * quantity * nights
+      : 0;
+
+  const computedGross = computedRoomTotal + computedBreakfast;
+  // --- End Breakdown ---
 
   // --- Build combined item_details as a single line item ---
   const item_details = [
