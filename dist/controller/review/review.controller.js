@@ -95,6 +95,28 @@ class ReviewController {
             }
         });
     }
+    getBookingById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { bookingId } = req.params;
+            try {
+                const booking = yield prisma_1.default.booking.findUnique({
+                    where: { id: bookingId },
+                    include: {
+                        room_types: { include: { property: true, RoomImages: true } },
+                    },
+                });
+                if (!booking) {
+                    res.status(404).json({ error: "Booking not found" });
+                    return;
+                }
+                res.status(200).json(booking);
+            }
+            catch (error) {
+                console.error("Error fetching booking:", error);
+                res.status(500).json({ message: "Internal Server Error" });
+            }
+        });
+    }
     getUserReviewCount(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;
