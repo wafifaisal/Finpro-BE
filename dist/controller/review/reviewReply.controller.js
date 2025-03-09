@@ -47,8 +47,12 @@ class ReviewReplyController {
                     rating: review.rating,
                     review: review.review,
                     user_id: review.user_id,
-                    user: review.user,
+                    user: {
+                        name: review.user.username,
+                        avatar: review.user.avatar,
+                    },
                     reply: review.ReviewReplies.length ? review.ReviewReplies[0] : null,
+                    propertyName: property.name,
                 }))));
                 res.status(200).json(reviews);
                 return;
