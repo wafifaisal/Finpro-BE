@@ -18,7 +18,6 @@ const dateUtils_1 = require("../utils/dateUtils");
 function createBooking(params) {
     return __awaiter(this, void 0, void 0, function* () {
         const { userId, roomTypeId, numOfGuests, quantity, startDate, endDate, paymentMethod, add_breakfast, } = params;
-        // Retrieve room type including seasonal pricing.
         const roomType = yield prisma_1.default.roomTypes.findUnique({
             where: { id: roomTypeId },
             include: {

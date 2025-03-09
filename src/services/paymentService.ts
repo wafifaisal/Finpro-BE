@@ -72,7 +72,9 @@ export async function getSnapTokenService(booking_id: string) {
         if (sp.dates && Array.isArray(sp.dates) && sp.dates.length > 0) {
           const target = currentDate.toISOString().split("T")[0];
           if (
-            sp.dates.some((d: Date) => d.toISOString().split("T")[0] === target)
+            sp.dates.some(
+              (d: Date) => new Date(d).toISOString().split("T")[0] === target
+            )
           ) {
             priceForNight = Number(sp.price);
             isSeasonal = true;
@@ -102,7 +104,16 @@ export async function getSnapTokenService(booking_id: string) {
   for (const price in seasonalMap) {
     computedSeasonal += Number(price) * seasonalMap[Number(price)] * quantity;
   }
-  const computedGross = computedRegular + computedSeasonal;
+  const computedRoomTotal = computedRegular + computedSeasonal;
+
+  // --- Tambahkan perhitungan harga breakfast ---
+  const computedBreakfast =
+    booking.room_types.has_breakfast && booking.add_breakfast
+      ? booking.room_types.breakfast_price * quantity * nights
+      : 0;
+
+  const computedGross = computedRoomTotal + computedBreakfast;
+  // --- End Breakdown ---
 
   const breakfastCost =
     booking.room_types.has_breakfast && booking.add_breakfast
