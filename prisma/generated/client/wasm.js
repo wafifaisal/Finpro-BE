@@ -247,6 +247,7 @@ exports.Prisma.BookingScalarFieldEnum = {
   end_date: 'end_date',
   created_at: 'created_at',
   updated_at: 'updated_at',
+  expired_at: 'expired_at',
   payment_proof: 'payment_proof',
   payment_method: 'payment_method',
   status: 'status',

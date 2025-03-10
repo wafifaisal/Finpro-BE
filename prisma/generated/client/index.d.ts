@@ -14181,6 +14181,7 @@ export namespace Prisma {
     end_date: Date | null
     created_at: Date | null
     updated_at: Date | null
+    expired_at: Date | null
     payment_proof: string | null
     payment_method: $Enums.PaymentMethod | null
     status: $Enums.BookingStatus | null
@@ -14198,6 +14199,7 @@ export namespace Prisma {
     end_date: Date | null
     created_at: Date | null
     updated_at: Date | null
+    expired_at: Date | null
     payment_proof: string | null
     payment_method: $Enums.PaymentMethod | null
     status: $Enums.BookingStatus | null
@@ -14216,6 +14218,7 @@ export namespace Prisma {
     end_date: number
     created_at: number
     updated_at: number
+    expired_at: number
     payment_proof: number
     payment_method: number
     status: number
@@ -14249,6 +14252,7 @@ export namespace Prisma {
     end_date?: true
     created_at?: true
     updated_at?: true
+    expired_at?: true
     payment_proof?: true
     payment_method?: true
     status?: true
@@ -14266,6 +14270,7 @@ export namespace Prisma {
     end_date?: true
     created_at?: true
     updated_at?: true
+    expired_at?: true
     payment_proof?: true
     payment_method?: true
     status?: true
@@ -14284,6 +14289,7 @@ export namespace Prisma {
     end_date?: true
     created_at?: true
     updated_at?: true
+    expired_at?: true
     payment_proof?: true
     payment_method?: true
     status?: true
@@ -14389,6 +14395,7 @@ export namespace Prisma {
     end_date: Date
     created_at: Date
     updated_at: Date
+    expired_at: Date | null
     payment_proof: string | null
     payment_method: $Enums.PaymentMethod | null
     status: $Enums.BookingStatus
@@ -14426,6 +14433,7 @@ export namespace Prisma {
     end_date?: boolean
     created_at?: boolean
     updated_at?: boolean
+    expired_at?: boolean
     payment_proof?: boolean
     payment_method?: boolean
     status?: boolean
@@ -14448,6 +14456,7 @@ export namespace Prisma {
     end_date?: boolean
     created_at?: boolean
     updated_at?: boolean
+    expired_at?: boolean
     payment_proof?: boolean
     payment_method?: boolean
     status?: boolean
@@ -14468,6 +14477,7 @@ export namespace Prisma {
     end_date?: boolean
     created_at?: boolean
     updated_at?: boolean
+    expired_at?: boolean
     payment_proof?: boolean
     payment_method?: boolean
     status?: boolean
@@ -14488,6 +14498,7 @@ export namespace Prisma {
     end_date?: boolean
     created_at?: boolean
     updated_at?: boolean
+    expired_at?: boolean
     payment_proof?: boolean
     payment_method?: boolean
     status?: boolean
@@ -14495,7 +14506,7 @@ export namespace Prisma {
     room_types_id?: boolean
   }
 
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "num_of_guests" | "total_price" | "quantity" | "add_breakfast" | "details" | "start_date" | "end_date" | "created_at" | "updated_at" | "payment_proof" | "payment_method" | "status" | "user_id" | "room_types_id", ExtArgs["result"]["booking"]>
+  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "num_of_guests" | "total_price" | "quantity" | "add_breakfast" | "details" | "start_date" | "end_date" | "created_at" | "updated_at" | "expired_at" | "payment_proof" | "payment_method" | "status" | "user_id" | "room_types_id", ExtArgs["result"]["booking"]>
   export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     room_types?: boolean | RoomTypesDefaultArgs<ExtArgs>
@@ -14529,6 +14540,7 @@ export namespace Prisma {
       end_date: Date
       created_at: Date
       updated_at: Date
+      expired_at: Date | null
       payment_proof: string | null
       payment_method: $Enums.PaymentMethod | null
       status: $Enums.BookingStatus
@@ -14970,6 +14982,7 @@ export namespace Prisma {
     readonly end_date: FieldRef<"Booking", 'DateTime'>
     readonly created_at: FieldRef<"Booking", 'DateTime'>
     readonly updated_at: FieldRef<"Booking", 'DateTime'>
+    readonly expired_at: FieldRef<"Booking", 'DateTime'>
     readonly payment_proof: FieldRef<"Booking", 'String'>
     readonly payment_method: FieldRef<"Booking", 'PaymentMethod'>
     readonly status: FieldRef<"Booking", 'BookingStatus'>
@@ -17876,6 +17889,7 @@ export namespace Prisma {
     end_date: 'end_date',
     created_at: 'created_at',
     updated_at: 'updated_at',
+    expired_at: 'expired_at',
     payment_proof: 'payment_proof',
     payment_method: 'payment_method',
     status: 'status',
@@ -18920,6 +18934,7 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"Booking"> | Date | string
     created_at?: DateTimeFilter<"Booking"> | Date | string
     updated_at?: DateTimeFilter<"Booking"> | Date | string
+    expired_at?: DateTimeNullableFilter<"Booking"> | Date | string | null
     payment_proof?: StringNullableFilter<"Booking"> | string | null
     payment_method?: EnumPaymentMethodNullableFilter<"Booking"> | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
@@ -18941,6 +18956,7 @@ export namespace Prisma {
     end_date?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    expired_at?: SortOrderInput | SortOrder
     payment_proof?: SortOrderInput | SortOrder
     payment_method?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -18965,6 +18981,7 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"Booking"> | Date | string
     created_at?: DateTimeFilter<"Booking"> | Date | string
     updated_at?: DateTimeFilter<"Booking"> | Date | string
+    expired_at?: DateTimeNullableFilter<"Booking"> | Date | string | null
     payment_proof?: StringNullableFilter<"Booking"> | string | null
     payment_method?: EnumPaymentMethodNullableFilter<"Booking"> | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
@@ -18986,6 +19003,7 @@ export namespace Prisma {
     end_date?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    expired_at?: SortOrderInput | SortOrder
     payment_proof?: SortOrderInput | SortOrder
     payment_method?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -19012,6 +19030,7 @@ export namespace Prisma {
     end_date?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     created_at?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
+    expired_at?: DateTimeNullableWithAggregatesFilter<"Booking"> | Date | string | null
     payment_proof?: StringNullableWithAggregatesFilter<"Booking"> | string | null
     payment_method?: EnumPaymentMethodNullableWithAggregatesFilter<"Booking"> | $Enums.PaymentMethod | null
     status?: EnumBookingStatusWithAggregatesFilter<"Booking"> | $Enums.BookingStatus
@@ -20024,6 +20043,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -20043,6 +20063,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -20062,6 +20083,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -20081,6 +20103,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -20100,6 +20123,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -20118,6 +20142,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -20134,6 +20159,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -21176,6 +21202,7 @@ export namespace Prisma {
     end_date?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    expired_at?: SortOrder
     payment_proof?: SortOrder
     payment_method?: SortOrder
     status?: SortOrder
@@ -21200,6 +21227,7 @@ export namespace Prisma {
     end_date?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    expired_at?: SortOrder
     payment_proof?: SortOrder
     payment_method?: SortOrder
     status?: SortOrder
@@ -21217,6 +21245,7 @@ export namespace Prisma {
     end_date?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    expired_at?: SortOrder
     payment_proof?: SortOrder
     payment_method?: SortOrder
     status?: SortOrder
@@ -22605,6 +22634,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -22623,6 +22653,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -22703,6 +22734,7 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"Booking"> | Date | string
     created_at?: DateTimeFilter<"Booking"> | Date | string
     updated_at?: DateTimeFilter<"Booking"> | Date | string
+    expired_at?: DateTimeNullableFilter<"Booking"> | Date | string | null
     payment_proof?: StringNullableFilter<"Booking"> | string | null
     payment_method?: EnumPaymentMethodNullableFilter<"Booking"> | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
@@ -23324,6 +23356,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -23342,6 +23375,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -24396,6 +24430,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -24414,6 +24449,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -24566,6 +24602,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -24584,6 +24621,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -24760,6 +24798,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -24788,6 +24827,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -24806,6 +24846,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -24824,6 +24865,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -25114,6 +25156,7 @@ export namespace Prisma {
     end_date: Date | string
     created_at?: Date | string
     updated_at?: Date | string
+    expired_at?: Date | string | null
     payment_proof?: string | null
     payment_method?: $Enums.PaymentMethod | null
     status?: $Enums.BookingStatus
@@ -25193,6 +25236,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -25211,6 +25255,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
@@ -25229,6 +25274,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     payment_proof?: NullableStringFieldUpdateOperationsInput | string | null
     payment_method?: NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
