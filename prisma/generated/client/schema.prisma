@@ -217,6 +217,7 @@ model Booking {
   end_date       DateTime
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt
+  expired_at     DateTime?
   payment_proof  String?
   payment_method PaymentMethod?
   status         BookingStatus  @default(new)
