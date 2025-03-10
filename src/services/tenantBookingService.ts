@@ -1,4 +1,4 @@
-import { formatDateDay } from "src/utils/formatDate";
+import { formatDateDay } from "../utils/formatDate";
 import prisma from "../prisma";
 import { BookingStatus } from "prisma/generated/client";
 import { sendEmail } from "./emailService";
