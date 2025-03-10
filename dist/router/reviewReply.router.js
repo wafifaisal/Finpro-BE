@@ -13,10 +13,9 @@ class ReviewReplyRouter {
         this.initializeRoutes();
     }
     initializeRoutes() {
+        this.router.get("/count-reviews/:tenant_id", verify_tenant_1.verifyTokenTenant, this.reviewReplyController.countTenantReviews);
         this.router.post("/", this.reviewReplyController.createReviewReply);
-        this.router.get("/count-reviews", verify_tenant_1.verifyTokenTenant, this.reviewReplyController.countTenantReviews);
         this.router.get("/tenant/:tenantId", this.reviewReplyController.getReviewsByTenant);
-        this.router.get("/count-reviews/:id", verify_tenant_1.verifyTokenTenant, this.reviewReplyController.countTenantReviews);
     }
     getRouter() {
         return this.router;

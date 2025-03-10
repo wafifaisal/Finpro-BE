@@ -119,8 +119,7 @@ class ReviewController {
     }
     getUserReviewCount(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.id;
+            const userId = req.params.userId;
             if (!userId) {
                 res.status(400).json({ message: "User ID is required" });
                 return;
@@ -132,8 +131,10 @@ class ReviewController {
                 res.status(200).json({ totalReview: reviewCount });
             }
             catch (error) {
-                console.error(error);
-                res.status(500).json({ error: error.message || "Internal server error" });
+                console.error("Error fetching user review count:", error);
+                res.status(500).json({
+                    message: error instanceof Error ? error.message : "Internal server error",
+                });
             }
         });
     }

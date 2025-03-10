@@ -47,11 +47,14 @@ class ReviewReplyController {
                     rating: review.rating,
                     review: review.review,
                     user_id: review.user_id,
+                    created_at: review.created_at,
                     user: {
                         name: review.user.username,
                         avatar: review.user.avatar,
+                        email: review.user.email,
                     },
-                    reply: review.ReviewReplies.length ? review.ReviewReplies[0] : null,
+                    reply: review.ReviewReplies.length
+                        ? Object.assign({}, review.ReviewReplies[0]) : null,
                     propertyName: property.name,
                 }))));
                 res.status(200).json(reviews);
@@ -118,7 +121,11 @@ class ReviewReplyController {
     }
     countTenantReviews(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { tenantId } = req.params;
+            const tenantId = req.params.tenant_id;
+            if (!tenantId) {
+                res.status(400).json({ error: "tenantId is required" });
+                return;
+            }
             try {
                 const result = yield prisma_1.default.review.aggregate({
                     _avg: { rating: true },
@@ -133,10 +140,13 @@ class ReviewReplyController {
                 });
                 const totalReviews = result._count.rating;
                 const avgRating = result._avg.rating || 0;
-                res.status(200).send({ totalReviews, avgRating });
+                res.status(200).json({ totalReviews, avgRating });
             }
             catch (error) {
-                res.status(500).send({ message: error });
+                console.error("Error counting tenant reviews:", error);
+                res.status(500).json({
+                    message: error instanceof Error ? error.message : "Internal server error",
+                });
             }
         });
     }
