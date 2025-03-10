@@ -107,7 +107,7 @@ export class ReviewController {
   }
 
   async getUserReviewCount(req: Request, res: Response): Promise<void> {
-    const userId = req.user?.id;
+    const userId = req.params.userId;
     if (!userId) {
       res.status(400).json({ message: "User ID is required" });
       return;
@@ -117,9 +117,12 @@ export class ReviewController {
         where: { user_id: userId },
       });
       res.status(200).json({ totalReview: reviewCount });
-    } catch (error: any) {
-      console.error(error);
-      res.status(500).json({ error: error.message || "Internal server error" });
+    } catch (error) {
+      console.error("Error fetching user review count:", error);
+      res.status(500).json({
+        message:
+          error instanceof Error ? error.message : "Internal server error",
+      });
     }
   }
 }

@@ -14,10 +14,14 @@ export class ReviewRouter {
 
   private initializeRoutes() {
     this.router.post("/", this.reviewController.newReview);
-    this.router.get("/count", this.reviewController.getUserReviewCount);
     this.router.get("/:userId", this.reviewController.getUserReviews);
     this.router.delete("/:reviewId", this.reviewController.deleteReview);
     this.router.get("/create/:bookingId", this.reviewController.getBookingById);
+    this.router.get(
+      "/count/:userId",
+      verifyTokenUser,
+      this.reviewController.getUserReviewCount
+    );
   }
 
   public getRouter(): Router {

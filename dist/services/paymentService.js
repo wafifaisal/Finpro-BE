@@ -28,14 +28,14 @@ function getSnapTokenService(booking_id) {
                 created_at: true,
                 start_date: true,
                 end_date: true,
-                add_breakfast: true, // pastikan field ini ada di model booking
+                add_breakfast: true,
                 room_types: {
                     select: {
                         name: true,
                         price: true,
                         seasonal_prices: true,
                         breakfast_price: true,
-                        has_breakfast: true, // pastikan field ini ada di model room_types
+                        has_breakfast: true,
                     },
                 },
             },
@@ -55,8 +55,6 @@ function getSnapTokenService(booking_id) {
         }
         const remainingMilliseconds = expiryTime.getTime() - now.getTime();
         const remainingMinutes = Math.floor(remainingMilliseconds / (60 * 1000));
-        // --- End Expiry Logic ---
-        // --- Breakdown Regular and Seasonal Nights ---
         if (!booking.start_date || !booking.end_date) {
             throw new Error("Booking dates are missing");
         }
@@ -76,7 +74,7 @@ function getSnapTokenService(booking_id) {
                 for (const sp of booking.room_types.seasonal_prices) {
                     if (sp.dates && Array.isArray(sp.dates) && sp.dates.length > 0) {
                         const target = currentDate.toISOString().split("T")[0];
-                        if (sp.dates.some((d) => new Date(d).toISOString().split("T")[0] === target)) {
+                        if (sp.dates.some((d) => d.toISOString().split("T")[0] === target)) {
                             priceForNight = Number(sp.price);
                             isSeasonal = true;
                             break;
@@ -105,23 +103,22 @@ function getSnapTokenService(booking_id) {
         for (const price in seasonalMap) {
             computedSeasonal += Number(price) * seasonalMap[Number(price)] * quantity;
         }
-        const computedRoomTotal = computedRegular + computedSeasonal;
-        // --- Tambahkan perhitungan harga breakfast ---
-        const computedBreakfast = booking.room_types.has_breakfast && booking.add_breakfast
+        const computedGross = computedRegular + computedSeasonal;
+        const breakfastCost = booking.room_types.has_breakfast && booking.add_breakfast
             ? booking.room_types.breakfast_price * quantity * nights
             : 0;
-        const computedGross = computedRoomTotal + computedBreakfast;
-        // --- End Breakdown ---
-        // --- Build combined item_details as a single line item ---
+        const finalGross = computedGross + breakfastCost;
+        if (finalGross !== booking.total_price) {
+            console.warn(`Computed gross (${finalGross}) does not match booking.total_price (${booking.total_price}). Using computed gross.`);
+        }
         const item_details = [
             {
                 id: booking_id,
-                price: computedGross,
+                price: finalGross,
                 quantity: 1,
                 name: (booking.room_types.name + " Total").slice(0, 50),
             },
         ];
-        // --- End Build item_details ---
         const user = yield prisma_1.default.user.findUnique({
             where: { id: booking.user_id },
         });
@@ -135,7 +132,7 @@ function getSnapTokenService(booking_id) {
         const parameters = {
             transaction_details: {
                 order_id: booking_id,
-                gross_amount: computedGross, // must equal the sum of item_details
+                gross_amount: finalGross,
             },
             customer_details: { username: user.username, email: user.email },
             item_details,
