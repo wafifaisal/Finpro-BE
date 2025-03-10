@@ -19,9 +19,17 @@ export class AuthTenantController {
       const exists = await prisma.tenant.findUnique({ where: { email } });
       if (exists) throw new Error("Email has already been used");
       const newTenant = await prisma.tenant.create({
-        data: { name: "", no_handphone: null, email },
+        data: {
+          name: "",
+          no_handphone: null,
+          email,
+          verificationTokenVersion: 0,
+        },
       });
-      const token = generateToken({ id: newTenant.id });
+      const token = generateToken({
+        id: newTenant.id,
+        version: newTenant.verificationTokenVersion,
+      });
       const link = `${base_url_fe}/auth/tenant/verify-tenant/${token}`;
       await sendEmail(
         "verifyTenant.hbs",
@@ -70,23 +78,38 @@ export class AuthTenantController {
         throw new Error("Passwords do not match!");
       if (await prisma.tenant.findUnique({ where: { no_handphone } }))
         throw new Error("Phone number has already been used!");
-      const decoded = verify(token, process.env.JWT_KEY!) as { id: string };
+      const decoded = verify(token, process.env.JWT_KEY!) as {
+        id: string;
+        version: number;
+      };
       if (!decoded?.id) throw new Error("Invalid or expired token!");
       const tenant = await prisma.tenant.findUnique({
         where: { id: decoded.id },
       });
       if (!tenant) throw new Error("Tenant not found!");
       if (tenant.isVerify) throw new Error("Tenant already verified!");
+      if (decoded.version !== tenant.verificationTokenVersion) {
+        throw new Error(
+          "Verification token is outdated. Please request a new verification link."
+        );
+      }
       const hashed = await hashPassword(password);
       await prisma.tenant.update({
         where: { id: tenant.id },
-        data: { name, password: hashed, isVerify: true, no_handphone },
+        data: {
+          name,
+          password: hashed,
+          isVerify: true,
+          no_handphone,
+          verificationTokenVersion: (tenant.verificationTokenVersion || 0) + 1,
+        },
       });
       res.status(200).send({ message: "Verification successful!" });
     } catch (err: any) {
       res.status(400).send({ message: err.message });
     }
   }
+
   async socialLoginTenant(req: Request, res: Response): Promise<void> {
     try {
       const { tokenId } = req.body;
@@ -106,7 +129,6 @@ export class AuthTenantController {
           data: {
             name: payload.name || "",
             no_handphone: null,
-
             email: payload.email,
             googleId: payload.sub,
             avatar: payload.picture,

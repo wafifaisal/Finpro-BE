@@ -2348,10 +2348,14 @@ export namespace Prisma {
 
   export type UserAvgAggregateOutputType = {
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
+    updateEmailTokenVersion: number | null
   }
 
   export type UserSumAggregateOutputType = {
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
+    updateEmailTokenVersion: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -2362,6 +2366,8 @@ export namespace Prisma {
     avatar: string | null
     no_handphone: string | null
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
+    updateEmailTokenVersion: number | null
     isVerify: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2377,6 +2383,8 @@ export namespace Prisma {
     avatar: string | null
     no_handphone: string | null
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
+    updateEmailTokenVersion: number | null
     isVerify: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2392,6 +2400,8 @@ export namespace Prisma {
     avatar: number
     no_handphone: number
     resetPasswordTokenVersion: number
+    verificationTokenVersion: number
+    updateEmailTokenVersion: number
     isVerify: number
     createdAt: number
     updatedAt: number
@@ -2403,10 +2413,14 @@ export namespace Prisma {
 
   export type UserAvgAggregateInputType = {
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
+    updateEmailTokenVersion?: true
   }
 
   export type UserSumAggregateInputType = {
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
+    updateEmailTokenVersion?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -2417,6 +2431,8 @@ export namespace Prisma {
     avatar?: true
     no_handphone?: true
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
+    updateEmailTokenVersion?: true
     isVerify?: true
     createdAt?: true
     updatedAt?: true
@@ -2432,6 +2448,8 @@ export namespace Prisma {
     avatar?: true
     no_handphone?: true
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
+    updateEmailTokenVersion?: true
     isVerify?: true
     createdAt?: true
     updatedAt?: true
@@ -2447,6 +2465,8 @@ export namespace Prisma {
     avatar?: true
     no_handphone?: true
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
+    updateEmailTokenVersion?: true
     isVerify?: true
     createdAt?: true
     updatedAt?: true
@@ -2549,6 +2569,8 @@ export namespace Prisma {
     avatar: string | null
     no_handphone: string | null
     resetPasswordTokenVersion: number
+    verificationTokenVersion: number
+    updateEmailTokenVersion: number
     isVerify: boolean
     createdAt: Date
     updatedAt: Date
@@ -2583,6 +2605,8 @@ export namespace Prisma {
     avatar?: boolean
     no_handphone?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
+    updateEmailTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2601,6 +2625,8 @@ export namespace Prisma {
     avatar?: boolean
     no_handphone?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
+    updateEmailTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2616,6 +2642,8 @@ export namespace Prisma {
     avatar?: boolean
     no_handphone?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
+    updateEmailTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2631,6 +2659,8 @@ export namespace Prisma {
     avatar?: boolean
     no_handphone?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
+    updateEmailTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2638,7 +2668,7 @@ export namespace Prisma {
     googleId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "password" | "avatar" | "no_handphone" | "resetPasswordTokenVersion" | "isVerify" | "createdAt" | "updatedAt" | "deletedAt" | "googleId", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "password" | "avatar" | "no_handphone" | "resetPasswordTokenVersion" | "verificationTokenVersion" | "updateEmailTokenVersion" | "isVerify" | "createdAt" | "updatedAt" | "deletedAt" | "googleId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Booking?: boolean | User$BookingArgs<ExtArgs>
     Review?: boolean | User$ReviewArgs<ExtArgs>
@@ -2661,6 +2691,8 @@ export namespace Prisma {
       avatar: string | null
       no_handphone: string | null
       resetPasswordTokenVersion: number
+      verificationTokenVersion: number
+      updateEmailTokenVersion: number
       isVerify: boolean
       createdAt: Date
       updatedAt: Date
@@ -3098,6 +3130,8 @@ export namespace Prisma {
     readonly avatar: FieldRef<"User", 'String'>
     readonly no_handphone: FieldRef<"User", 'String'>
     readonly resetPasswordTokenVersion: FieldRef<"User", 'Int'>
+    readonly verificationTokenVersion: FieldRef<"User", 'Int'>
+    readonly updateEmailTokenVersion: FieldRef<"User", 'Int'>
     readonly isVerify: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -3571,10 +3605,12 @@ export namespace Prisma {
 
   export type TenantAvgAggregateOutputType = {
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
   }
 
   export type TenantSumAggregateOutputType = {
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
   }
 
   export type TenantMinAggregateOutputType = {
@@ -3586,6 +3622,7 @@ export namespace Prisma {
     email: string | null
     avatar: string | null
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
     isVerify: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3601,6 +3638,7 @@ export namespace Prisma {
     email: string | null
     avatar: string | null
     resetPasswordTokenVersion: number | null
+    verificationTokenVersion: number | null
     isVerify: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3616,6 +3654,7 @@ export namespace Prisma {
     email: number
     avatar: number
     resetPasswordTokenVersion: number
+    verificationTokenVersion: number
     isVerify: number
     createdAt: number
     updatedAt: number
@@ -3626,10 +3665,12 @@ export namespace Prisma {
 
   export type TenantAvgAggregateInputType = {
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
   }
 
   export type TenantSumAggregateInputType = {
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
   }
 
   export type TenantMinAggregateInputType = {
@@ -3641,6 +3682,7 @@ export namespace Prisma {
     email?: true
     avatar?: true
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
     isVerify?: true
     createdAt?: true
     updatedAt?: true
@@ -3656,6 +3698,7 @@ export namespace Prisma {
     email?: true
     avatar?: true
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
     isVerify?: true
     createdAt?: true
     updatedAt?: true
@@ -3671,6 +3714,7 @@ export namespace Prisma {
     email?: true
     avatar?: true
     resetPasswordTokenVersion?: true
+    verificationTokenVersion?: true
     isVerify?: true
     createdAt?: true
     updatedAt?: true
@@ -3773,6 +3817,7 @@ export namespace Prisma {
     email: string
     avatar: string | null
     resetPasswordTokenVersion: number
+    verificationTokenVersion: number
     isVerify: boolean
     createdAt: Date
     updatedAt: Date
@@ -3807,6 +3852,7 @@ export namespace Prisma {
     email?: boolean
     avatar?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3825,6 +3871,7 @@ export namespace Prisma {
     email?: boolean
     avatar?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3840,6 +3887,7 @@ export namespace Prisma {
     email?: boolean
     avatar?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3855,13 +3903,14 @@ export namespace Prisma {
     email?: boolean
     avatar?: boolean
     resetPasswordTokenVersion?: boolean
+    verificationTokenVersion?: boolean
     isVerify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
   }
 
-  export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "googleId" | "name" | "password" | "no_handphone" | "email" | "avatar" | "resetPasswordTokenVersion" | "isVerify" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["tenant"]>
+  export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "googleId" | "name" | "password" | "no_handphone" | "email" | "avatar" | "resetPasswordTokenVersion" | "verificationTokenVersion" | "isVerify" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["tenant"]>
   export type TenantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Property?: boolean | Tenant$PropertyArgs<ExtArgs>
     ReviewReplies?: boolean | Tenant$ReviewRepliesArgs<ExtArgs>
@@ -3885,6 +3934,7 @@ export namespace Prisma {
       email: string
       avatar: string | null
       resetPasswordTokenVersion: number
+      verificationTokenVersion: number
       isVerify: boolean
       createdAt: Date
       updatedAt: Date
@@ -4322,6 +4372,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Tenant", 'String'>
     readonly avatar: FieldRef<"Tenant", 'String'>
     readonly resetPasswordTokenVersion: FieldRef<"Tenant", 'Int'>
+    readonly verificationTokenVersion: FieldRef<"Tenant", 'Int'>
     readonly isVerify: FieldRef<"Tenant", 'Boolean'>
     readonly createdAt: FieldRef<"Tenant", 'DateTime'>
     readonly updatedAt: FieldRef<"Tenant", 'DateTime'>
@@ -17737,6 +17788,8 @@ export namespace Prisma {
     avatar: 'avatar',
     no_handphone: 'no_handphone',
     resetPasswordTokenVersion: 'resetPasswordTokenVersion',
+    verificationTokenVersion: 'verificationTokenVersion',
+    updateEmailTokenVersion: 'updateEmailTokenVersion',
     isVerify: 'isVerify',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -17756,6 +17809,7 @@ export namespace Prisma {
     email: 'email',
     avatar: 'avatar',
     resetPasswordTokenVersion: 'resetPasswordTokenVersion',
+    verificationTokenVersion: 'verificationTokenVersion',
     isVerify: 'isVerify',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -18132,6 +18186,8 @@ export namespace Prisma {
     avatar?: StringNullableFilter<"User"> | string | null
     no_handphone?: StringNullableFilter<"User"> | string | null
     resetPasswordTokenVersion?: IntFilter<"User"> | number
+    verificationTokenVersion?: IntFilter<"User"> | number
+    updateEmailTokenVersion?: IntFilter<"User"> | number
     isVerify?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -18149,6 +18205,8 @@ export namespace Prisma {
     avatar?: SortOrderInput | SortOrder
     no_handphone?: SortOrderInput | SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18170,6 +18228,8 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     resetPasswordTokenVersion?: IntFilter<"User"> | number
+    verificationTokenVersion?: IntFilter<"User"> | number
+    updateEmailTokenVersion?: IntFilter<"User"> | number
     isVerify?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -18186,6 +18246,8 @@ export namespace Prisma {
     avatar?: SortOrderInput | SortOrder
     no_handphone?: SortOrderInput | SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18209,6 +18271,8 @@ export namespace Prisma {
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     no_handphone?: StringNullableWithAggregatesFilter<"User"> | string | null
     resetPasswordTokenVersion?: IntWithAggregatesFilter<"User"> | number
+    verificationTokenVersion?: IntWithAggregatesFilter<"User"> | number
+    updateEmailTokenVersion?: IntWithAggregatesFilter<"User"> | number
     isVerify?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -18228,6 +18292,7 @@ export namespace Prisma {
     email?: StringFilter<"Tenant"> | string
     avatar?: StringNullableFilter<"Tenant"> | string | null
     resetPasswordTokenVersion?: IntFilter<"Tenant"> | number
+    verificationTokenVersion?: IntFilter<"Tenant"> | number
     isVerify?: BoolFilter<"Tenant"> | boolean
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeFilter<"Tenant"> | Date | string
@@ -18245,6 +18310,7 @@ export namespace Prisma {
     email?: SortOrder
     avatar?: SortOrderInput | SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18265,6 +18331,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"Tenant"> | string | null
     avatar?: StringNullableFilter<"Tenant"> | string | null
     resetPasswordTokenVersion?: IntFilter<"Tenant"> | number
+    verificationTokenVersion?: IntFilter<"Tenant"> | number
     isVerify?: BoolFilter<"Tenant"> | boolean
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeFilter<"Tenant"> | Date | string
@@ -18282,6 +18349,7 @@ export namespace Prisma {
     email?: SortOrder
     avatar?: SortOrderInput | SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18305,6 +18373,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Tenant"> | string
     avatar?: StringNullableWithAggregatesFilter<"Tenant"> | string | null
     resetPasswordTokenVersion?: IntWithAggregatesFilter<"Tenant"> | number
+    verificationTokenVersion?: IntWithAggregatesFilter<"Tenant"> | number
     isVerify?: BoolWithAggregatesFilter<"Tenant"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Tenant"> | Date | string
@@ -19187,6 +19256,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19204,6 +19275,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19221,6 +19294,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19238,6 +19313,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19255,6 +19332,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19270,6 +19349,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19285,6 +19366,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19301,6 +19384,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19318,6 +19402,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19335,6 +19420,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19352,6 +19438,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19369,6 +19456,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19384,6 +19472,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19399,6 +19488,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20394,6 +20484,8 @@ export namespace Prisma {
     avatar?: SortOrder
     no_handphone?: SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20403,6 +20495,8 @@ export namespace Prisma {
 
   export type UserAvgOrderByAggregateInput = {
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -20413,6 +20507,8 @@ export namespace Prisma {
     avatar?: SortOrder
     no_handphone?: SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20428,6 +20524,8 @@ export namespace Prisma {
     avatar?: SortOrder
     no_handphone?: SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20437,6 +20535,8 @@ export namespace Prisma {
 
   export type UserSumOrderByAggregateInput = {
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
+    updateEmailTokenVersion?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -20556,6 +20656,7 @@ export namespace Prisma {
     email?: SortOrder
     avatar?: SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20564,6 +20665,7 @@ export namespace Prisma {
 
   export type TenantAvgOrderByAggregateInput = {
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
   }
 
   export type TenantMaxOrderByAggregateInput = {
@@ -20575,6 +20677,7 @@ export namespace Prisma {
     email?: SortOrder
     avatar?: SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20590,6 +20693,7 @@ export namespace Prisma {
     email?: SortOrder
     avatar?: SortOrder
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
     isVerify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20598,6 +20702,7 @@ export namespace Prisma {
 
   export type TenantSumOrderByAggregateInput = {
     resetPasswordTokenVersion?: SortOrder
+    verificationTokenVersion?: SortOrder
   }
 
   export type FloatNullableFilter<$PrismaModel = never> = {
@@ -23000,6 +23105,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23016,6 +23122,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23159,6 +23266,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23175,6 +23283,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24111,6 +24220,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24127,6 +24238,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24240,6 +24353,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24256,6 +24371,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24342,6 +24459,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24358,6 +24477,8 @@ export namespace Prisma {
     avatar?: string | null
     no_handphone?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
+    updateEmailTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24502,6 +24623,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24518,6 +24641,8 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     no_handphone?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
+    updateEmailTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24654,6 +24779,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24670,6 +24796,7 @@ export namespace Prisma {
     email: string
     avatar?: string | null
     resetPasswordTokenVersion?: number
+    verificationTokenVersion?: number
     isVerify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24730,6 +24857,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24746,6 +24874,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordTokenVersion?: IntFieldUpdateOperationsInput | number
+    verificationTokenVersion?: IntFieldUpdateOperationsInput | number
     isVerify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
