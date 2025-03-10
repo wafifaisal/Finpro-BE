@@ -148,7 +148,7 @@ class UserController {
                 const { email } = req.body;
                 const currentUser = yield prisma_1.default.user.findUnique({
                     where: { id: userId },
-                    select: { email: true },
+                    select: { email: true, updateEmailTokenVersion: true },
                 });
                 if (!currentUser) {
                     res.status(404).json({ message: "User not found" });
@@ -160,7 +160,11 @@ class UserController {
                     });
                     return;
                 }
-                const payload = { id: userId, newEmail: email };
+                const payload = {
+                    id: userId,
+                    newEmail: email,
+                    version: currentUser.updateEmailTokenVersion || 0,
+                };
                 const token = (0, jsonwebtoken_1.sign)(payload, process.env.JWT_KEY, { expiresIn: "1d" });
                 const html = (0, userEmailUtils_1.getVerifyEmailHtml)(token);
                 yield (0, userEmailUtils_1.sendVerifyEmail)(email, html);
@@ -179,9 +183,26 @@ class UserController {
             try {
                 const { token } = req.params;
                 const decoded = (0, jsonwebtoken_1.verify)(token, process.env.JWT_KEY);
+                const user = yield prisma_1.default.user.findUnique({
+                    where: { id: decoded.id },
+                    select: { updateEmailTokenVersion: true },
+                });
+                if (!user) {
+                    res.status(404).json({ message: "User not found" });
+                    return;
+                }
+                if (decoded.version !== (user.updateEmailTokenVersion || 0)) {
+                    res.status(400).json({
+                        message: "Verification token is outdated. Please request a new verification email.",
+                    });
+                    return;
+                }
                 yield prisma_1.default.user.update({
                     where: { id: decoded.id },
-                    data: { email: decoded.newEmail },
+                    data: {
+                        email: decoded.newEmail,
+                        updateEmailTokenVersion: (user.updateEmailTokenVersion || 0) + 1,
+                    },
                 });
                 res
                     .status(200)

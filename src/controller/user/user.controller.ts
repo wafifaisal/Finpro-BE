@@ -1,16 +1,13 @@
-
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { cloudinaryUpload } from "../../services/cloudinary";
 import { sign, verify } from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { buildUserFilter, getPagination } from "../../utils/userQueryUtils";
-
 import {
   getVerifyEmailHtml,
   sendVerifyEmail,
 } from "../../utils/userEmailUtils";
-
 
 export class UserController {
   async getUser(req: Request, res: Response): Promise<void> {
@@ -95,7 +92,7 @@ export class UserController {
       const { email } = req.body;
       const currentUser = await prisma.user.findUnique({
         where: { id: userId },
-        select: { email: true },
+        select: { email: true, updateEmailTokenVersion: true },
       });
       if (!currentUser) {
         res.status(404).json({ message: "User not found" });
@@ -107,7 +104,11 @@ export class UserController {
         });
         return;
       }
-      const payload = { id: userId, newEmail: email };
+      const payload = {
+        id: userId,
+        newEmail: email,
+        version: currentUser.updateEmailTokenVersion || 0,
+      };
       const token = sign(payload, process.env.JWT_KEY!, { expiresIn: "1d" });
       const html = getVerifyEmailHtml(token);
       await sendVerifyEmail(email, html);
@@ -127,10 +128,29 @@ export class UserController {
       const decoded = verify(token, process.env.JWT_KEY!) as {
         id: string;
         newEmail: string;
+        version: number;
       };
+      const user = await prisma.user.findUnique({
+        where: { id: decoded.id },
+        select: { updateEmailTokenVersion: true },
+      });
+      if (!user) {
+        res.status(404).json({ message: "User not found" });
+        return;
+      }
+      if (decoded.version !== (user.updateEmailTokenVersion || 0)) {
+        res.status(400).json({
+          message:
+            "Verification token is outdated. Please request a new verification email.",
+        });
+        return;
+      }
       await prisma.user.update({
         where: { id: decoded.id },
-        data: { email: decoded.newEmail },
+        data: {
+          email: decoded.newEmail,
+          updateEmailTokenVersion: (user.updateEmailTokenVersion || 0) + 1,
+        },
       });
       res
         .status(200)

@@ -35,9 +35,14 @@ export class AuthUserController {
       const exists = await prisma.user.findUnique({ where: { email } });
       if (exists) throw new Error("Email has already been used");
       const newUser = await prisma.user.create({
-        data: { username: "", no_handphone: null, email },
+        data: { 
+          username: "", 
+          no_handphone: null, 
+          email, 
+          verificationTokenVersion: 0 
+        },
       });
-      const token = generateToken({ id: newUser.id });
+      const token = generateToken({ id: newUser.id, version: newUser.verificationTokenVersion });
       const link = `${base_url_fe}/auth/user/verifyUser/${token}`;
       await sendEmail(
         "verifyUser.hbs",
@@ -61,15 +66,24 @@ export class AuthUserController {
         throw new Error("Passwords do not match!");
       if (await prisma.user.findUnique({ where: { no_handphone } }))
         throw new Error("Phone number has already been used!");
-      const decoded = verify(token, process.env.JWT_KEY!) as { id: string };
+      const decoded = verify(token, process.env.JWT_KEY!) as { id: string, version: number };
       if (!decoded?.id) throw new Error("Invalid or expired token!");
       const user = await prisma.user.findUnique({ where: { id: decoded.id } });
       if (!user) throw new Error("User not found!");
       if (user.isVerify) throw new Error("User already verified!");
+      if (decoded.version !== user.verificationTokenVersion) {
+        throw new Error("Verification token is outdated. Please request a new verification link.");
+      }
       const hashed = await hashPassword(password);
       await prisma.user.update({
         where: { id: decoded.id },
-        data: { username, password: hashed, isVerify: true, no_handphone },
+        data: { 
+          username, 
+          password: hashed, 
+          isVerify: true, 
+          no_handphone,
+          verificationTokenVersion: (user.verificationTokenVersion || 0) + 1 
+        },
       });
       res.status(200).send({ message: "Akun berhasil diverifikasi!" });
     } catch (err: any) {
@@ -96,7 +110,6 @@ export class AuthUserController {
           data: {
             username: payload.name || "",
             no_handphone: null,
-
             email: payload.email,
             googleId: payload.sub,
             avatar: payload.picture,
@@ -157,6 +170,7 @@ export class AuthUserController {
         .send({ message: "An error occurred while sending the reset link." });
     }
   }
+
   async resetPasswordUser(req: Request, res: Response): Promise<void> {
     try {
       const { token, newPassword, confirmPassword } = req.body;

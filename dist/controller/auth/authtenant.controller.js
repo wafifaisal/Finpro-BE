@@ -29,9 +29,17 @@ class AuthTenantController {
                 if (exists)
                     throw new Error("Email has already been used");
                 const newTenant = yield prisma_1.default.tenant.create({
-                    data: { name: "", no_handphone: null, email },
+                    data: {
+                        name: "",
+                        no_handphone: null,
+                        email,
+                        verificationTokenVersion: 0,
+                    },
                 });
-                const token = (0, AuthHelpers_1.generateToken)({ id: newTenant.id });
+                const token = (0, AuthHelpers_1.generateToken)({
+                    id: newTenant.id,
+                    version: newTenant.verificationTokenVersion,
+                });
                 const link = `${AuthHelpers_1.base_url_fe}/auth/tenant/verify-tenant/${token}`;
                 yield (0, AuthHelpers_1.sendEmail)("verifyTenant.hbs", { linkTenant: link }, email, "Selamat Datang di NGINEPIN, Verifikasi Tenant");
                 res.status(201).json({ message: "Registrasi Berhasil!, Cek Email kamu" });
@@ -89,10 +97,19 @@ class AuthTenantController {
                     throw new Error("Tenant not found!");
                 if (tenant.isVerify)
                     throw new Error("Tenant already verified!");
+                if (decoded.version !== tenant.verificationTokenVersion) {
+                    throw new Error("Verification token is outdated. Please request a new verification link.");
+                }
                 const hashed = yield (0, AuthHelpers_1.hashPassword)(password);
                 yield prisma_1.default.tenant.update({
                     where: { id: tenant.id },
-                    data: { name, password: hashed, isVerify: true, no_handphone },
+                    data: {
+                        name,
+                        password: hashed,
+                        isVerify: true,
+                        no_handphone,
+                        verificationTokenVersion: (tenant.verificationTokenVersion || 0) + 1,
+                    },
                 });
                 res.status(200).send({ message: "Verification successful!" });
             }
