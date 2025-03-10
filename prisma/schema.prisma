@@ -72,6 +72,8 @@ model User {
   avatar                    String?   @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
   no_handphone              String?   @unique
   resetPasswordTokenVersion Int       @default(0)
+  verificationTokenVersion  Int       @default(0)
+  updateEmailTokenVersion   Int       @default(0)
   isVerify                  Boolean   @default(false)
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
@@ -90,6 +92,7 @@ model Tenant {
   email                     String          @unique
   avatar                    String?         @default("https://res.cloudinary.com/dkyco4yqp/image/upload/v1738487804/user-circle-svgrepo-com_az7hcs.png")
   resetPasswordTokenVersion Int             @default(0)
+  verificationTokenVersion  Int             @default(0)
   isVerify                  Boolean         @default(false)
   createdAt                 DateTime        @default(now())
   updatedAt                 DateTime        @updatedAt

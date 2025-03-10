@@ -49,9 +49,14 @@ class AuthUserController {
                 if (exists)
                     throw new Error("Email has already been used");
                 const newUser = yield prisma_1.default.user.create({
-                    data: { username: "", no_handphone: null, email },
+                    data: {
+                        username: "",
+                        no_handphone: null,
+                        email,
+                        verificationTokenVersion: 0
+                    },
                 });
-                const token = (0, AuthHelpers_1.generateToken)({ id: newUser.id });
+                const token = (0, AuthHelpers_1.generateToken)({ id: newUser.id, version: newUser.verificationTokenVersion });
                 const link = `${base_url_fe}/auth/user/verifyUser/${token}`;
                 yield (0, AuthHelpers_1.sendEmail)("verifyUser.hbs", { linkUser: link }, email, "Welcome To NGINEPIN");
                 res.status(201).json({ message: "Registrasi Berhasil, Cek Email anda" });
@@ -80,10 +85,19 @@ class AuthUserController {
                     throw new Error("User not found!");
                 if (user.isVerify)
                     throw new Error("User already verified!");
+                if (decoded.version !== user.verificationTokenVersion) {
+                    throw new Error("Verification token is outdated. Please request a new verification link.");
+                }
                 const hashed = yield (0, AuthHelpers_1.hashPassword)(password);
                 yield prisma_1.default.user.update({
                     where: { id: decoded.id },
-                    data: { username, password: hashed, isVerify: true, no_handphone },
+                    data: {
+                        username,
+                        password: hashed,
+                        isVerify: true,
+                        no_handphone,
+                        verificationTokenVersion: (user.verificationTokenVersion || 0) + 1
+                    },
                 });
                 res.status(200).send({ message: "Akun berhasil diverifikasi!" });
             }
