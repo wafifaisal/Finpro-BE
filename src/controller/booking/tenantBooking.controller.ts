@@ -12,15 +12,19 @@ export class TenantBookingController {
   async getTenantBookings(req: Request, res: Response): Promise<void> {
     try {
       const { tenantId } = req.params;
-      const { status } = req.query;
-      const bookings = await getTenantBookings({
+      const status = req.query.status as string | undefined;
+      const search = req.query.search as string | undefined;
+      const page = req.query.page ? parseInt(req.query.page as string, 10) : 1;
+
+      const result = await getTenantBookings({
         tenantId,
-        status: status as string,
+        status,
+        search,
+        page,
       });
-      res.status(200).send({ bookings });
+      res.status(200).json(result);
     } catch (error: any) {
       console.error(error);
-      // Return 400 if the error is due to validation, otherwise 500
       const statusCode = error.message === "Invalid booking status" ? 400 : 500;
       res
         .status(statusCode)
