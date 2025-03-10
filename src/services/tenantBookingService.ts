@@ -6,25 +6,51 @@ import { sendEmail } from "./emailService";
 interface GetTenantBookingsParams {
   tenantId: string;
   status?: string;
+  search?: string;
+  page?: number;
 }
 
 export async function getTenantBookings({
   tenantId,
   status,
+  search,
+  page = 1,
 }: GetTenantBookingsParams) {
-  const validStatuses = ["new", "completed", "canceled", "waiting_payment"];
+  const validStatuses = ["new", "waiting_payment", "completed"];
   if (status && !validStatuses.includes(status)) {
     throw new Error("Invalid booking status");
   }
-  const bookings = await prisma.booking.findMany({
-    where: {
-      room_types: {
-        property: {
-          tenantId,
+
+  const itemsPerPage = 4;
+  const skip = (page - 1) * itemsPerPage;
+
+  // Build the base where clause
+  const whereClause: any = {
+    room_types: {
+      property: {
+        tenantId,
+      },
+    },
+    status: status ? (status as BookingStatus) : undefined,
+  };
+
+  // If a search term is provided, add an OR condition to search both by booking id and property name
+  if (search) {
+    whereClause.OR = [
+      { id: { startsWith: search } },
+      {
+        room_types: {
+          name: { contains: search, mode: "insensitive" },
         },
       },
-      status: status ? (status as BookingStatus) : undefined,
-    },
+    ];
+  }
+
+  const bookings = await prisma.booking.findMany({
+    where: whereClause,
+    orderBy: [{ start_date: "asc" }, { end_date: "asc" }],
+    take: itemsPerPage,
+    skip,
     select: {
       id: true,
       num_of_guests: true,
@@ -53,7 +79,12 @@ export async function getTenantBookings({
       },
     },
   });
-  return bookings;
+
+  const totalCount = await prisma.booking.count({
+    where: whereClause,
+  });
+
+  return { bookings, totalPages: Math.ceil(totalCount / itemsPerPage) };
 }
 
 interface UpdateBookingStatusParams {

@@ -143,6 +143,9 @@ export class UserBookingController {
 
       const bookings = await prisma.booking.findMany({
         where: whereClause,
+        orderBy: {
+          created_at: "desc",
+        },
         skip,
         take: limit,
         select: {

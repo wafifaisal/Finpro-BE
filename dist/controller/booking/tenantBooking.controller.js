@@ -16,16 +16,19 @@ class TenantBookingController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { tenantId } = req.params;
-                const { status } = req.query;
-                const bookings = yield (0, tenantBookingService_1.getTenantBookings)({
+                const status = req.query.status;
+                const search = req.query.search;
+                const page = req.query.page ? parseInt(req.query.page, 10) : 1;
+                const result = yield (0, tenantBookingService_1.getTenantBookings)({
                     tenantId,
-                    status: status,
+                    status,
+                    search,
+                    page,
                 });
-                res.status(200).send({ bookings });
+                res.status(200).json(result);
             }
             catch (error) {
                 console.error(error);
-                // Return 400 if the error is due to validation, otherwise 500
                 const statusCode = error.message === "Invalid booking status" ? 400 : 500;
                 res
                     .status(statusCode)

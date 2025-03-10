@@ -177,6 +177,9 @@ class UserBookingController {
                 const totalCount = yield prisma_1.default.booking.count({ where: whereClause });
                 const bookings = yield prisma_1.default.booking.findMany({
                     where: whereClause,
+                    orderBy: {
+                        created_at: "desc",
+                    },
                     skip,
                     take: limit,
                     select: {

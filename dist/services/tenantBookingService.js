@@ -22,20 +22,38 @@ const formatDate_1 = require("../utils/formatDate");
 const prisma_1 = __importDefault(require("../prisma"));
 const emailService_1 = require("./emailService");
 function getTenantBookings(_a) {
-    return __awaiter(this, arguments, void 0, function* ({ tenantId, status, }) {
-        const validStatuses = ["new", "completed", "canceled", "waiting_payment"];
+    return __awaiter(this, arguments, void 0, function* ({ tenantId, status, search, page = 1, }) {
+        const validStatuses = ["new", "waiting_payment", "completed"];
         if (status && !validStatuses.includes(status)) {
             throw new Error("Invalid booking status");
         }
-        const bookings = yield prisma_1.default.booking.findMany({
-            where: {
-                room_types: {
-                    property: {
-                        tenantId,
+        const itemsPerPage = 4;
+        const skip = (page - 1) * itemsPerPage;
+        // Build the base where clause
+        const whereClause = {
+            room_types: {
+                property: {
+                    tenantId,
+                },
+            },
+            status: status ? status : undefined,
+        };
+        // If a search term is provided, add an OR condition to search both by booking id and property name
+        if (search) {
+            whereClause.OR = [
+                { id: { startsWith: search } },
+                {
+                    room_types: {
+                        name: { contains: search, mode: "insensitive" },
                     },
                 },
-                status: status ? status : undefined,
-            },
+            ];
+        }
+        const bookings = yield prisma_1.default.booking.findMany({
+            where: whereClause,
+            orderBy: [{ start_date: "asc" }, { end_date: "asc" }],
+            take: itemsPerPage,
+            skip,
             select: {
                 id: true,
                 num_of_guests: true,
@@ -64,7 +82,10 @@ function getTenantBookings(_a) {
                 },
             },
         });
-        return bookings;
+        const totalCount = yield prisma_1.default.booking.count({
+            where: whereClause,
+        });
+        return { bookings, totalPages: Math.ceil(totalCount / itemsPerPage) };
     });
 }
 function updateBookingStatus(_a) {
