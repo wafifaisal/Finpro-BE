@@ -15,7 +15,6 @@ export class ReviewRouter {
   private initializeRoutes() {
     this.router.post("/", this.reviewController.newReview);
     this.router.get("/:userId", this.reviewController.getUserReviews);
-    this.router.delete("/:reviewId", this.reviewController.deleteReview);
     this.router.get("/create/:bookingId", this.reviewController.getBookingById);
     this.router.get(
       "/count/:userId",

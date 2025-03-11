@@ -46,9 +46,26 @@ export class ReviewController {
 
   async getUserReviews(req: Request, res: Response): Promise<void> {
     const { userId } = req.params;
+    const page = parseInt(req.query.page as string, 10) || 1;
+    const limit = parseInt(req.query.limit as string, 10) || 10;
+    const skip = (page - 1) * limit;
+    const displayType = req.query.displayType as string;
+
+    const where: any = { user_id: userId, status: "completed" };
+    if (displayType === "reviewed") {
+      where.Review = { some: {} };
+    } else if (displayType === "unreviewed") {
+      where.Review = { none: {} };
+    }
+
     try {
       const bookings = await prisma.booking.findMany({
-        where: { user_id: userId, status: "completed" },
+        where,
+        orderBy: {
+          created_at: "desc",
+        },
+        skip,
+        take: limit,
         include: {
           Review: {
             include: {
@@ -65,20 +82,19 @@ export class ReviewController {
         },
       });
 
-      res.status(200).send(bookings);
-    } catch (error) {
-      res.status(500).send({ message: error });
-    }
-  }
-
-  async deleteReview(req: Request, res: Response): Promise<void> {
-    const { reviewId } = req.params;
-    try {
-      await prisma.review.delete({
-        where: { id: +reviewId },
+      const totalCount = await prisma.booking.count({
+        where,
       });
 
-      res.status(200).send({ message: "Review deleted successfully" });
+      res.status(200).send({
+        bookings,
+        pagination: {
+          total: totalCount,
+          page,
+          limit,
+          totalPages: Math.ceil(totalCount / limit),
+        },
+      });
     } catch (error) {
       res.status(500).send({ message: error });
     }
