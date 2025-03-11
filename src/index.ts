@@ -13,6 +13,7 @@ import { TenantRouter } from "./router/tenant.router";
 import { TenantBookingRouter } from "./router/tenantBooking.router";
 import { PropertyReportRouter } from "./router/propertyReport.router";
 import { SalesReportRouter } from "./router/salesReport.router";
+import "./cronJobs";
 
 const PORT: number = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
