@@ -13,6 +13,10 @@ export async function uploadPaymentProofService(
     throw new Error("Booking not found");
   }
 
+  if (booking.status === "completed") {
+    throw new Error("Booking is already completed.");
+  }
+
   const { secure_url } = await cloudinaryUpload(file, "payment-proof");
 
   await prisma.booking.update({
