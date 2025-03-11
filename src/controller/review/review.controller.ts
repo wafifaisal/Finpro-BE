@@ -14,7 +14,6 @@ export class ReviewController {
         res.status(404).send({ error: "Booking not found" });
         return;
       }
-
       const review = await prisma.review.create({
         data: {
           user_id: userId,
