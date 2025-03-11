@@ -130,15 +130,131 @@ function resendBookingConfirmation(bookingId) {
             throw new Error("Booking is not completed yet");
         }
         const emailContent = `
-    <h1>Booking Confirmation</h1>
-    <p>Hello ${booking.user.username},</p>
-    <p>Your booking has been confirmed.</p>
-    <p><strong>Property:</strong> ${booking.room_types.property.name}</p>
-    <p><strong>Room Type:</strong> ${booking.room_types.name}</p>
-    <p><strong>Total Price:</strong> Rp ${booking.total_price}</p>
-    <p><strong>Check-in:</strong> ${(0, formatDate_1.formatDateDay)(booking.start_date)}</p>
-    <p><strong>Check-out:</strong> ${(0, formatDate_1.formatDateDay)(booking.end_date)}</p>
-    <p>Please follow the property’s rules. We look forward to hosting you!</p>
+    <!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        background: #ffffff;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background-color: #007bff;
+        color: #ffffff;
+        text-align: center;
+        padding: 15px;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .content {
+        padding: 20px;
+        font-size: 16px;
+        color: #333333;
+        line-height: 1.6;
+      }
+
+      .details-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      .details-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .details-table td:first-child {
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #F8636B;
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      .cta-button:hover {
+        background-color: #D53F3F;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        color: #666666;
+        background: #f4f4f4;
+        border-radius: 0 0 8px 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Booking Confirmation</div>
+      <div class="content">
+        <p>Hello <strong>${booking.user.username}</strong>,</p>
+        <p>Your booking has been successfully confirmed! Here are the details:</p>
+
+        <table class="details-table">
+          <tr>
+            <td>Property:</td>
+            <td>${booking.room_types.property.name}</td>
+          </tr>
+          <tr>
+            <td>Room Type:</td>
+            <td>${booking.room_types.name}</td>
+          </tr>
+          <tr>
+            <td>Total Price:</td>
+            <td><strong>Rp ${booking.total_price}</strong></td>
+          </tr>
+          <tr>
+            <td>Check-in:</td>
+            <td>${(0, formatDate_1.formatDateDay)(booking.start_date)}</td>
+          </tr>
+          <tr>
+            <td>Check-out:</td>
+            <td>${(0, formatDate_1.formatDateDay)(booking.end_date)}</td>
+          </tr>
+        </table>
+
+        <p>Please ensure that you follow the property’s rules. We look forward to hosting you!</p>
+
+        <p>
+          <a href="https://nginepin.vercel.app/trips" class="cta-button">View Booking</a>
+        </p>
+
+        <br />
+        <p>Thank you,</p>
+        <p><strong>Nginepin Team</strong></p>
+      </div>
+      <div class="footer">
+        &copy; 2025 Nginepin. All Rights Reserved.
+      </div>
+    </div>
+  </body>
+</html>
+
   `;
         yield (0, emailService_1.sendEmail)(booking.user.email, "Booking Confirmation", emailContent);
     });

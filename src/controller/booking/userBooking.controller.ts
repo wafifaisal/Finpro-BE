@@ -5,6 +5,7 @@ import * as uploadService from "../../services/uploadService";
 import prisma from "../../prisma";
 import { getBookingDetails } from "../../services/GetBookingService";
 import { getDatesBetween } from "../../utils/dateUtils";
+import { sendBookingReminder } from "../../services/reminderService";
 
 export class UserBookingController {
   async newBooking(req: Request, res: Response): Promise<void> {
@@ -30,6 +31,15 @@ export class UserBookingController {
         paymentMethod,
         add_breakfast,
       });
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (new Date(startDate).toDateString() === today.toDateString()) {
+        console.log("📩 Sending immediate reminder...");
+        await sendBookingReminder(newBooking.id);
+      }
+
       res.status(201).send({ booking: newBooking });
     } catch (error: any) {
       console.error(error);

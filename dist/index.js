@@ -19,6 +19,7 @@ const tenant_router_1 = require("./router/tenant.router");
 const tenantBooking_router_1 = require("./router/tenantBooking.router");
 const propertyReport_router_1 = require("./router/propertyReport.router");
 const salesReport_router_1 = require("./router/salesReport.router");
+require("./cronJobs");
 const PORT = 8000;
 const base_url_fe = process.env.NEXT_PUBLIC_BASE_URL_FE;
 exports.upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });

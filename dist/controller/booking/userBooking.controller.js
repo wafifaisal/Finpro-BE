@@ -52,6 +52,7 @@ const uploadService = __importStar(require("../../services/uploadService"));
 const prisma_1 = __importDefault(require("../../prisma"));
 const GetBookingService_1 = require("../../services/GetBookingService");
 const dateUtils_1 = require("../../utils/dateUtils");
+const reminderService_1 = require("../../services/reminderService");
 class UserBookingController {
     newBooking(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -67,6 +68,12 @@ class UserBookingController {
                     paymentMethod,
                     add_breakfast,
                 });
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (new Date(startDate).toDateString() === today.toDateString()) {
+                    console.log("📩 Sending immediate reminder...");
+                    yield (0, reminderService_1.sendBookingReminder)(newBooking.id);
+                }
                 res.status(201).send({ booking: newBooking });
             }
             catch (error) {
