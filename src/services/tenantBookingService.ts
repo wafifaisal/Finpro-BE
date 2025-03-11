@@ -30,9 +30,7 @@ export async function getTenantBookings({
         tenantId,
       },
     },
-    status: status
-      ? (status as BookingStatus)
-      : { not: BookingStatus.canceled },
+    status: status ? (status as BookingStatus) : { not: "canceled" },
   };
 
   if (search) {

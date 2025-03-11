@@ -23,6 +23,9 @@ function uploadPaymentProofService(bookingId, file) {
         if (!booking) {
             throw new Error("Booking not found");
         }
+        if (booking.status === "completed") {
+            throw new Error("Booking is already completed.");
+        }
         const { secure_url } = yield (0, cloudinary_1.cloudinaryUpload)(file, "payment-proof");
         yield prisma_1.default.booking.update({
             where: { id: bookingId },

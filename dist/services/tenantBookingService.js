@@ -29,16 +29,14 @@ function getTenantBookings(_a) {
         }
         const itemsPerPage = 4;
         const skip = (page - 1) * itemsPerPage;
-        // Build the base where clause
         const whereClause = {
             room_types: {
                 property: {
                     tenantId,
                 },
             },
-            status: status ? status : undefined,
+            status: status ? status : { not: "canceled" },
         };
-        // If a search term is provided, add an OR condition to search both by booking id and property name
         if (search) {
             whereClause.OR = [
                 { id: { startsWith: search } },

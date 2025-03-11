@@ -67,6 +67,7 @@ class ReviewReplyController {
                 else if (displayType === "not_replied") {
                     reviews = reviews.filter((r) => r.reply === null);
                 }
+                reviews.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
                 const totalCount = reviews.length;
                 const totalPages = Math.ceil(totalCount / limit);
                 reviews = reviews.slice(skip, skip + limit);
