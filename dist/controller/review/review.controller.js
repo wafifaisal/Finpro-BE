@@ -56,9 +56,25 @@ class ReviewController {
     getUserReviews(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { userId } = req.params;
+            const page = parseInt(req.query.page, 10) || 1;
+            const limit = parseInt(req.query.limit, 10) || 10;
+            const skip = (page - 1) * limit;
+            const displayType = req.query.displayType;
+            const where = { user_id: userId, status: "completed" };
+            if (displayType === "reviewed") {
+                where.Review = { some: {} };
+            }
+            else if (displayType === "unreviewed") {
+                where.Review = { none: {} };
+            }
             try {
                 const bookings = yield prisma_1.default.booking.findMany({
-                    where: { user_id: userId, status: "completed" },
+                    where,
+                    orderBy: {
+                        created_at: "desc",
+                    },
+                    skip,
+                    take: limit,
                     include: {
                         Review: {
                             include: {
@@ -74,21 +90,18 @@ class ReviewController {
                         room_types: { include: { property: true, RoomImages: true } },
                     },
                 });
-                res.status(200).send(bookings);
-            }
-            catch (error) {
-                res.status(500).send({ message: error });
-            }
-        });
-    }
-    deleteReview(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { reviewId } = req.params;
-            try {
-                yield prisma_1.default.review.delete({
-                    where: { id: +reviewId },
+                const totalCount = yield prisma_1.default.booking.count({
+                    where,
                 });
-                res.status(200).send({ message: "Review deleted successfully" });
+                res.status(200).send({
+                    bookings,
+                    pagination: {
+                        total: totalCount,
+                        page,
+                        limit,
+                        totalPages: Math.ceil(totalCount / limit),
+                    },
+                });
             }
             catch (error) {
                 res.status(500).send({ message: error });
