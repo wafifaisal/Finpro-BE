@@ -4,6 +4,10 @@ import prisma from "../../prisma";
 export class ReviewReplyController {
   async getReviewsByTenant(req: Request, res: Response): Promise<void> {
     const { tenantId } = req.params;
+    const page = parseInt(req.query.page as string, 10) || 1;
+    const limit = parseInt(req.query.limit as string, 10) || 10;
+    const skip = (page - 1) * limit;
+    const displayType = req.query.displayType as string;
 
     try {
       const tenant = await prisma.tenant.findUnique({
@@ -31,7 +35,7 @@ export class ReviewReplyController {
         return;
       }
 
-      const reviews = tenant.Property.flatMap((property) =>
+      let reviews = tenant.Property.flatMap((property) =>
         property.RoomTypes.flatMap((roomType) =>
           roomType.Review.map((review) => ({
             id: review.id,
@@ -44,22 +48,37 @@ export class ReviewReplyController {
               avatar: review.user.avatar,
               email: review.user.email,
             },
-            reply: review.ReviewReplies.length
-              ? {
-                  ...review.ReviewReplies[0],
-                }
-              : null,
+            reply:
+              review.ReviewReplies.length > 0
+                ? { ...review.ReviewReplies[0] }
+                : null,
             propertyName: property.name,
           }))
         )
       );
 
-      res.status(200).json(reviews);
-      return;
+      if (displayType === "replied") {
+        reviews = reviews.filter((r) => r.reply !== null);
+      } else if (displayType === "not_replied") {
+        reviews = reviews.filter((r) => r.reply === null);
+      }
+
+      const totalCount = reviews.length;
+      const totalPages = Math.ceil(totalCount / limit);
+      reviews = reviews.slice(skip, skip + limit);
+
+      res.status(200).json({
+        reviews,
+        pagination: {
+          total: totalCount,
+          page,
+          limit,
+          totalPages,
+        },
+      });
     } catch (error) {
       console.error("Error fetching reviews:", error);
       res.status(500).json({ message: "Internal server error" });
-      return;
     }
   }
 
