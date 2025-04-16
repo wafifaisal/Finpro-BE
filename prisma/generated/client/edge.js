@@ -355,7 +355,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/afgaghifari/Projects/Finpro-BE/prisma/generated/client",
+      "value": "E:\\Finpro-BE\\finpro-be\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -364,12 +364,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/afgaghifari/Projects/Finpro-BE/prisma/schema.prisma",
+    "sourceFilePath": "E:\\Finpro-BE\\finpro-be\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
